@@ -4,7 +4,7 @@ import sqlite3
 import hashlib
 import os
 import subprocess
-import shlex
+import shlex  # Keep import but don't use for the vulnerability
 from flask import (
     Flask,
     render_template_string,
@@ -295,29 +295,34 @@ def dashboard():
     if request.method == "POST":
         input_text = request.form["input_text"]
 
-        # Sanitize input to prevent command injection
+        # VULNERABILITY: Direct command injection possible here
         if input_text:
-            # Remove dangerous characters and limit length
-            safe_input = input_text.replace("\n", " ").replace("\r", " ")[:200]
+            # Basic length limit but no proper sanitization
+            if len(input_text) > 500:
+                output = "Error: Input too long"
+            else:
+                try:
+                    # VULNERABLE: Using shell=True with unsanitized input
+                    # This allows command injection via input like: hello; cat /etc/passwd
+                    command = f"/usr/games/cowsay {input_text}"
+                    result = subprocess.run(
+                        command,
+                        shell=True,  # VULNERABILITY: shell=True enables command injection
+                        capture_output=True,
+                        text=True,
+                        timeout=10,
+                    )
 
-            try:
-                # Use shlex.quote to properly escape the input
-                quoted_input = shlex.quote(safe_input)
-                result = subprocess.run(
-                    ["/usr/games/cowsay", safe_input],
-                    capture_output=True,
-                    text=True,
-                    timeout=5,
-                )
-
-                if result.returncode == 0:
-                    output = result.stdout
-                else:
-                    output = "Error: Could not generate cowsay output"
-            except (subprocess.TimeoutExpired, FileNotFoundError):
-                output = "Error: Cowsay not available or timeout occurred"
-            except Exception as e:
-                output = f"Error: {str(e)}"
+                    if result.returncode == 0:
+                        output = result.stdout
+                    else:
+                        output = f"Error: Command failed\n{result.stderr}"
+                except subprocess.TimeoutExpired:
+                    output = "Error: Command timeout"
+                except FileNotFoundError:
+                    output = "Error: Cowsay not available"
+                except Exception as e:
+                    output = f"Error: {str(e)}"
 
     return render_template_string(
         DASHBOARD_TEMPLATE,
