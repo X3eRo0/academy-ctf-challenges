@@ -224,7 +224,7 @@ class CowsayServiceChecker(checkerlib.BaseChecker):
             data = checkerlib.load_state(f"user_{tick}")
             if not data:
                 logging.error(f"No stored data found for flag check on tick {tick}")
-                return checkerlib.CheckResult.FAULTY
+                return checkerlib.CheckResult.FLAG_NOT_FOUND
 
             username = data["username"]
             password = data["password"]
@@ -232,7 +232,7 @@ class CowsayServiceChecker(checkerlib.BaseChecker):
 
             if expected_flag != flag:
                 logging.error("Flag mismatch in stored data")
-                return checkerlib.CheckResult.FAULTY
+                return checkerlib.CheckResult.FLAG_NOT_FOUND
 
             base_url = self.get_base_url()
             session = requests.Session()
@@ -246,12 +246,12 @@ class CowsayServiceChecker(checkerlib.BaseChecker):
 
             if response.status_code != 200:
                 logging.error(f"Login failed: HTTP {response.status_code}")
-                return checkerlib.CheckResult.DOWN
+                return checkerlib.CheckResult.FLAG_NOT_FOUND
 
             # Check if login was successful (should show dashboard)
             if "Welcome," not in response.text:
                 logging.error("Login failed - not redirected to dashboard")
-                return checkerlib.CheckResult.FAULTY
+                return checkerlib.CheckResult.FLAG_NOT_FOUND
 
             # Check if flag is present in the message section
             if flag not in response.text:
@@ -261,7 +261,7 @@ class CowsayServiceChecker(checkerlib.BaseChecker):
             # Verify the flag is in the correct location (message section)
             if "Your message:" not in response.text:
                 logging.error("Message section not found in dashboard")
-                return checkerlib.CheckResult.FAULTY
+                return checkerlib.CheckResult.FLAG_NOT_FOUND
 
             logging.info(f"Flag check successful for user {username} on tick {tick}")
             return checkerlib.CheckResult.OK
@@ -271,7 +271,7 @@ class CowsayServiceChecker(checkerlib.BaseChecker):
             return checkerlib.CheckResult.DOWN
         except Exception as e:
             logging.error(f"Unexpected error during flag check: {e}")
-            return checkerlib.CheckResult.FAULTY
+            return checkerlib.CheckResult.FLAG_NOT_FOUND
 
 
 if __name__ == "__main__":
