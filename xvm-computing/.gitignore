@@ -1,0 +1,9 @@
+# Project exclude paths
+/cmake-build-debug/
+/cmake-build-release/
+/build/
+/.idea
+/test/
+/.cache/
+*.xvm
+.gdb_history
