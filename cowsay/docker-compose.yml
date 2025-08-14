@@ -1,0 +1,32 @@
+services:
+  cowsay:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: cowsay
+    container_name: cowsay-service
+    ports:
+      - "5000:5000"
+    restart: unless-stopped
+    
+    # Resource limits for better performance
+    deploy:
+      resources:
+        limits:
+          memory: 128M
+          cpus: '0.5'
+        reservations:
+          memory: 32M
+          cpus: '0.1'
+    
+    # Security settings
+    security_opt:
+      - no-new-privileges:true
+    read_only: false
+    
+    # Logging configuration
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"

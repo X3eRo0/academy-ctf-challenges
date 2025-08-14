@@ -17,9 +17,6 @@ void handle_sigint(int sigid)
 int main(int argc, char* argv[])
 {
 
-    setuid(1000);
-    setgid(1000);
-
     if (argc != 2) {
         fprintf(stderr, "Usage: xdbg <bytecode>\n");
         exit(-1);

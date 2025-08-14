@@ -11,8 +11,6 @@
 int main(int argc, char* argv[])
 {
 
-    setuid(1000);
-    setgid(1000);
     // initialize binary structure
     xvm_bin* bin = init_xvm_bin();
     section_entry* to_disasm = NULL;

@@ -1,13 +1,12 @@
 from collections import defaultdict
-import time
+from pathlib import Path
 import subprocess
 import tempfile
 import hashlib
+import time
 import stat
 import sys
 import os
-
-mapping = defaultdict()
 
 STORE_DIR = "/tmp/data"
 
@@ -35,31 +34,40 @@ def upload():
     os.write(fd, os.read(0, sz))
     os.close(fd)
     hash = hashlib.sha256(path.encode()).hexdigest()
-    if hash in mapping.keys():
-        print("Err")
-        exit()
-    mapping[hash] = path
     print("Your Token:", hash)
+
+
+def get_save_file(token):
+    for root, dir, files in os.walk(STORE_DIR):
+        for file in files:
+            file = Path(root, file)
+
+            hash = hashlib.sha256(str(file).encode()).hexdigest()
+            if hash == token:
+                return file
+    return None
 
 
 def run():
     hash = input("Enter token: ")
-    if hash not in mapping.keys():
+
+    file = get_save_file(hash)
+    if file is None:
         print("Err")
         exit()
 
-    res = exec_bin(["./xvm", mapping[hash]])
-    print("%d" % (res))
+    res = exec_bin(["./xvm", str(file)])
 
 
 def info():
     hash = input("Enter token: ")
-    if hash not in mapping.keys():
+
+    file = get_save_file(hash)
+    if file is None:
         print("Err")
-        breakpoint()
         exit()
 
-    res = exec_bin(["./xinfo", mapping[hash]])
+    res = exec_bin(["./xinfo", str(file)])
 
 
 def menu():

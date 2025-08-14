@@ -1,0 +1,43 @@
+{
+    "service_name": "cowsay",
+    "vulnbox_directory": "{service_name}",
+    "vulnbox": {
+        "files": [
+            "Dockerfile",
+            "docker-compose.yml",
+            "server.py",
+            "requirements.txt",
+            "deploy.sh"
+        ],
+        "exclude": [
+            "*.pyc",
+            "__pycache__/",
+            ".git/",
+            "*.log",
+            ".DS_Store",
+            "*.swp",
+            "*.tmp",
+            ".vscode/",
+            ".idea/"
+        ]
+    },
+    "checker": {
+        "files": [
+            "checker.py",
+            "checker.sh",
+            "cowsay.env",
+            "requirements.txt"
+        ],
+        "exclude": [
+            "*.pyc",
+            "__pycache__/",
+            ".git/",
+            "*.log",
+            ".DS_Store",
+            "*.swp",
+            "*.tmp",
+            ".vscode/",
+            ".idea/"
+        ]
+    }
+}

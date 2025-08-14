@@ -23,9 +23,6 @@ static u32 scode_m = 0;
 int main(int argc, char* argv[])
 {
 
-    setgid(1000);
-    setuid(1000);
-
     // initialize assembler structure
     xasm* xasm = init_xasm();
 

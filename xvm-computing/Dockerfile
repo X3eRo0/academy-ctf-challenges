@@ -26,7 +26,6 @@ WORKDIR /root/xvm
 COPY ./build/xvm /root/xvm/
 COPY ./build/xinfo /root/xvm/
 COPY ./build/xasm /root/xvm/
-COPY ./build/xdbg /root/xvm/
 COPY ./build/xdis /root/xvm/
 COPY server.py /root/xvm
 
