@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - Password Manager{% endblock %}
+
+{% block content %}
+<h2>Your Vaults</h2>
+
+{% if vaults %}
+<table border="1" cellpadding="5" cellspacing="0">
+    <thead>
+        <tr>
+            <th>Vault Name</th>
+            <th>Created</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for vault in vaults %}
+        <tr>
+            <td><strong>{{ vault.name }}</strong></td>
+            <td>{{ vault.created_at }}</td>
+            <td>
+                <a href="/vault/{{ vault.id }}">View</a> |
+                <a href="/vault/{{ vault.id }}/add">Add Entries</a> |
+                <a href="/vault/{{ vault.id }}/download">Download</a> |
+                <form method="POST" action="/vault/{{ vault.id }}/delete" style="display: inline;">
+                    <input type="submit" value="Delete" onclick="return confirm('Are you sure you want to delete this vault?')">
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>You don't have any vaults yet.</p>
+{% endif %}
+
+<h3>Create New Vault</h3>
+<a href="/create-vault">Create Empty Vault</a> | 
+<a href="/import-csv">Import from CSV</a>
+
+<h3>Browse Public Vaults</h3>
+<p><a href="/browse-vaults">Browse all public vaults</a> (requires master password to download)</p>
+{% endblock %}

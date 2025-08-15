@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %}Browse Public Vaults - Password Manager{% endblock %}
+
+{% block content %}
+<h2>Browse All Public Vaults</h2>
+
+<p>Here you can browse and download any vault. You'll need the vault owner's master password to decrypt it.</p>
+
+{% if vaults %}
+<table border="1" cellpadding="5" cellspacing="0">
+    <thead>
+        <tr>
+            <th>Vault ID</th>
+            <th>Vault Name</th>
+            <th>Owner</th>
+            <th>Created</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for vault in vaults %}
+        <tr>
+            <td>{{ vault.id }}</td>
+            <td><strong>{{ vault.name }}</strong></td>
+            <td>{{ vault.username }}</td>
+            <td>{{ vault.created_at }}</td>
+            <td>
+                <a href="/download/{{ vault.id }}">Download</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>No vaults available.</p>
+{% endif %}
+
+<h3>Download Instructions</h3>
+<ul>
+    <li>Click "Download" next to any vault to download it</li>
+    <li>You'll need the vault owner's master password to decrypt the contents</li>
+    <li>Downloaded vaults are compressed and encrypted</li>
+    <li>You can add a comment before downloading</li>
+</ul>
+
+<p><a href="/">← Back to Dashboard</a></p>
+{% endblock %}

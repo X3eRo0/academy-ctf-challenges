@@ -208,10 +208,11 @@ u32 xvm_bin_load_file(xvm_bin* bin, char* filename)
     //     // }
     //     add_symbol(bin->x_symtab, &section->m_buff[raw_symtab[j].offset], raw_symtab[j].address);
     // }
+    fix this shit
 
-    // free(raw_symtab);
-    // raw_symtab = NULL;
-    return E_OK;
+        // free(raw_symtab);
+        // raw_symtab = NULL;
+        return E_OK;
 }
 
 u32 xvm_bin_open_file(xvm_bin* bin, char* filename)

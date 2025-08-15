@@ -1,6 +1,6 @@
 {
-    "service_name": "xvm",
-    "vulnbox_directory": "{service_name}-computing",
+    "service_name": "xvm-computing",
+    "vulnbox_directory": "{service_name}",
     "vulnbox": {
         "files": [
             "Dockerfile",

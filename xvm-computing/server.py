@@ -65,6 +65,7 @@ def info():
     file = get_save_file(hash)
     if file is None:
         print("Err")
+        breakpoint()
         exit()
 
     res = exec_bin(["./xinfo", str(file)])

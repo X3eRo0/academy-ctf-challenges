@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}Password Manager{% endblock %}</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <h1>🔐 SecureVault Password Manager</h1>
+    
+    {% if session.username %}
+    <nav>
+        <a href="/">Dashboard</a> | 
+        <a href="/create-vault">New Vault</a> | 
+        <a href="/logout">Logout ({{ session.username }})</a>
+    </nav>
+    <hr>
+    {% endif %}
+    
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div style="border: 1px solid; padding: 10px; margin: 10px 0; background: {% if category == 'error' %}#ffcccc{% else %}#ccffcc{% endif %};">
+                    <strong>{{ category.title() }}:</strong> {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+    
+    <hr>
+    <footer>
+        <small>SecureVault Password Manager - CTF Challenge</small>
+    </footer>
+</body>
+</html>

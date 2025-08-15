@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}Register - Password Manager{% endblock %}
+
+{% block content %}
+<h2>Create Account</h2>
+
+<form method="POST" action="/register">
+    <table>
+        <tr>
+            <td><label for="username">Username:</label></td>
+            <td><input type="text" id="username" name="username" required></td>
+        </tr>
+        <tr>
+            <td><label for="password">Password:</label></td>
+            <td><input type="password" id="password" name="password" required></td>
+        </tr>
+        <tr>
+            <td><label for="confirm_password">Confirm Password:</label></td>
+            <td><input type="password" id="confirm_password" name="confirm_password" required></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Register"></td>
+        </tr>
+    </table>
+</form>
+
+<p><strong>Note:</strong> After registration, you can create vaults with individual master passwords for encryption.</p>
+
+<p>Already have an account? <a href="/login">Login here</a></p>
+{% endblock %}

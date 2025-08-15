@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block title %}Download Vault{% if vault %} - {{ vault.name }}{% endif %}{% endblock %}
+
+{% block content %}
+<h2>Download Vault{% if vault %}: {{ vault.name }}{% endif %}</h2>
+
+<form method="POST" action="{% if vault %}/vault/{{ vault.id }}/download{% else %}/download/{{ vault_id }}{% endif %}">
+    <table>
+        <tr>
+            <td><label for="master_password">Master Password:</label></td>
+            <td><input type="password" id="master_password" name="master_password" required></td>
+        </tr>
+        <tr>
+            <td><label for="comment">Comment (optional):</label></td>
+            <td><textarea id="comment" name="comment" rows="3" cols="50" placeholder="Add a comment that will be included in the downloaded vault"></textarea></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Download Vault"></td>
+        </tr>
+    </table>
+</form>
+
+<h3>Download Information</h3>
+<ul>
+    <li>The vault will be compressed and encrypted with the provided master password</li>
+    <li>Your comment (if provided) will be added to the top of the vault file</li>
+    <li>The downloaded file can be imported into any password manager that supports CSV</li>
+    <li>You need the same master password to decrypt the vault later</li>
+</ul>
+
+<p><a href="{% if vault %}/vault/{{ vault.id }}{% else %}/browse-vaults{% endif %}">← Cancel</a></p>
+{% endblock %}
