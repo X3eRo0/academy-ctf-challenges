@@ -3,24 +3,24 @@
 {% block title %}Login - SecureVault{% endblock %}
 
 {% block content %}
-<h2>ACCESS TERMINAL</h2>
+<h2>Login</h2>
 
 <form method="POST" action="/login">
     <table>
         <tr>
-            <td><label for="username">USER ID:</label></td>
+            <td><label for="username">Username</label></td>
             <td><input type="text" id="username" name="username" required></td>
         </tr>
         <tr>
-            <td><label for="password">ACCESS KEY:</label></td>
+            <td><label for="password">Password</label></td>
             <td><input type="password" id="password" name="password" required></td>
         </tr>
         <tr>
             <td></td>
-            <td><input type="submit" class="btn-primary" value="AUTHENTICATE"></td>
+            <td><input type="submit" class="btn-primary" value="Login"></td>
         </tr>
     </table>
 </form>
 
-<p><a href="/register" class="btn-secondary">REGISTER NEW USER</a></p>
+<p><a href="/register" class="btn-secondary">Register</a></p>
 {% endblock %}

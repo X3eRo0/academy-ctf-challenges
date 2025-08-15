@@ -3,32 +3,32 @@
 {% block title %}Import Data{% if vault %} - {{ vault.name }}{% endif %}{% endblock %}
 
 {% block content %}
-<h2>IMPORT DATA{% if vault %} TO {{ vault.name }}{% endif %}</h2>
+<h2>Import Data{% if vault %} to {{ vault.name }}{% endif %}</h2>
 
 <form method="POST" action="{% if vault %}/vault/{{ vault.id }}/import{% else %}/import-csv{% endif %}" enctype="multipart/form-data">
     <table>
         {% if not vault %}
         <tr>
-            <td><label for="vault_name">CONTAINER ID:</label></td>
+            <td><label for="vault_name">Container Name</label></td>
             <td><input type="text" id="vault_name" name="vault_name" required></td>
         </tr>
         {% endif %}
         <tr>
-            <td><label for="master_password">MASTER PASSWORD:</label></td>
+            <td><label for="master_password">Master Password</label></td>
             <td><input type="password" id="master_password" name="master_password" required></td>
         </tr>
         <tr>
-            <td><label for="csv_file">DATA FILE:</label></td>
+            <td><label for="csv_file">CSV File</label></td>
             <td><input type="file" id="csv_file" name="file" accept=".csv" required></td>
         </tr>
         <tr>
             <td></td>
-            <td><input type="submit" class="btn-primary" value="{% if vault %}IMPORT DATA{% else %}CREATE FROM CSV{% endif %}"></td>
+            <td><input type="submit" class="btn-primary" value="{% if vault %}Import Data{% else %}Create from CSV{% endif %}"></td>
         </tr>
     </table>
 </form>
 
-<h3>FILE FORMAT</h3>
+<h3>File Format</h3>
 <p>CSV format required:</p>
 <pre>
 "URL","Username","Password"
@@ -36,7 +36,7 @@
 "https://another.target","user2","key456"
 </pre>
 
-<h3>RESTRICTIONS</h3>
+<h3>Restrictions</h3>
 <ul>
     <li>3 columns: URL, Username, Password</li>
     <li>Double quotes required</li>
@@ -44,5 +44,5 @@
     <li>Lines starting with # ignored</li>
 </ul>
 
-<p><a href="{% if vault %}/vault/{{ vault.id }}{% else %}/{% endif %}" class="btn-secondary">← ABORT</a></p>
+<p><a href="{% if vault %}/vault/{{ vault.id }}{% else %}/{% endif %}" class="btn-secondary">← Cancel</a></p>
 {% endblock %}

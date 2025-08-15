@@ -1,73 +1,37 @@
 {% extends "base.html" %}
 
-{% block title %}Add Entries - {{ vault.name }}{% endblock %}
+{% block title %}Add Entry - {{ vault.name }}{% endblock %}
 
 {% block content %}
-<h2>Add Entries to: {{ vault.name }}</h2>
+<h2>Add Entry to: {{ vault.name }}</h2>
 
 <form method="POST" action="/vault/{{ vault.id }}/add">
     <table>
         <tr>
-            <td><label for="master_password">Master Password:</label></td>
+            <td><label for="master_password">Master Password</label></td>
             <td><input type="password" id="master_password" name="master_password" required></td>
         </tr>
-    </table>
-    
-    <h3>New Password Entries</h3>
-    
-    <h4>Entry 1:</h4>
-    <table>
         <tr>
-            <td><label for="url_1">URL:</label></td>
-            <td><input type="text" id="url_1" name="url_1" placeholder="https://example.com"></td>
+            <td><label for="url_1">URL</label></td>
+            <td><input type="text" id="url_1" name="url_1" placeholder="https://example.com" required></td>
         </tr>
         <tr>
-            <td><label for="username_1">Username:</label></td>
-            <td><input type="text" id="username_1" name="username_1" placeholder="No commas allowed"></td>
+            <td><label for="username_1">Username</label></td>
+            <td><input type="text" id="username_1" name="username_1" placeholder="No commas allowed" required></td>
         </tr>
         <tr>
-            <td><label for="password_1">Password:</label></td>
-            <td><input type="text" id="password_1" name="password_1" placeholder="No commas allowed"></td>
-        </tr>
-    </table>
-    
-    <h4>Entry 2:</h4>
-    <table>
-        <tr>
-            <td><label for="url_2">URL:</label></td>
-            <td><input type="text" id="url_2" name="url_2" placeholder="https://example.com"></td>
+            <td><label for="password_1">Password</label></td>
+            <td><input type="text" id="password_1" name="password_1" placeholder="No commas allowed" required></td>
         </tr>
         <tr>
-            <td><label for="username_2">Username:</label></td>
-            <td><input type="text" id="username_2" name="username_2" placeholder="No commas allowed"></td>
-        </tr>
-        <tr>
-            <td><label for="password_2">Password:</label></td>
-            <td><input type="text" id="password_2" name="password_2" placeholder="No commas allowed"></td>
+            <td></td>
+            <td>
+                <input type="submit" class="btn-primary" value="Add Entry">
+                <a href="/vault/{{ vault.id }}" class="btn-secondary">Cancel</a>
+            </td>
         </tr>
     </table>
-    
-    <h4>Entry 3:</h4>
-    <table>
-        <tr>
-            <td><label for="url_3">URL:</label></td>
-            <td><input type="text" id="url_3" name="url_3" placeholder="https://example.com"></td>
-        </tr>
-        <tr>
-            <td><label for="username_3">Username:</label></td>
-            <td><input type="text" id="username_3" name="username_3" placeholder="No commas allowed"></td>
-        </tr>
-        <tr>
-            <td><label for="password_3">Password:</label></td>
-            <td><input type="text" id="password_3" name="password_3" placeholder="No commas allowed"></td>
-        </tr>
-    </table>
-    
-    <p>
-        <input type="submit" value="Add Entries">
-        <a href="/vault/{{ vault.id }}">Cancel</a>
-    </p>
 </form>
 
-<p><strong>Note:</strong> Leave fields blank to skip entries. Username and password fields cannot contain commas (interferes with CSV format).</p>
+<p><small>Username and password fields cannot contain commas</small></p>
 {% endblock %}

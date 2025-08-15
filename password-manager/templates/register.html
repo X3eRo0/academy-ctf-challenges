@@ -3,30 +3,30 @@
 {% block title %}Register - SecureVault{% endblock %}
 
 {% block content %}
-<h2>USER REGISTRATION</h2>
+<h2>User Registration</h2>
 
 <form method="POST" action="/register">
     <table>
         <tr>
-            <td><label for="username">USER ID:</label></td>
+            <td><label for="username">Username</label></td>
             <td><input type="text" id="username" name="username" required></td>
         </tr>
         <tr>
-            <td><label for="password">ACCESS KEY:</label></td>
+            <td><label for="password">Password</label></td>
             <td><input type="password" id="password" name="password" required></td>
         </tr>
         <tr>
-            <td><label for="confirm_password">CONFIRM KEY:</label></td>
+            <td><label for="confirm_password">Confirm Password</label></td>
             <td><input type="password" id="confirm_password" name="confirm_password" required></td>
         </tr>
         <tr>
             <td></td>
-            <td><input type="submit" class="btn-primary" value="REGISTER"></td>
+            <td><input type="submit" class="btn-primary" value="Register"></td>
         </tr>
     </table>
 </form>
 
 <p><small>Individual container encryption keys required</small></p>
 
-<p><a href="/login" class="btn-secondary">EXISTING USER LOGIN</a></p>
+<p><a href="/login" class="btn-secondary">Existing User Login</a></p>
 {% endblock %}

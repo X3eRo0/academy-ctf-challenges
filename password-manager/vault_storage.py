@@ -122,15 +122,12 @@ class VaultManager:
         existing_entries = self.get_vault_entries(vault_id, user_id, master_password)
 
         # Validate new entries
-        a = open("/tmp/a", "w")
         for entry in new_entries:
-            a.write(entry)
             valid, error = CSVFormatter.validate_entry(
                 entry["url"], entry["username"], entry["password"]
             )
             if not valid:
                 raise ValueError(f"Invalid entry: {error}")
-        a.close()
 
         # Combine entries
         all_entries = existing_entries + new_entries

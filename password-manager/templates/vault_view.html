@@ -3,31 +3,31 @@
 {% block title %}{{ vault.name }} - SecureVault{% endblock %}
 
 {% block content %}
-<h2>CONTAINER: {{ vault.name }}</h2>
-<p><small>INIT: {{ vault.created_at }}</small></p>
+<h2>Container: {{ vault.name }}</h2>
+<p><small>Created: {{ vault.created_at }}</small></p>
 
 {% if not entries %}
-<h3>DECRYPT CONTAINER</h3>
+<h3>Unlock Container</h3>
 <form method="POST" action="/vault/{{ vault.id }}">
     <table>
         <tr>
-            <td><label for="master_password">MASTER PASSWORD:</label></td>
+            <td><label for="master_password">Master Password</label></td>
             <td><input type="password" id="master_password" name="master_password" required></td>
         </tr>
         <tr>
             <td></td>
-            <td><input type="submit" value="DECRYPT"></td>
+            <td><input type="submit" value="Unlock"></td>
         </tr>
     </table>
 </form>
 {% else %}
-<h3>SECURE RECORDS</h3>
+<h3>Password Entries</h3>
 <table>
     <thead>
         <tr>
-            <th>TARGET</th>
-            <th>USER ID</th>
-            <th>ACCESS KEY</th>
+            <th>URL</th>
+            <th>Username</th>
+            <th>Password</th>
         </tr>
     </thead>
     <tbody>
@@ -41,11 +41,11 @@
     </tbody>
 </table>
 
-<h3>OPERATIONS</h3>
-<a href="/vault/{{ vault.id }}/add" class="btn-secondary">APPEND RECORD</a>
-<a href="/vault/{{ vault.id }}/import" class="btn-secondary">IMPORT DATA</a>
-<a href="/vault/{{ vault.id }}/download" class="btn-primary">EXPORT CONTAINER</a>
+<h3>Actions</h3>
+<a href="/vault/{{ vault.id }}/add" class="btn-secondary">Add Entry</a>
+<a href="/vault/{{ vault.id }}/import" class="btn-secondary">Import Data</a>
+<a href="/vault/{{ vault.id }}/download" class="btn-primary">Download Vault</a>
 {% endif %}
 
-<p><a href="/" class="btn-secondary">← RETURN TO TERMINAL</a></p>
+<p><a href="/" class="btn-secondary">← Back to Dashboard</a></p>
 {% endblock %}
