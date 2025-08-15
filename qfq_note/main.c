@@ -116,8 +116,6 @@ void add_note(int fd)
 {
     size_t size, sec_level;
     struct notes* found = locate_notes(fd, &size, &sec_level);
-    if (found == NULL)
-        return;
     if (found == NULL) {
         struct notes* tmp = malloc(sizeof(struct notes));
         memset((char*)tmp, 0, sizeof(struct notes));
