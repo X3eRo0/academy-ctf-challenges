@@ -1,50 +1,48 @@
 {% extends "base.html" %}
 
-{% block title %}Import CSV{% if vault %} - {{ vault.name }}{% endif %}{% endblock %}
+{% block title %}Import Data{% if vault %} - {{ vault.name }}{% endif %}{% endblock %}
 
 {% block content %}
-<h2>Import CSV{% if vault %} to {{ vault.name }}{% endif %}</h2>
+<h2>IMPORT DATA{% if vault %} TO {{ vault.name }}{% endif %}</h2>
 
 <form method="POST" action="{% if vault %}/vault/{{ vault.id }}/import{% else %}/import-csv{% endif %}" enctype="multipart/form-data">
     <table>
         {% if not vault %}
         <tr>
-            <td><label for="vault_name">New Vault Name:</label></td>
+            <td><label for="vault_name">CONTAINER ID:</label></td>
             <td><input type="text" id="vault_name" name="vault_name" required></td>
         </tr>
         {% endif %}
         <tr>
-            <td><label for="master_password">Master Password:</label></td>
+            <td><label for="master_password">MASTER PASSWORD:</label></td>
             <td><input type="password" id="master_password" name="master_password" required></td>
         </tr>
         <tr>
-            <td><label for="csv_file">CSV File:</label></td>
+            <td><label for="csv_file">DATA FILE:</label></td>
             <td><input type="file" id="csv_file" name="file" accept=".csv" required></td>
         </tr>
         <tr>
             <td></td>
-            <td><input type="submit" value="{% if vault %}Import to Vault{% else %}Create Vault from CSV{% endif %}"></td>
+            <td><input type="submit" class="btn-primary" value="{% if vault %}IMPORT DATA{% else %}CREATE FROM CSV{% endif %}"></td>
         </tr>
     </table>
 </form>
 
-<h3>CSV Format</h3>
-<p>Your CSV file should have this format:</p>
+<h3>FILE FORMAT</h3>
+<p>CSV format required:</p>
 <pre>
 "URL","Username","Password"
-"https://example.com","user1","pass123"
-"https://google.com","user2","pass456"
+"https://target.system","user1","key123"
+"https://another.target","user2","key456"
 </pre>
 
-<h3>Requirements</h3>
+<h3>RESTRICTIONS</h3>
 <ul>
-    <li>Each row should have exactly 3 columns: URL, Username, Password</li>
-    <li>Values should be quoted with double quotes</li>
-    <li>Username and password cannot contain commas (interferes with CSV format)</li>
-    <li>Special characters are allowed except commas</li>
-    <li>URLs can contain any characters</li>
-    <li>Lines starting with # are treated as comments and ignored</li>
+    <li>3 columns: URL, Username, Password</li>
+    <li>Double quotes required</li>
+    <li>No commas in username/password fields</li>
+    <li>Lines starting with # ignored</li>
 </ul>
 
-<p><a href="{% if vault %}/vault/{{ vault.id }}{% else %}/{% endif %}">← Cancel</a></p>
+<p><a href="{% if vault %}/vault/{{ vault.id }}{% else %}/{% endif %}" class="btn-secondary">← ABORT</a></p>
 {% endblock %}

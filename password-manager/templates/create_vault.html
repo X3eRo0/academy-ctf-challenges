@@ -1,80 +1,80 @@
 {% extends "base.html" %}
 
-{% block title %}Create Vault - Password Manager{% endblock %}
+{% block title %}Create Container - SecureVault{% endblock %}
 
 {% block content %}
-<h2>Create New Vault</h2>
+<h2>INITIALIZE SECURE CONTAINER</h2>
 
 <form method="POST" action="/create-vault">
     <table>
         <tr>
-            <td><label for="vault_name">Vault Name:</label></td>
+            <td><label for="vault_name">CONTAINER ID:</label></td>
             <td><input type="text" id="vault_name" name="vault_name" required></td>
         </tr>
         <tr>
-            <td><label for="master_password">Master Password:</label></td>
+            <td><label for="master_password">MASTER PASSWORD:</label></td>
             <td><input type="password" id="master_password" name="master_password" required></td>
         </tr>
         <tr>
-            <td colspan="2"><h3>Initial Password Entries (Optional)</h3></td>
+            <td colspan="2"><h3>INITIAL DATA RECORDS</h3></td>
         </tr>
     </table>
     
     <div id="entries">
-        <h4>Entry 1:</h4>
+        <h4>RECORD 01:</h4>
         <table>
             <tr>
-                <td><label for="url_1">URL:</label></td>
-                <td><input type="text" id="url_1" name="url_1" placeholder="https://example.com"></td>
+                <td><label for="url_1">TARGET:</label></td>
+                <td><input type="text" id="url_1" name="url_1" placeholder="https://target.system"></td>
             </tr>
             <tr>
-                <td><label for="username_1">Username:</label></td>
-                <td><input type="text" id="username_1" name="username_1" placeholder="No commas allowed"></td>
+                <td><label for="username_1">USER ID:</label></td>
+                <td><input type="text" id="username_1" name="username_1" placeholder="no commas"></td>
             </tr>
             <tr>
-                <td><label for="password_1">Password:</label></td>
-                <td><input type="text" id="password_1" name="password_1" placeholder="No commas allowed"></td>
+                <td><label for="password_1">ACCESS KEY:</label></td>
+                <td><input type="text" id="password_1" name="password_1" placeholder="no commas"></td>
             </tr>
         </table>
         
-        <h4>Entry 2:</h4>
+        <h4>RECORD 02:</h4>
         <table>
             <tr>
-                <td><label for="url_2">URL:</label></td>
-                <td><input type="text" id="url_2" name="url_2" placeholder="https://example.com"></td>
+                <td><label for="url_2">TARGET:</label></td>
+                <td><input type="text" id="url_2" name="url_2" placeholder="https://target.system"></td>
             </tr>
             <tr>
-                <td><label for="username_2">Username:</label></td>
-                <td><input type="text" id="username_2" name="username_2" placeholder="No commas allowed"></td>
+                <td><label for="username_2">USER ID:</label></td>
+                <td><input type="text" id="username_2" name="username_2" placeholder="no commas"></td>
             </tr>
             <tr>
-                <td><label for="password_2">Password:</label></td>
-                <td><input type="text" id="password_2" name="password_2" placeholder="No commas allowed"></td>
+                <td><label for="password_2">ACCESS KEY:</label></td>
+                <td><input type="text" id="password_2" name="password_2" placeholder="no commas"></td>
             </tr>
         </table>
         
-        <h4>Entry 3:</h4>
+        <h4>RECORD 03:</h4>
         <table>
             <tr>
-                <td><label for="url_3">URL:</label></td>
-                <td><input type="text" id="url_3" name="url_3" placeholder="https://example.com"></td>
+                <td><label for="url_3">TARGET:</label></td>
+                <td><input type="text" id="url_3" name="url_3" placeholder="https://target.system"></td>
             </tr>
             <tr>
-                <td><label for="username_3">Username:</label></td>
-                <td><input type="text" id="username_3" name="username_3" placeholder="No commas allowed"></td>
+                <td><label for="username_3">USER ID:</label></td>
+                <td><input type="text" id="username_3" name="username_3" placeholder="no commas"></td>
             </tr>
             <tr>
-                <td><label for="password_3">Password:</label></td>
-                <td><input type="text" id="password_3" name="password_3" placeholder="No commas allowed"></td>
+                <td><label for="password_3">ACCESS KEY:</label></td>
+                <td><input type="text" id="password_3" name="password_3" placeholder="no commas"></td>
             </tr>
         </table>
     </div>
     
     <p>
-        <input type="submit" value="Create Vault">
-        <a href="/">Cancel</a>
+        <input type="submit" class="btn-primary" value="INITIALIZE">
+        <a href="/" class="btn-secondary">ABORT</a>
     </p>
 </form>
 
-<p><strong>Note:</strong> Username and password fields cannot contain commas (interferes with CSV format). Special characters are allowed.</p>
+<p><small>CSV format restriction applies</small></p>
 {% endblock %}

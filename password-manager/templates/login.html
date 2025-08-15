@@ -1,26 +1,26 @@
 {% extends "base.html" %}
 
-{% block title %}Login - Password Manager{% endblock %}
+{% block title %}Login - SecureVault{% endblock %}
 
 {% block content %}
-<h2>Login</h2>
+<h2>ACCESS TERMINAL</h2>
 
 <form method="POST" action="/login">
     <table>
         <tr>
-            <td><label for="username">Username:</label></td>
+            <td><label for="username">USER ID:</label></td>
             <td><input type="text" id="username" name="username" required></td>
         </tr>
         <tr>
-            <td><label for="password">Password:</label></td>
+            <td><label for="password">ACCESS KEY:</label></td>
             <td><input type="password" id="password" name="password" required></td>
         </tr>
         <tr>
             <td></td>
-            <td><input type="submit" value="Login"></td>
+            <td><input type="submit" class="btn-primary" value="AUTHENTICATE"></td>
         </tr>
     </table>
 </form>
 
-<p>Don't have an account? <a href="/register">Register here</a></p>
+<p><a href="/register" class="btn-secondary">REGISTER NEW USER</a></p>
 {% endblock %}

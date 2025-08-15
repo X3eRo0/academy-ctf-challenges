@@ -1,17 +1,17 @@
 {% extends "base.html" %}
 
-{% block title %}Dashboard - Password Manager{% endblock %}
+{% block title %}Dashboard - SecureVault{% endblock %}
 
 {% block content %}
-<h2>Your Vaults</h2>
+<h2>SECURE CONTAINERS</h2>
 
 {% if vaults %}
-<table border="1" cellpadding="5" cellspacing="0">
+<table>
     <thead>
         <tr>
-            <th>Vault Name</th>
-            <th>Created</th>
-            <th>Actions</th>
+            <th>CONTAINER ID</th>
+            <th>CREATED</th>
+            <th>OPERATIONS</th>
         </tr>
     </thead>
     <tbody>
@@ -20,11 +20,11 @@
             <td><strong>{{ vault.name }}</strong></td>
             <td>{{ vault.created_at }}</td>
             <td>
-                <a href="/vault/{{ vault.id }}">View</a> |
-                <a href="/vault/{{ vault.id }}/add">Add Entries</a> |
-                <a href="/vault/{{ vault.id }}/download">Download</a> |
-                <form method="POST" action="/vault/{{ vault.id }}/delete" style="display: inline;">
-                    <input type="submit" value="Delete" onclick="return confirm('Are you sure you want to delete this vault?')">
+                <a href="/vault/{{ vault.id }}" class="btn-primary">ACCESS</a>
+                <a href="/vault/{{ vault.id }}/add" class="btn-secondary">APPEND</a>
+                <a href="/vault/{{ vault.id }}/download" class="btn-secondary">EXPORT</a>
+                <form method="POST" action="/vault/{{ vault.id }}/delete" style="display: inline; margin: 2px;">
+                    <input type="submit" class="danger" value="PURGE" onclick="return confirm('CONFIRM PURGE OPERATION?')">
                 </form>
             </td>
         </tr>
@@ -32,13 +32,13 @@
     </tbody>
 </table>
 {% else %}
-<p>You don't have any vaults yet.</p>
+<p>NO SECURE CONTAINERS INITIALIZED</p>
 {% endif %}
 
-<h3>Create New Vault</h3>
-<a href="/create-vault">Create Empty Vault</a> | 
-<a href="/import-csv">Import from CSV</a>
+<h3>INITIALIZE CONTAINER</h3>
+<a href="/create-vault" class="btn-primary">CREATE NEW</a>
+<a href="/import-csv" class="btn-primary">IMPORT DATA</a>
 
-<h3>Browse Public Vaults</h3>
-<p><a href="/browse-vaults">Browse all public vaults</a> (requires master password to download)</p>
+<h3>PUBLIC REGISTRY</h3>
+<p><a href="/browse-vaults" class="btn-secondary">BROWSE PUBLIC CONTAINERS</a></p>
 {% endblock %}

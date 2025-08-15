@@ -4,36 +4,335 @@
     <title>{% block title %}Password Manager{% endblock %}</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: #000;
+            color: #00ff00;
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 400;
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+            position: relative;
+        }
+        
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 30% 30%, rgba(0, 255, 0, 0.02) 0%, transparent 50%),
+                radial-gradient(circle at 70% 70%, rgba(0, 255, 0, 0.02) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        h1 {
+            color: #00ff00;
+            font-size: 36px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            text-shadow: 0 0 10px #00ff00;
+            animation: flicker 3s infinite;
+        }
+        
+        @keyframes flicker {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+        
+        nav {
+            background: rgba(0, 50, 0, 0.3);
+            border: 1px solid #00ff00;
+            padding: 15px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        nav a {
+            color: #00ff00;
+            text-decoration: none;
+            margin: 0 20px;
+            padding: 10px 20px;
+            border: 1px solid #00ff00;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            font-size: 16px;
+            font-weight: 400;
+            letter-spacing: 2px;
+            background: transparent;
+        }
+        
+        nav a:hover {
+            background: rgba(0, 255, 0, 0.1);
+            text-shadow: 0 0 5px #00ff00;
+            box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+        }
+        
+        .flash-msg {
+            border: 1px solid #ffff00;
+            background: rgba(255, 255, 0, 0.05);
+            padding: 15px;
+            margin: 15px 0;
+            font-size: 16px;
+            color: #ffff00;
+        }
+        
+        .flash-error {
+            border-color: #ff0000;
+            background: rgba(255, 0, 0, 0.05);
+            color: #ff0000;
+        }
+        
+        .flash-success {
+            border-color: #00ff00;
+            background: rgba(0, 255, 0, 0.05);
+            color: #00ff00;
+        }
+        
+        main {
+            min-height: 60vh;
+        }
+        
+        h2, h3, h4 {
+            color: #00ff00;
+            font-weight: 700;
+            margin: 25px 0 15px 0;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
+        }
+        
+        h2 { font-size: 26px; }
+        h3 { font-size: 20px; }
+        h4 { font-size: 18px; }
+        
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            background: rgba(0, 20, 0, 0.3);
+            margin: 20px 0;
+            border: 1px solid #333;
+        }
+        
+        th, td {
+            border: 1px solid #333;
+            padding: 12px;
+            text-align: left;
+            font-size: 16px;
+        }
+        
+        th {
+            background: rgba(0, 255, 0, 0.1);
+            color: #00ff00;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        tr:hover {
+            background: rgba(0, 255, 0, 0.05);
+        }
+        
+        input[type="text"], input[type="password"] {
+            background: #000;
+            border: 1px solid #333;
+            color: #00ff00;
+            padding: 12px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 16px;
+            width: 100%;
+            transition: all 0.3s ease;
+        }
+        
+        input[type="text"]:focus, input[type="password"]:focus {
+            outline: none;
+            border-color: #00ff00;
+            box-shadow: 0 0 5px rgba(0, 255, 0, 0.3);
+            background: rgba(0, 50, 0, 0.1);
+        }
+        
+        input[type="submit"], input[type="file"], button {
+            background: rgba(0, 255, 0, 0.05);
+            border: 2px solid #00ff00;
+            color: #00ff00;
+            padding: 15px 30px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 10px rgba(0, 255, 0, 0.1);
+        }
+        
+        input[type="file"] {
+            text-transform: none;
+            padding: 12px;
+            font-weight: 400;
+        }
+        
+        input[type="file"]::-webkit-file-upload-button {
+            background: rgba(0, 255, 0, 0.1);
+            border: 1px solid #00ff00;
+            color: #00ff00;
+            padding: 8px 16px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+        
+        input[type="file"]::-webkit-file-upload-button:hover {
+            background: rgba(0, 255, 0, 0.2);
+            text-shadow: 0 0 5px #00ff00;
+        }
+        
+        input[type="submit"]:hover, button:hover {
+            background: rgba(0, 255, 0, 0.15);
+            text-shadow: 0 0 10px #00ff00;
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
+            transform: translateY(-2px);
+        }
+        
+        a {
+            color: #00ff00;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 16px;
+            padding: 8px 16px;
+            border: 1px solid transparent;
+            display: inline-block;
+            margin: 2px;
+        }
+        
+        a:hover {
+            text-shadow: 0 0 5px #00ff00;
+            border-color: #00ff00;
+            background: rgba(0, 255, 0, 0.05);
+        }
+        
+        .btn-primary {
+            background: rgba(0, 255, 0, 0.1) !important;
+            border: 2px solid #00ff00 !important;
+            color: #00ff00 !important;
+            padding: 12px 24px !important;
+            font-weight: 700 !important;
+            text-transform: uppercase !important;
+            letter-spacing: 2px !important;
+            box-shadow: 0 0 15px rgba(0, 255, 0, 0.2) !important;
+        }
+        
+        .btn-primary:hover {
+            background: rgba(0, 255, 0, 0.2) !important;
+            box-shadow: 0 0 25px rgba(0, 255, 0, 0.4) !important;
+            transform: translateY(-2px) !important;
+        }
+        
+        .btn-secondary {
+            background: rgba(0, 255, 0, 0.02) !important;
+            border: 1px solid #00ff00 !important;
+            color: #00ff00 !important;
+            padding: 8px 16px !important;
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(0, 255, 0, 0.1) !important;
+            box-shadow: 0 0 10px rgba(0, 255, 0, 0.2) !important;
+        }
+        
+        .danger {
+            border-color: #ff0000 !important;
+            color: #ff0000 !important;
+        }
+        
+        .danger:hover {
+            background: rgba(255, 0, 0, 0.1) !important;
+            text-shadow: 0 0 5px #ff0000 !important;
+            box-shadow: 0 0 10px rgba(255, 0, 0, 0.3) !important;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 1px solid #333;
+            color: #666;
+            font-size: 10px;
+        }
+        
+        small {
+            color: #666;
+            font-size: 10px;
+        }
+        
+        label {
+            font-size: 14px;
+            color: #00ff00;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 700;
+        }
+        
+        p {
+            margin: 15px 0;
+            font-size: 16px;
+        }
+    </style>
 </head>
 <body>
-    <h1>🔐 SecureVault Password Manager</h1>
-    
-    {% if session.username %}
-    <nav>
-        <a href="/">Dashboard</a> | 
-        <a href="/create-vault">New Vault</a> | 
-        <a href="/logout">Logout ({{ session.username }})</a>
-    </nav>
-    <hr>
-    {% endif %}
-    
-    {% with messages = get_flashed_messages(with_categories=true) %}
-        {% if messages %}
-            {% for category, message in messages %}
-                <div style="border: 1px solid; padding: 10px; margin: 10px 0; background: {% if category == 'error' %}#ffcccc{% else %}#ccffcc{% endif %};">
-                    <strong>{{ category.title() }}:</strong> {{ message }}
-                </div>
-            {% endfor %}
+    <div class="container">
+        <h1>SECUREVAULT</h1>
+        
+        {% if session.username %}
+        <nav>
+            <a href="/">DASHBOARD</a>
+            <a href="/create-vault">NEW VAULT</a>
+            <a href="/logout">LOGOUT [{{ session.username }}]</a>
+        </nav>
         {% endif %}
-    {% endwith %}
-    
-    <main>
-        {% block content %}{% endblock %}
-    </main>
-    
-    <hr>
-    <footer>
-        <small>SecureVault Password Manager - CTF Challenge</small>
-    </footer>
+        
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="flash-msg {% if category == 'error' %}flash-error{% else %}flash-success{% endif %}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        
+        <main>
+            {% block content %}{% endblock %}
+        </main>
+        
+        <footer>
+            SECUREVAULT v2.0 - CTF CHALLENGE
+        </footer>
+    </div>
 </body>
 </html>
