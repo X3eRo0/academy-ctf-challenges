@@ -105,8 +105,8 @@ class CSVFormatter:
         if comment:
             csv_lines.append(f"# {comment}")
 
-        # Add CSV header
-        csv_lines.append("URL,Username,Password")
+        # # Add CSV header
+        # csv_lines.append("URL,Username,Password")
 
         # Add entries
         for entry in entries:
@@ -119,7 +119,6 @@ class CSVFormatter:
 
     @staticmethod
     def parse_vault(csv_content: str) -> Tuple[List[Dict], Optional[str]]:
-        """Parse CSV content back to entries"""
         lines = csv_content.strip().split("\n")
         entries = []
         comment = None
@@ -128,7 +127,7 @@ class CSVFormatter:
             line = line.strip()
             if line.startswith("#"):
                 comment = line[1:].strip()
-            elif line and not line.startswith("URL,Username,Password") and not line.startswith("Service,Username,Password"):
+            elif line:
                 parts = line.split(",")
                 if len(parts) >= 3:
                     entries.append(

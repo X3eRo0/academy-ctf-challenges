@@ -26,16 +26,13 @@ db = Database()
 vault_manager = VaultManager(db)
 
 
-# Helper functions
 def require_auth():
-    """Check if user is authenticated"""
     if "user_id" not in session:
         return None
     return db.get_user_by_id(session["user_id"])
 
 
 def validate_master_password(master_password):
-    """Validate master password meets requirements"""
     if len(master_password) < Config.MASTER_PASSWORD_MIN_LENGTH:
         return (
             False,
@@ -45,7 +42,6 @@ def validate_master_password(master_password):
 
 
 def download_csv_from_url(url):
-    """Download CSV from URL with size limit"""
     try:
         if not url.startswith(("http://", "https://")):
             raise ValueError("Only HTTP and HTTPS URLs are allowed")
@@ -70,7 +66,6 @@ def download_csv_from_url(url):
 
 @app.route("/api/register", methods=["POST"])
 def api_register():
-    """Register a new user"""
     data = request.get_json()
 
     if not data or "username" not in data or "password" not in data:
@@ -107,7 +102,6 @@ def api_register():
 
 @app.route("/api/login", methods=["POST"])
 def api_login():
-    """User login"""
     data = request.get_json()
 
     if not data or "username" not in data or "password" not in data:
@@ -134,14 +128,12 @@ def api_login():
 
 @app.route("/api/logout", methods=["POST"], endpoint="api_logout")
 def api_logout():
-    """User logout"""
     session.clear()
     return jsonify({"message": "Logged out successfully"})
 
 
 @app.route("/api/me", methods=["GET"])
 def get_current_user():
-    """Get current user info"""
     user = require_auth()
     if not user:
         return jsonify({"error": "Not authenticated"}), 401
@@ -151,7 +143,6 @@ def get_current_user():
 
 @app.route("/api/vaults", methods=["GET"])
 def get_vaults():
-    """Get user's vaults"""
     user = require_auth()
     if not user:
         return jsonify({"error": "Not authenticated"}), 401
@@ -162,7 +153,6 @@ def get_vaults():
 
 @app.route("/api/vaults", methods=["POST"])
 def api_create_vault():
-    """Create a new vault"""
     user = require_auth()
     if not user:
         return jsonify({"error": "Not authenticated"}), 401
@@ -195,7 +185,6 @@ def api_create_vault():
 
 @app.route("/api/vaults/<int:vault_id>/entries", methods=["GET"])
 def get_vault_entries(vault_id):
-    """Get entries from a vault"""
     user = require_auth()
     if not user:
         return jsonify({"error": "Not authenticated"}), 401
@@ -216,7 +205,6 @@ def get_vault_entries(vault_id):
 
 @app.route("/api/vaults/<int:vault_id>/entries", methods=["POST"])
 def add_vault_entries(vault_id):
-    """Add entries to a vault"""
     user = require_auth()
     if not user:
         return jsonify({"error": "Not authenticated"}), 401
@@ -244,7 +232,6 @@ def add_vault_entries(vault_id):
 
 @app.route("/api/vaults/<int:vault_id>", methods=["DELETE"])
 def delete_vault(vault_id):
-    """Delete a vault"""
     user = require_auth()
     if not user:
         return jsonify({"error": "Not authenticated"}), 401
@@ -258,7 +245,6 @@ def delete_vault(vault_id):
 
 @app.route("/api/vaults/<int:vault_id>/import", methods=["POST"])
 def import_csv(vault_id):
-    """Import CSV file to vault"""
     user = require_auth()
     if not user:
         return jsonify({"error": "Not authenticated"}), 401
@@ -297,7 +283,6 @@ def import_csv(vault_id):
 
 @app.route("/api/vaults/<int:vault_id>/download", methods=["POST"])
 def download_vault(vault_id):
-    """Download a vault (anyone can download any vault)"""
     data = request.get_json()
     comment = data.get("comment", None) if data else None
 
@@ -318,7 +303,6 @@ def download_vault(vault_id):
 
 @app.route("/api/validate-entry", methods=["POST"])
 def api_validate_entry():
-    """Validate a password entry"""
     data = request.get_json()
     if not data:
         return jsonify({"error": "Entry data required"}), 400
@@ -334,7 +318,6 @@ def api_validate_entry():
 
 @app.route("/api/health", methods=["GET"])
 def health_check():
-    """Health check endpoint"""
     return jsonify({"status": "healthy", "service": "password-manager"})
 
 
@@ -522,7 +505,7 @@ def add_entries_page(vault_id):
             return render_template("add_entries.html", vault=vault)
 
         entries = []
-        for i in range(1, 4):  # Support up to 3 entries
+        for i in range(1, 4):
             url = request.form.get(f"url_{i}", "").strip()
             username = request.form.get(f"username_{i}", "").strip()
             password = request.form.get(f"password_{i}", "").strip()
