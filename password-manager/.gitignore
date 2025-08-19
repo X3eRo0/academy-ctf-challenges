@@ -1,0 +1,26 @@
+# Compiled crypto library
+src/libvault/libvault.so
+
+# Zlib source directory (extracted during build)
+src/libvault/zlib-1.3.1/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Virtual environments
+venv/
+crypto_venv/
+
+# Database files
+*.db
+*.sqlite
+
+# IDE files
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db

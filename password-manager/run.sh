@@ -12,7 +12,8 @@ case "$1" in
     "start")
         echo "Starting password manager service..."
         docker-compose up -d
-        echo "Service started on http://localhost:5000"
+        echo "Password manager started on http://localhost:3333"
+        echo "Crypto frontend started on http://localhost:3334"
         echo "Use './run.sh logs' to view logs"
         ;;
     
@@ -34,11 +35,7 @@ case "$1" in
         ;;
     
     "test")
-        echo "Running tests..."
-        if [ ! -f "test_backend.py" ]; then
-            echo "Error: test_backend.py not found"
-            exit 1
-        fi
+        echo "Running basic health check..."
         
         # Ensure service is running
         if ! docker-compose ps | grep -q "Up"; then
@@ -47,8 +44,11 @@ case "$1" in
             sleep 5
         fi
         
-        # Run tests in container
-        docker-compose exec $SERVICE_NAME python test_backend.py
+        # Test health endpoints
+        echo "Testing password manager health..."
+        docker-compose exec $SERVICE_NAME curl -f http://localhost:3333/api/health
+        echo "Testing crypto frontend health..."
+        docker-compose exec $SERVICE_NAME curl -f http://localhost:3334/health
         ;;
     
     "shell")

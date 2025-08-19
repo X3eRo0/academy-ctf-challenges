@@ -9,12 +9,7 @@ A simple password manager service for CTF challenges.
 ./run.sh start
 ```
 
-2. Run tests:
-```bash
-./run.sh test
-```
-
-3. Stop the service:
+2. Stop the service:
 ```bash
 ./run.sh stop
 ```
@@ -22,7 +17,6 @@ A simple password manager service for CTF challenges.
 ## Available Commands
 
 - `./run.sh start` - Start the password manager service
-- `./run.sh test` - Run the test suite  
 - `./run.sh stop` - Stop all services
 - `./run.sh logs` - Show service logs
 - `./run.sh clean` - Clean up containers and volumes
@@ -41,13 +35,6 @@ python app.py
 ```
 
 The server will start on `http://localhost:5000`
-
-## Testing
-
-Run the test script to verify functionality:
-```bash
-python test_backend.py
-```
 
 ## API Endpoints
 

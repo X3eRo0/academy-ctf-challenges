@@ -8,10 +8,6 @@
 <form method="POST" action="{% if vault %}/vault/{{ vault.id }}/download{% else %}/download/{{ vault_id }}{% endif %}">
     <table>
         <tr>
-            <td><label for="master_password">Master Password</label></td>
-            <td><input type="password" id="master_password" name="master_password" required></td>
-        </tr>
-        <tr>
             <td><label for="comment">Comment (Optional)</label></td>
             <td><textarea id="comment" name="comment" rows="3" cols="50" placeholder="Add a comment that will be included in the downloaded vault"></textarea></td>
         </tr>
@@ -24,10 +20,10 @@
 
 <h3>Information</h3>
 <ul>
-    <li>Container will be encrypted with the master password</li>
+    <li>Container will be encrypted with the owner's master password</li>
     <li>Comment will be included in the file header</li>
     <li>Downloaded file supports CSV import</li>
-    <li>Same master password required for decryption</li>
+    <li>Owner's master password required for decryption</li>
 </ul>
 
 <p><a href="{% if vault %}/vault/{{ vault.id }}{% else %}/browse-vaults{% endif %}" class="btn-secondary">← Cancel</a></p>

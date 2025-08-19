@@ -1,0 +1,150 @@
+{% extends "base.html" %}
+
+{% block title %}Import Data{% if vault %} - {{ vault.name }}{% endif %}{% endblock %}
+
+{% block content %}
+<h2>Import Data{% if vault %} to {{ vault.name }}{% endif %}</h2>
+
+<form method="POST" action="{% if vault %}/vault/{{ vault.id }}/import{% else %}/import-csv{% endif %}" enctype="multipart/form-data">
+    <table>
+        {% if not vault %}
+        <tr>
+            <td><label for="vault_name">Container Name</label></td>
+            <td><input type="text" id="vault_name" name="vault_name" required></td>
+        </tr>
+        {% endif %}
+        <tr>
+            <td><label for="master_password">Master Password</label></td>
+            <td><input type="password" id="master_password" name="master_password" required></td>
+        </tr>
+        <tr>
+            <td><label>Import Method</label></td>
+            <td>
+                <input type="radio" id="method_file" name="import_method" value="file" checked onchange="toggleImportMethod()">
+                <label for="method_file" style="display: inline; margin-right: 20px;">Upload File</label>
+                <input type="radio" id="method_url" name="import_method" value="url" onchange="toggleImportMethod()">
+                <label for="method_url" style="display: inline;">Download from URL</label>
+            </td>
+        </tr>
+        <tr id="file_row">
+            <td><label for="csv_file">CSV File</label></td>
+            <td><input type="file" id="csv_file" name="file" accept=".csv"></td>
+        </tr>
+        <tr id="url_row" style="display: none;">
+            <td><label for="csv_url">CSV URL</label></td>
+            <td>
+                <input type="url" id="csv_url" name="csv_url" placeholder="https://example.com/data.csv">
+                <br><small style="color: #666;">Maximum file size: 1024 bytes</small>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" class="btn-primary" value="{% if vault %}Import Data{% else %}Create from CSV{% endif %}"></td>
+        </tr>
+    </table>
+</form>
+
+<h3>File Format</h3>
+<p>CSV format required:</p>
+<pre>
+URL,Username,Password
+https://target.system,user1,key123
+https://another.target,user2,key456
+</pre>
+
+<h3>Restrictions</h3>
+<ul>
+    <li>3 columns: URL, Username, Password</li>
+    <li>No commas in username/password fields</li>
+    <li>Lines starting with # ignored</li>
+    <li><strong>URL downloads:</strong> Maximum 1024 bytes file size</li>
+    <li><strong>URL downloads:</strong> HTTPS/HTTP URLs only</li>
+</ul>
+
+<p><a href="{% if vault %}/vault/{{ vault.id }}{% else %}/{% endif %}" class="btn-secondary">← Cancel</a></p>
+
+<style>
+    input[type="url"] {
+        background: transparent !important;
+        border: none !important;
+        border-bottom: 1px solid #333 !important;
+        color: #c0c0c0 !important;
+        padding: 10px 0 !important;
+        font-family: 'JetBrains Mono', monospace !important;
+        font-size: 16px !important;
+        width: 100% !important;
+        transition: border-color 0.2s ease !important;
+    }
+    
+    input[type="url"]:focus {
+        outline: none !important;
+        border-bottom-color: #666 !important;
+        background: transparent !important;
+    }
+    
+    input[type="url"]::placeholder {
+        color: #666 !important;
+    }
+    
+    /* File input styling to match site theme */
+    input[type="file"] {
+        background: transparent !important;
+        border: 1px solid #666 !important;
+        color: #c0c0c0 !important;
+        padding: 12px !important;
+        font-family: 'JetBrains Mono', monospace !important;
+        font-size: 16px !important;
+        font-weight: 400 !important;
+        text-transform: none !important;
+    }
+    
+    input[type="file"]::-webkit-file-upload-button {
+        background: transparent !important;
+        border: 1px solid #666 !important;
+        color: #c0c0c0 !important;
+        padding: 4px 12px !important;
+        font-family: 'JetBrains Mono', monospace !important;
+        font-size: 11px !important;
+        font-weight: 400 !important;
+        text-transform: lowercase !important;
+        letter-spacing: 0 !important;
+        cursor: pointer !important;
+        margin-right: 10px !important;
+    }
+    
+    input[type="file"]::-webkit-file-upload-button:hover {
+        background: rgba(255, 255, 255, 0.05) !important;
+        border-color: #999 !important;
+        color: #fff !important;
+    }
+    
+    input[type="file"]:hover {
+        background: rgba(255, 255, 255, 0.02) !important;
+        border-color: #999 !important;
+        color: #fff !important;
+    }
+</style>
+
+<script>
+function toggleImportMethod() {
+    const fileMethod = document.getElementById('method_file');
+    const urlMethod = document.getElementById('method_url');
+    const fileRow = document.getElementById('file_row');
+    const urlRow = document.getElementById('url_row');
+    const csvFile = document.getElementById('csv_file');
+    const csvUrl = document.getElementById('csv_url');
+    
+    if (fileMethod.checked) {
+        fileRow.style.display = '';
+        urlRow.style.display = 'none';
+        csvFile.required = true;
+        csvUrl.required = false;
+    } else {
+        fileRow.style.display = 'none';
+        urlRow.style.display = '';
+        csvFile.required = false;
+        csvUrl.required = true;
+    }
+}
+</script>
+{% endblock %}

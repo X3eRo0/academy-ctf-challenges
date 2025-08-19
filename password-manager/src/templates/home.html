@@ -1,0 +1,317 @@
+{% extends "base.html" %}
+
+{% block title %}BlastPass - Military-Grade Password Security{% endblock %}
+
+{% block content %}
+<div class="home-header">
+    <h1>BlastPass</h1>
+    <p class="tagline">Military-Grade Password Security with Advanced Compression</p>
+</div>
+
+<div class="features-grid">
+    <div class="feature-card">
+        <h3>🔐 AES-256-CTR Encryption</h3>
+        <p>Your data is protected with military-grade AES-256-CTR encryption, the same standard used by government agencies and financial institutions worldwide.</p>
+    </div>
+
+    <div class="feature-card">
+        <h3>🗜️ Compression-Enhanced Security</h3>
+        <p>Our innovative architecture combines GZIP compression with encryption, creating an additional layer of security that makes your data even more resilient against attacks.</p>
+    </div>
+
+    <div class="feature-card">
+        <h3>🔑 PBKDF2-SHA256 Key Derivation</h3>
+        <p>Master passwords are strengthened using PBKDF2-SHA256 with 100,000 iterations, making brute-force attacks computationally infeasible.</p>
+    </div>
+
+    <div class="feature-card">
+        <h3>🏗️ Hybrid Architecture</h3>
+        <p>Built with a modular design featuring a dedicated crypto frontend service that isolates cryptographic operations for enhanced security and performance.</p>
+    </div>
+
+    <div class="feature-card">
+        <h3>📦 Container-Based Vaults</h3>
+        <p>Your passwords are organized into secure containers (vaults) that can be easily shared, downloaded, and managed while maintaining full encryption.</p>
+    </div>
+
+    <div class="feature-card">
+        <h3>🔍 Zero-Knowledge Architecture</h3>
+        <p>We never store your master passwords in plaintext. Even our systems cannot access your encrypted data without your master password.</p>
+    </div>
+</div>
+
+<div class="architecture-info">
+    <h2>System Architecture</h2>
+    <div class="arch-details">
+        <h3>Multi-Service Design</h3>
+        <ul>
+            <li><strong>Main Application:</strong> Runs on port 3333, handles user interface and vault management</li>
+            <li><strong>Crypto API:</strong> Dedicated service on port 3334 for all cryptographic operations</li>
+            <li><strong>LibVault:</strong> Custom C library with static zlib integration for maximum performance</li>
+        </ul>
+
+        <h3>Encryption Pipeline</h3>
+        <pre>Password Data → GZIP Compression → AES-256-CTR Encryption → Secure Storage</pre>
+
+        <h3>Security Features</h3>
+        <ul>
+            <li>Salt-based key derivation prevents rainbow table attacks</li>
+            <li>Compression before encryption adds entropy and reduces data patterns</li>
+            <li>CTR mode eliminates padding oracle vulnerabilities</li>
+            <li>Service isolation prevents crypto library tampering</li>
+        </ul>
+    </div>
+</div>
+
+<div class="getting-started">
+    <h2>Quick Start</h2>
+    <div class="quick-start-steps">
+        <div class="step">
+            <span class="step-number">1</span>
+            <div class="step-content">
+                <h4>Create Account</h4>
+                <p>Register with a username and secure master password</p>
+            </div>
+        </div>
+        <div class="step">
+            <span class="step-number">2</span>
+            <div class="step-content">
+                <h4>Create Vault</h4>
+                <p>Create password containers to organize your credentials</p>
+            </div>
+        </div>
+        <div class="step">
+            <span class="step-number">3</span>
+            <div class="step-content">
+                <h4>Add Passwords</h4>
+                <p>Store your passwords with URLs and usernames securely</p>
+            </div>
+        </div>
+        <div class="step">
+            <span class="step-number">4</span>
+            <div class="step-content">
+                <h4>Access Anywhere</h4>
+                <p>Download encrypted vaults or access them from any device</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="cta-section">
+    {% if not session.username %}
+    <a href="/register" class="btn-primary">Get Started - Create Account</a>
+    <a href="/login" class="btn-secondary">Sign In</a>
+    {% else %}
+    <a href="/dashboard" class="btn-primary">Go to Dashboard</a>
+    <a href="/create-vault" class="btn-secondary">Create New Vault</a>
+    {% endif %}
+</div>
+
+<style>
+    .home-header {
+        text-align: center;
+        margin-bottom: 60px;
+        padding: 40px 0;
+    }
+
+    .home-header h1 {
+        font-size: 48px;
+        font-weight: 700;
+        color: #fff;
+        margin-bottom: 20px;
+        text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+    }
+
+    .tagline {
+        font-size: 18px;
+        color: #999;
+        margin: 0;
+        font-weight: 300;
+    }
+
+    .features-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 30px;
+        margin-bottom: 60px;
+    }
+
+    .feature-card {
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid #333;
+        border-radius: 4px;
+        padding: 25px;
+        transition: all 0.3s ease;
+    }
+
+    .feature-card:hover {
+        background: rgba(255, 255, 255, 0.04);
+        border-color: #555;
+        transform: translateY(-2px);
+    }
+
+    .feature-card h3 {
+        color: #fff;
+        margin-bottom: 15px;
+        font-size: 16px;
+        font-weight: 500;
+    }
+
+    .feature-card p {
+        color: #ccc;
+        line-height: 1.6;
+        margin: 0;
+        font-size: 14px;
+    }
+
+    .architecture-info {
+        background: rgba(255, 255, 255, 0.01);
+        border: 1px solid #222;
+        border-radius: 4px;
+        padding: 30px;
+        margin-bottom: 60px;
+    }
+
+    .architecture-info h2 {
+        color: #fff;
+        margin-bottom: 25px;
+        font-size: 24px;
+    }
+
+    .architecture-info h3 {
+        color: #ddd;
+        margin-bottom: 15px;
+        margin-top: 25px;
+        font-size: 16px;
+    }
+
+    .architecture-info h3:first-child {
+        margin-top: 0;
+    }
+
+    .architecture-info ul {
+        margin: 15px 0;
+        color: #bbb;
+    }
+
+    .architecture-info li {
+        margin: 10px 0;
+        color: #bbb;
+        font-size: 14px;
+    }
+
+    .architecture-info strong {
+        color: #fff;
+    }
+
+    .architecture-info pre {
+        background: rgba(0, 0, 0, 0.3);
+        border-left: 3px solid #555;
+        padding: 15px;
+        margin: 20px 0;
+        font-size: 12px;
+        color: #ccc;
+        overflow-x: auto;
+        border-radius: 2px;
+    }
+
+    .getting-started {
+        margin-bottom: 60px;
+    }
+
+    .getting-started h2 {
+        color: #fff;
+        margin-bottom: 30px;
+        font-size: 24px;
+    }
+
+    .quick-start-steps {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 25px;
+    }
+
+    .step {
+        display: flex;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .step-number {
+        background: rgba(255, 255, 255, 0.1);
+        color: #fff;
+        border: 1px solid #555;
+        border-radius: 50%;
+        width: 30px;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px;
+        font-weight: 700;
+        flex-shrink: 0;
+    }
+
+    .step-content h4 {
+        color: #fff;
+        margin-bottom: 8px;
+        font-size: 15px;
+    }
+
+    .step-content p {
+        color: #bbb;
+        margin: 0;
+        font-size: 13px;
+        line-height: 1.5;
+    }
+
+    .cta-section {
+        text-align: center;
+        padding: 40px 0;
+        margin-top: 60px;
+        border-top: 1px solid #333;
+    }
+
+    .cta-section .btn-primary {
+        margin-right: 20px;
+        font-size: 16px;
+        padding: 12px 24px;
+    }
+
+    .cta-section .btn-secondary {
+        font-size: 16px;
+        padding: 12px 24px;
+    }
+
+    /* Responsive design */
+    @media (max-width: 768px) {
+        .home-header h1 {
+            font-size: 36px;
+        }
+
+        .features-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .quick-start-steps {
+            grid-template-columns: 1fr;
+        }
+
+        .cta-section .btn-primary {
+            margin-right: 0;
+            margin-bottom: 15px;
+            display: block;
+            width: 200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-section .btn-secondary {
+            display: block;
+            width: 200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    }
+</style>
+{% endblock %}

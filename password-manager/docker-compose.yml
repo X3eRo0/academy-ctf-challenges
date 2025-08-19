@@ -2,14 +2,15 @@ services:
   password-manager:
     build: .
     ports:
-      - "5000:5000"
+      - "3333:3333"
+      - "3334:3334"
     volumes:
       - vault_data:/app/vaults
     environment:
       - FLASK_ENV=production
     restart: unless-stopped
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:5000/api/health"]
+      test: ["CMD", "curl", "-f", "http://localhost:3333/api/health"]
       interval: 30s
       timeout: 10s
       retries: 3
