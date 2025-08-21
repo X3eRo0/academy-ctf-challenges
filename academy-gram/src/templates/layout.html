@@ -14,7 +14,7 @@
       <nav>
       {% if g.user %}
         <a href="{{ url_for('timeline') }}"><i class="fas fa-home"></i> Home</a>
-        <a href="{{ url_for('user_profile', username=g.user.username) }}"><i class="fas fa-user"></i> Profile</a>
+        <a href="{{ url_for('profile') }}"><i class="fas fa-user"></i> Profile</a>
         <a href="{{ url_for('interests') }}"><i class="fas fa-star"></i> Interests</a>
         <a href="{{ url_for('logout') }}"><i class="fas fa-sign-out-alt"></i> Sign Out</a>
       {% else %}

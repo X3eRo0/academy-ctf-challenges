@@ -215,13 +215,21 @@ def add_post():
 
     if "image" in request.files:
         file = request.files["image"]
-        if file and allowed_file(file.filename):
-            filename = secure_filename(file.filename)
-            # To avoid overwrites, prepend with user_id and a random string
-            unique_filename = f"{g.user['user_id']}_{os.urandom(4).hex()}_{filename}"
-            save_path = os.path.join(app.config["UPLOAD_FOLDER"], unique_filename)
-            file.save(save_path)
-            image_path = os.path.join("static/posts", unique_filename)
+        if file and file.filename != '' and allowed_file(file.filename):
+            try:
+                filename = secure_filename(file.filename)
+                # To avoid overwrites, prepend with user_id and a random string
+                unique_filename = f"{g.user['user_id']}_{os.urandom(4).hex()}_{filename}"
+                save_path = os.path.join(app.config["UPLOAD_FOLDER"], unique_filename)
+                
+                # Ensure the upload directory exists
+                os.makedirs(app.config["UPLOAD_FOLDER"], exist_ok=True)
+                
+                file.save(save_path)
+                image_path = os.path.join("static/posts", unique_filename)
+            except Exception as e:
+                flash(f"Error uploading image: {str(e)}")
+                return redirect(url_for("timeline"))
 
     if content or image_path:
         Post.create(session["user_id"], content, image_path, is_private)
@@ -230,22 +238,14 @@ def add_post():
     return redirect(url_for("timeline"))
 
 
-@app.route("/profile/<username>")
-def user_profile(username):
+@app.route("/profile")
+def profile():
     if not g.user:
         return redirect(url_for("login"))
-
-    profile_user = User.find_by_username(username)
-    if not profile_user:
-        abort(404)
-
-    posts = Post.get_for_user(profile_user["user_id"])
-
-    # Only show private posts if viewing your own profile
-    if g.user["user_id"] != profile_user["user_id"]:
-        posts = [p for p in posts if not p["is_private"]]
-
-    return render_template("profile.html", posts=posts, profile_user=profile_user)
+    
+    # Load current user's profile
+    posts = Post.get_for_user(g.user["user_id"])
+    return render_template("profile.html", posts=posts, profile_user=g.user)
 
 
 # --- Bug 1: Password Reset Bruteforce ---
@@ -362,7 +362,7 @@ def update_user_interests():
     db.commit()
 
     flash("Your interests have been updated")
-    return redirect(url_for("interests", user_id=g.user["user_id"]))
+    return redirect(url_for("interests"))
 
 
 # --- Bug 3: LFI ---

@@ -9,10 +9,10 @@
   </header>
 
   <div class="profile-tabs">
-    <a href="{{ url_for('user_profile', username=user_of_interest.username) }}" class="tab-link">
+    <a href="{{ url_for('profile') }}" class="tab-link">
       <i class="fas fa-th-large"></i> Posts
     </a>
-    <a href="{{ url_for('interests_by_id', user_id=user_of_interest.user_id) }}" class="tab-link active">
+    <a href="{{ url_for('interests') }}" class="tab-link active">
       <i class="fas fa-star"></i> Interests
     </a>
   </div>

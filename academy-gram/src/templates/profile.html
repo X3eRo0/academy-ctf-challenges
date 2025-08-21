@@ -9,10 +9,10 @@
   </header>
 
   <div class="profile-tabs">
-    <a href="{{ url_for('user_profile', username=profile_user.username) }}" class="tab-link active">
+    <a href="{{ url_for('profile') }}" class="tab-link active">
       <i class="fas fa-th-large"></i> Posts
     </a>
-    <a href="{{ url_for('interests_by_id', user_id=profile_user.user_id) }}" class="tab-link">
+    <a href="{{ url_for('interests') }}" class="tab-link">
       <i class="fas fa-star"></i> Interests
     </a>
   </div>
@@ -20,14 +20,14 @@
   <div class="timeline">
   {% for post in posts %}
     <article class="post-card">
-      {% if post.image_path %}
+      {% if post.image_path and post.image_path != None %}
       <div class="post-image">
         <img src="{{ url_for('static', filename=post.image_path.replace('static/', '')) }}" alt="Post by {{ profile_user.username }}">
       </div>
       {% endif %}
       <div class="post-content">
         <p>
-          <a href="{{ url_for('user_profile', username=profile_user.username) }}"><strong>{{ profile_user.username }}</strong></a>
+          <strong>{{ profile_user.username }}</strong>
           {{ post.content }}
           {% if post.is_private %}
             <small style="color: var(--secondary-text-color);"><i class="fas fa-lock"></i> (Private)</small>
