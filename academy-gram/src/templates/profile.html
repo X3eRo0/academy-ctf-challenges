@@ -8,6 +8,15 @@
     </div>
   </header>
 
+  <div class="profile-tabs">
+    <a href="{{ url_for('user_profile', username=profile_user.username) }}" class="tab-link active">
+      <i class="fas fa-th-large"></i> Posts
+    </a>
+    <a href="{{ url_for('interests_by_id', user_id=profile_user.user_id) }}" class="tab-link">
+      <i class="fas fa-star"></i> Interests
+    </a>
+  </div>
+
   <div class="timeline">
   {% for post in posts %}
     <article class="post-card">
@@ -30,4 +39,36 @@
     <p><em>This user has no posts yet.</em></p>
   {% endfor %}
   </div>
+
+  <style>
+    .profile-tabs {
+      display: flex;
+      border-bottom: 1px solid var(--border-color);
+      margin: 20px 0;
+    }
+    
+    .tab-link {
+      flex: 1;
+      padding: 15px;
+      text-align: center;
+      color: var(--secondary-text-color);
+      text-decoration: none;
+      border-bottom: 2px solid transparent;
+      transition: all 0.3s ease;
+    }
+    
+    .tab-link:hover {
+      color: var(--primary-text-color);
+      text-decoration: none;
+    }
+    
+    .tab-link.active {
+      color: var(--accent-color);
+      border-bottom-color: var(--accent-color);
+    }
+    
+    .tab-link i {
+      margin-right: 8px;
+    }
+  </style>
 {% endblock %}

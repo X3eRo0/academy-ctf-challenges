@@ -1,15 +1,155 @@
 
 {% extends "layout.html" %}
 {% block body %}
-  <h2>{{ user_of_interest.username }}'s Interests</h2>
-  <p>Here are the interests listed for {{ user_of_interest.username }}:</p>
-  <ul>
-    {% if user_of_interest.interests %}
-      {% for interest in user_of_interest.interests.split(',') %}
-        <li>{{ interest }}</li>
-      {% endfor %}
-    {% else %}
-      <li>No interests listed.</li>
-    {% endif %}
-  </ul>
+  <header class="profile-header">
+    <i class="fas fa-user-circle fa-3x"></i>
+    <div class="profile-info">
+      <h2>{{ user_of_interest.username }}</h2>
+    </div>
+  </header>
+
+  <div class="profile-tabs">
+    <a href="{{ url_for('user_profile', username=user_of_interest.username) }}" class="tab-link">
+      <i class="fas fa-th-large"></i> Posts
+    </a>
+    <a href="{{ url_for('interests_by_id', user_id=user_of_interest.user_id) }}" class="tab-link active">
+      <i class="fas fa-star"></i> Interests
+    </a>
+  </div>
+  
+  <div class="interests-section">
+    <h3>Current Interests:</h3>
+    <div class="interests-list">
+      {% if user_of_interest.interests %}
+        {% for interest in user_of_interest.interests.split(',') %}
+          <span class="interest-tag">{{ interest.strip() }}</span>
+        {% endfor %}
+      {% else %}
+        <p><em>No interests listed yet.</em></p>
+      {% endif %}
+    </div>
+  </div>
+
+  {% if current_user.user_id == user_of_interest.user_id %}
+  <div class="update-interests-section">
+    <h3>Update Your Interests:</h3>
+    <form method="post" action="{{ url_for('update_user_interests') }}" class="interests-form">
+      <div class="form-group">
+        <label for="interests">Enter your interests (comma-separated):</label>
+        <textarea name="interests" id="interests" rows="3" placeholder="e.g. Photography, Travel, Cooking, Reading">{{ user_of_interest.interests or '' }}</textarea>
+      </div>
+      <button type="submit" class="btn">Update Interests</button>
+    </form>
+  </div>
+  {% else %}
+  <p><em>This user's interests are private. Only they can modify them.</em></p>
+  {% endif %}
+
+  <style>
+    .profile-header {
+      display: flex;
+      align-items: center;
+      padding: 20px;
+      border-bottom: 1px solid var(--border-color);
+    }
+    
+    .profile-header i {
+      margin-right: 15px;
+      color: var(--secondary-text-color);
+    }
+    
+    .profile-info h2 {
+      margin: 0;
+      color: var(--primary-text-color);
+    }
+    
+    .profile-tabs {
+      display: flex;
+      border-bottom: 1px solid var(--border-color);
+      margin: 20px 0;
+    }
+    
+    .tab-link {
+      flex: 1;
+      padding: 15px;
+      text-align: center;
+      color: var(--secondary-text-color);
+      text-decoration: none;
+      border-bottom: 2px solid transparent;
+      transition: all 0.3s ease;
+    }
+    
+    .tab-link:hover {
+      color: var(--primary-text-color);
+      text-decoration: none;
+    }
+    
+    .tab-link.active {
+      color: var(--accent-color);
+      border-bottom-color: var(--accent-color);
+    }
+    
+    .tab-link i {
+      margin-right: 8px;
+    }
+
+    .interests-section {
+      margin: 20px 0;
+      padding: 15px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+    
+    .interests-list {
+      margin: 10px 0;
+    }
+    
+    .interest-tag {
+      display: inline-block;
+      background: #007bff;
+      color: white;
+      padding: 5px 10px;
+      margin: 5px;
+      border-radius: 15px;
+      font-size: 14px;
+    }
+    
+    .update-interests-section {
+      margin: 20px 0;
+      padding: 15px;
+      background: #f8f9fa;
+      border-radius: 5px;
+    }
+    
+    .interests-form .form-group {
+      margin: 15px 0;
+    }
+    
+    .interests-form label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+    
+    .interests-form textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-family: inherit;
+    }
+    
+    .interests-form .btn {
+      background: #007bff;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    
+    .interests-form .btn:hover {
+      background: #0056b3;
+    }
+  </style>
 {% endblock %}

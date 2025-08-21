@@ -11,7 +11,7 @@ flask initdb
 
 echo "--- Populating with Bot Users and Posts ---"
 # This script will now only create the users, not posts.
-python bots.py
+# python bots.py
 
 echo "--- Setting Passwords ---"
 # Set a secure, known password for all bot users and the admin

@@ -5,13 +5,13 @@
 
 set -e
 
-COMPOSE_FILE="docker-compose.yml"
+COMPOSE_FILE="docker compose.yml"
 SERVICE_NAME="blastpass"
 
 case "$1" in
 "start")
     echo "Starting password manager service..."
-    docker-compose up -d
+    docker compose up -d
     echo "Password manager started on http://localhost:3333"
     echo "Crypto frontend started on http://localhost:3334"
     echo "Use './run.sh logs' to view logs"
@@ -19,59 +19,59 @@ case "$1" in
 
 "stop")
     echo "Stopping password manager service..."
-    docker-compose down
+    docker compose down
     echo "Service stopped"
     ;;
 
 "restart")
     echo "Restarting password manager service..."
-    docker-compose restart
+    docker compose restart
     echo "Service restarted"
     ;;
 
 "logs")
     echo "Showing service logs (Ctrl+C to exit)..."
-    docker-compose logs -f
+    docker compose logs -f
     ;;
 
 "test")
     echo "Running basic health check..."
 
     # Ensure service is running
-    if ! docker-compose ps | grep -q "Up"; then
+    if ! docker compose ps | grep -q "Up"; then
         echo "Starting service for testing..."
-        docker-compose up -d
+        docker compose up -d
         sleep 5
     fi
 
     # Test health endpoints
     echo "Testing password manager health..."
-    docker-compose exec $SERVICE_NAME curl -f http://localhost:3333/api/health
+    docker compose exec $SERVICE_NAME curl -f http://localhost:3333/api/health
     echo "Testing crypto frontend health..."
-    docker-compose exec $SERVICE_NAME curl -f http://localhost:3334/health
+    docker compose exec $SERVICE_NAME curl -f http://localhost:3334/health
     ;;
 
 "shell")
     echo "Opening shell in container..."
-    docker-compose exec $SERVICE_NAME /bin/bash
+    docker compose exec $SERVICE_NAME /bin/bash
     ;;
 
 "build")
     echo "Building password manager image..."
-    docker-compose build
+    docker compose build
     echo "Build complete"
     ;;
 
 "clean")
     echo "Cleaning up containers and volumes..."
-    docker-compose down -v
+    docker compose down -v
     docker system prune -f
     echo "Cleanup complete"
     ;;
 
 "status")
     echo "Service status:"
-    docker-compose ps
+    docker compose ps
     ;;
 
 "help" | "--help" | "-h" | "")

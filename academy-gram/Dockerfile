@@ -15,5 +15,5 @@ USER academy
 EXPOSE 2750
 
 
-CMD ["tail", "/dev/null", "-f"]
-# CMD ["./start.sh"]
+# CMD ["tail", "/dev/null", "-f"]
+CMD ["./start.sh"]

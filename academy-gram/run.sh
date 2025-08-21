@@ -5,41 +5,41 @@
 
 set -e
 
-COMPOSE_FILE="docker-compose.yml"
+COMPOSE_FILE="docker compose.yml"
 SERVICE_NAME="academy-gram"
 
 case "$1" in
 "start")
-    docker-compose up -d
+    docker compose up -d
     ;;
 
 "stop")
-    docker-compose down
+    docker compose down
     ;;
 
 "restart")
-    docker-compose restart
+    docker compose restart
     ;;
 
 "logs")
-    docker-compose logs -f
+    docker compose logs -f
     ;;
 
 "shell")
-    docker-compose exec -it $SERVICE_NAME /bin/bash
+    docker compose exec -it $SERVICE_NAME /bin/bash
     ;;
 
 "build")
-    docker-compose build
+    docker compose build
     ;;
 
 "clean")
-    docker-compose down -v
+    docker compose down -v
     docker system prune -f
     ;;
 
 "status")
-    docker-compose ps
+    docker compose ps
     ;;
 
 "help" | "--help" | "-h" | "")

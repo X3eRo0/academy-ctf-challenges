@@ -1,4 +1,0 @@
-Flask
-Faker
-requests
-Pillow
