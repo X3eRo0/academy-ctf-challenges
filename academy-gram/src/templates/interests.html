@@ -1,0 +1,15 @@
+
+{% extends "layout.html" %}
+{% block body %}
+  <h2>{{ user_of_interest.username }}'s Interests</h2>
+  <p>Here are the interests listed for {{ user_of_interest.username }}:</p>
+  <ul>
+    {% if user_of_interest.interests %}
+      {% for interest in user_of_interest.interests.split(',') %}
+        <li>{{ interest }}</li>
+      {% endfor %}
+    {% else %}
+      <li>No interests listed.</li>
+    {% endif %}
+  </ul>
+{% endblock %}

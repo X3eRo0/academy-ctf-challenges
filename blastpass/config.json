@@ -1,0 +1,43 @@
+{
+    "service_name": "blastpass",
+    "vulnbox_directory": "{service_name}",
+    "vulnbox": {
+        "files": [
+            "Dockerfile",
+            "docker-compose.yml",
+            "src/",
+            "deploy.sh",
+            "README.md"
+        ],
+        "exclude": [
+            "*.pyc",
+            "__pycache__/",
+            ".git/",
+            "*.log",
+            ".DS_Store",
+            "*.swp",
+            "*.tmp",
+            ".vscode/",
+            ".idea/"
+        ]
+    },
+    "checker": {
+        "files": [
+            "checker.py",
+            "checker.sh",
+            "blastpass.env",
+            ""
+        ],
+        "exclude": [
+            "*.pyc",
+            "__pycache__/",
+            ".git/",
+            "*.log",
+            ".DS_Store",
+            "*.swp",
+            "*.tmp",
+            ".vscode/",
+            ".idea/"
+        ]
+    }
+}

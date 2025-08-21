@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+{% block body %}
+  <header class="profile-header">
+    <i class="fas fa-user-circle fa-3x"></i>
+    <div class="profile-info">
+      <h2>{{ profile_user.username }}</h2>
+      <p><a href="{{ url_for('view_upload', filename='default.png') }}">View Profile Picture (LFI Vuln)</a></p>
+    </div>
+  </header>
+
+  <div class="timeline">
+  {% for post in posts %}
+    <article class="post-card">
+      {% if post.image_path %}
+      <div class="post-image">
+        <img src="{{ url_for('static', filename=post.image_path.replace('static/', '')) }}" alt="Post by {{ profile_user.username }}">
+      </div>
+      {% endif %}
+      <div class="post-content">
+        <p>
+          <a href="{{ url_for('user_profile', username=profile_user.username) }}"><strong>{{ profile_user.username }}</strong></a>
+          {{ post.content }}
+          {% if post.is_private %}
+            <small style="color: var(--secondary-text-color);"><i class="fas fa-lock"></i> (Private)</small>
+          {% endif %}
+        </p>
+      </div>
+    </article>
+  {% else %}
+    <p><em>This user has no posts yet.</em></p>
+  {% endfor %}
+  </div>
+{% endblock %}

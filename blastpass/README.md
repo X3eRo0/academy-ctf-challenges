@@ -1,10 +1,10 @@
-# Password Manager CTF Challenge - Backend
+# BlastPass - Secure Password Vault Service
 
-A simple password manager service for CTF challenges.
+BlastPass is a secure password vault service that allows users to store, manage, and share encrypted password vaults with advanced cryptographic protection.
 
 ## Quick Start with Docker
 
-1. Start the service:
+1. Start the BlastPass service:
 ```bash
 ./run.sh start
 ```
@@ -16,59 +16,48 @@ A simple password manager service for CTF challenges.
 
 ## Available Commands
 
-- `./run.sh start` - Start the password manager service
+- `./run.sh start` - Start the BlastPass service
 - `./run.sh stop` - Stop all services
 - `./run.sh logs` - Show service logs
 - `./run.sh clean` - Clean up containers and volumes
 - `./run.sh shell` - Open shell in container
 
-## Manual Setup (without Docker)
+The service runs on `http://localhost:3333` when started with Docker.
 
-1. Install dependencies:
-```bash
-pip install -r requirements.txt
-```
+## Features
 
-2. Run the Flask application:
-```bash
-python app.py
-```
-
-The server will start on `http://localhost:5000`
+- **Secure User Authentication** - Register and login with master passwords
+- **Encrypted Vault Storage** - AES-256 encryption with zlib compression
+- **CSV Import/Export** - Import password data from CSV files or URLs
+- **Vault Sharing** - Download and share encrypted vault files
+- **Web Interface** - Complete web UI for vault management
+- **REST API** - Full API access for programmatic integration
 
 ## API Endpoints
 
 ### Authentication
-- `POST /api/register` - Register new user
-- `POST /api/login` - User login  
-- `POST /api/logout` - User logout
-- `GET /api/me` - Get current user info
+- `POST /api/register` - Register new user account
+- `POST /api/login` - User authentication
+- `POST /api/logout` - End user session
+- `GET /api/me` - Get current user information
 
-### Vaults
-- `GET /api/vaults` - Get user's vaults
-- `POST /api/vaults` - Create new vault
-- `GET /api/vaults/{id}/entries` - Get vault entries (requires master password)
-- `POST /api/vaults/{id}/entries` - Add entries to vault
+### Vault Management
+- `GET /api/vaults` - List user's vaults
+- `POST /api/vaults` - Create new encrypted vault
+- `GET /api/vaults/{id}/entries` - Decrypt and view vault entries
+- `POST /api/vaults/{id}/entries` - Add entries to existing vault
 - `DELETE /api/vaults/{id}` - Delete vault
-- `POST /api/vaults/{id}/import` - Import CSV file
-- `POST /api/vaults/{id}/download` - Download vault (anyone can download any vault)
+- `POST /api/vaults/{id}/import` - Import CSV data to vault
+- `POST /api/vaults/{id}/download` - Download encrypted vault file
 
 ### Utility
-- `POST /api/validate-entry` - Validate password entry
-- `GET /api/health` - Health check
+- `POST /api/validate-entry` - Validate password entry format
+- `GET /api/health` - Service health check
 
-## Features
+## Security Architecture
 
-- User registration with master password
-- Encrypted vault storage (AES-256 + compression)
-- CSV import/export functionality
-- Vault sharing through download (with optional comments)
-- ASCII-only username/password validation
-- Session-based authentication
-
-## Security Model
-
-- Master passwords are hashed with PBKDF2
-- Vault data is compressed then encrypted with master password
-- Each vault is stored as encrypted file on disk
-- Anyone can download any vault but needs master password to decrypt
+- **PBKDF2 Password Hashing** - Master passwords use strong key derivation
+- **AES-256 Encryption** - Vault data encrypted with user's master password
+- **Zlib Compression** - Data compressed before encryption for efficiency
+- **File-based Storage** - Encrypted vaults stored as individual files
+- **Public Vault Access** - Anyone can download vault files, but decryption requires master password

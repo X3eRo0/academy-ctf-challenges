@@ -1,0 +1,29 @@
+
+DROP TABLE IF EXISTS users;
+CREATE TABLE users (
+  user_id INTEGER PRIMARY KEY AUTOINCREMENT,
+  username TEXT NOT NULL,
+  password TEXT NOT NULL,
+  interests TEXT
+);
+
+DROP TABLE IF EXISTS posts;
+CREATE TABLE posts (
+  post_id INTEGER PRIMARY KEY AUTOINCREMENT,
+  user_id INTEGER NOT NULL,
+  content TEXT NOT NULL,
+  image_path TEXT,
+  pub_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  is_private BOOLEAN DEFAULT FALSE
+);
+
+DROP TABLE IF EXISTS password_resets;
+CREATE TABLE password_resets (
+  reset_id INTEGER PRIMARY KEY AUTOINCREMENT,
+  user_id INTEGER NOT NULL,
+  reset_code TEXT NOT NULL,
+  expires_at TIMESTAMP NOT NULL
+);
+
+-- Default admin user
+INSERT INTO users (username, password, interests) VALUES ('admin', 'CHANGEME_password123', 'CTFs,ReverseEngineering,Pwn');
