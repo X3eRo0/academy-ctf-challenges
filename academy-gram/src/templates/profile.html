@@ -1,74 +1,296 @@
 {% extends "layout.html" %}
 {% block body %}
+<style>
+  .profile-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 30px 20px;
+  }
+
+  .profile-header {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+    margin-bottom: 44px;
+    padding-bottom: 44px;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .profile-avatar {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background: var(--gradient-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 60px;
+    font-weight: 700;
+    color: white;
+    flex-shrink: 0;
+  }
+
+  .profile-info {
+    flex: 1;
+  }
+
+  .profile-name {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 24px;
+  }
+
+  .username {
+    font-size: 28px;
+    font-weight: 300;
+    color: var(--text-primary);
+  }
+
+
+  .profile-stats {
+    display: flex;
+    gap: 40px;
+    margin-bottom: 24px;
+  }
+
+  .stat {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .stat-number {
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+
+  .stat-label {
+    color: var(--text-secondary);
+    font-size: 14px;
+  }
+
+
+  .profile-tabs {
+    display: flex;
+    justify-content: center;
+    border-top: 1px solid var(--border-color);
+    margin-bottom: 28px;
+  }
+
+  .tab-link {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 16px 24px;
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    border-top: 1px solid transparent;
+    margin-top: -1px;
+    transition: color 0.2s;
+  }
+
+  .tab-link:hover {
+    color: var(--text-primary);
+  }
+
+  .tab-link.active {
+    color: var(--text-primary);
+    border-top-color: var(--text-primary);
+  }
+
+  .posts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 4px;
+  }
+
+  .post-thumbnail {
+    aspect-ratio: 1;
+    position: relative;
+    overflow: hidden;
+    background: var(--secondary-bg);
+    cursor: pointer;
+    transition: opacity 0.2s;
+  }
+
+  .post-thumbnail:hover {
+    opacity: 0.8;
+  }
+
+  .post-thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+
+  .text-only-post {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    text-align: center;
+    position: relative;
+  }
+
+  .text-content {
+    color: var(--text-primary);
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.3;
+  }
+
+  .private-indicator {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    color: var(--text-secondary);
+    font-size: 12px;
+  }
+
+  .empty-state {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--text-secondary);
+  }
+
+  .empty-state i {
+    font-size: 48px;
+    margin-bottom: 16px;
+    opacity: 0.5;
+  }
+
+  .empty-state h3 {
+    font-size: 22px;
+    font-weight: 300;
+    margin-bottom: 8px;
+    color: var(--text-primary);
+  }
+
+  /* Responsive Design */
+  @media (max-width: 1024px) {
+    .posts-grid {
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 3px;
+    }
+    
+    .profile-header {
+      gap: 40px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .profile-container {
+      padding: 20px 16px;
+    }
+    
+    .profile-header {
+      gap: 30px;
+      flex-direction: column;
+      text-align: center;
+    }
+    
+    .profile-avatar {
+      width: 120px;
+      height: 120px;
+      font-size: 48px;
+    }
+    
+    .profile-name {
+      flex-direction: column;
+      gap: 12px;
+    }
+    
+    .username {
+      font-size: 24px;
+    }
+    
+    .profile-stats {
+      justify-content: center;
+      gap: 30px;
+    }
+    
+    .posts-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .posts-grid {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+    
+    .post-thumbnail {
+      max-width: 100%;
+    }
+  }
+</style>
+
+<div class="profile-container">
   <header class="profile-header">
-    <i class="fas fa-user-circle fa-3x"></i>
+    <div class="profile-avatar">
+      {{ profile_user.username[0].upper() }}
+    </div>
+    
     <div class="profile-info">
-      <h2>{{ profile_user.username }}</h2>
-      <p><a href="{{ url_for('view_upload', filename='default.png') }}">View Profile Picture</a></p>
+      <div class="profile-name">
+        <h1 class="username">{{ profile_user.username }}</h1>
+      </div>
+      
+      <div class="profile-stats">
+        <div class="stat">
+          <span class="stat-number">{{ posts|length }}</span>
+          <span class="stat-label">posts</span>
+        </div>
+      </div>
     </div>
   </header>
 
   <div class="profile-tabs">
     <a href="{{ url_for('profile') }}" class="tab-link active">
-      <i class="fas fa-th-large"></i> Posts
+      <i class="fas fa-th-large"></i>
+      Posts
     </a>
     <a href="{{ url_for('interests') }}" class="tab-link">
-      <i class="fas fa-star"></i> Interests
+      <i class="fas fa-bookmark"></i>
+      Interests
     </a>
   </div>
 
-  <div class="timeline">
-  {% for post in posts %}
-    <article class="post-card">
+  <div class="posts-grid">
+    {% for post in posts %}
+    <div class="post-thumbnail">
       {% if post.image_path and post.image_path != None %}
-      <div class="post-image">
         <img src="{{ url_for('static', filename=post.image_path.replace('static/', '')) }}" alt="Post by {{ profile_user.username }}">
-      </div>
+      {% else %}
+        <div class="text-only-post">
+          <div class="text-content">{{ post.content[:50] }}{% if post.content|length > 50 %}...{% endif %}</div>
+        </div>
       {% endif %}
-      <div class="post-content">
-        <p>
-          <strong>{{ profile_user.username }}</strong>
-          {{ post.content }}
-          {% if post.is_private %}
-            <small style="color: var(--secondary-text-color);"><i class="fas fa-lock"></i> (Private)</small>
-          {% endif %}
-        </p>
-      </div>
-    </article>
-  {% else %}
-    <p><em>This user has no posts yet.</em></p>
-  {% endfor %}
+      
+      {% if post.is_private %}
+        <div class="private-indicator">
+          <i class="fas fa-lock"></i>
+        </div>
+      {% endif %}
+    </div>
+    {% else %}
+    <div class="empty-state">
+      <i class="far fa-images"></i>
+      <h3>No posts yet</h3>
+      <p>When you share photos and videos, they'll appear on your profile.</p>
+    </div>
+    {% endfor %}
   </div>
-
-  <style>
-    .profile-tabs {
-      display: flex;
-      border-bottom: 1px solid var(--border-color);
-      margin: 20px 0;
-    }
-    
-    .tab-link {
-      flex: 1;
-      padding: 15px;
-      text-align: center;
-      color: var(--secondary-text-color);
-      text-decoration: none;
-      border-bottom: 2px solid transparent;
-      transition: all 0.3s ease;
-    }
-    
-    .tab-link:hover {
-      color: var(--primary-text-color);
-      text-decoration: none;
-    }
-    
-    .tab-link.active {
-      color: var(--accent-color);
-      border-bottom-color: var(--accent-color);
-    }
-    
-    .tab-link i {
-      margin-right: 8px;
-    }
-  </style>
+</div>
 {% endblock %}
