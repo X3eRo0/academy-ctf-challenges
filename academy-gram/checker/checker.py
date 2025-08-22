@@ -25,7 +25,6 @@ class AcademyGramChecker(checkerlib.BaseChecker):
         return f"http://{self.ip}:{self.port}"
 
     def get_credentials(self):
-        """Generate unique credentials using bot username + random suffix"""
         bot_usernames = get_bot_usernames()
         base_username = random.choice(bot_usernames)
         username = f"{base_username}_{random_string(6)}"
@@ -34,8 +33,7 @@ class AcademyGramChecker(checkerlib.BaseChecker):
 
     def _get_or_create_user(self, session, base_url):
         username, password = self.get_credentials()
-        
-        # Try to register the account
+
         register_data = {"username": username, "password": password}
         try:
             r_reg = session.post(
@@ -45,13 +43,13 @@ class AcademyGramChecker(checkerlib.BaseChecker):
                 timeout=self.timeout,
             )
 
-            if r_reg.status_code == 302 and r_reg.headers.get("Location", "").endswith("/login"):
-                # Registration successful
+            if r_reg.status_code == 302 and r_reg.headers.get("Location", "").endswith(
+                "/login"
+            ):
                 return username, password
         except Exception as e:
             print(f"Registration attempt failed for {username}: {e}")
 
-        # Registration failed, try to login (account might already exist)
         try:
             self._login(session, username, password)
             self._logout(session)
@@ -59,7 +57,6 @@ class AcademyGramChecker(checkerlib.BaseChecker):
         except Exception as e:
             print(f"Login attempt failed for {username}: {e}")
 
-        # Both registration and login failed, raise error
         raise Exception(f"Failed to register or login as {username}")
 
     def _login(self, session, username, password):
@@ -245,6 +242,31 @@ class AcademyGramChecker(checkerlib.BaseChecker):
                 self._logout(session)
                 return checkerlib.CheckResult.FAULTY
 
+            r_forgot = session.get(f"{base_url}/forgot_password", timeout=self.timeout)
+            if r_forgot.status_code != 200 or "forgot" not in r_forgot.text.lower():
+                self._logout(session)
+                return checkerlib.CheckResult.FAULTY
+
+            r_get_code = session.get(f"{base_url}/get_code", timeout=self.timeout)
+            if r_get_code.status_code != 200:
+                self._logout(session)
+                return checkerlib.CheckResult.FAULTY
+
+            try:
+                code_data = r_get_code.json()
+                if "current_code" not in code_data or "username" not in code_data:
+                    self._logout(session)
+                    return checkerlib.CheckResult.FAULTY
+                if (
+                    not code_data["current_code"].isdigit()
+                    or len(code_data["current_code"]) != 4
+                ):
+                    self._logout(session)
+                    return checkerlib.CheckResult.FAULTY
+            except:
+                self._logout(session)
+                return checkerlib.CheckResult.FAULTY
+
             r_timeline_check = session.get(f"{base_url}/", timeout=self.timeout)
             if r_timeline_check.status_code != 200:
                 self._logout(session)
@@ -293,14 +315,11 @@ class AcademyGramChecker(checkerlib.BaseChecker):
                 self._logout(session)
                 return checkerlib.CheckResult.FLAG_NOT_FOUND
 
-            # Check if flag is in user's interests
             if flag not in r_interests.text:
                 self._logout(session)
                 return checkerlib.CheckResult.FLAG_NOT_FOUND
 
             self._logout(session)
-
-            # Both flag storage locations verified
             return checkerlib.CheckResult.OK
 
         except (ConnectionError, requests.exceptions.RequestException):

@@ -216,16 +216,18 @@ def add_post():
 
     if "image" in request.files:
         file = request.files["image"]
-        if file and file.filename != '' and allowed_file(file.filename):
+        if file and file.filename != "" and allowed_file(file.filename):
             try:
                 filename = secure_filename(file.filename)
                 # To avoid overwrites, prepend with user_id and a random string
-                unique_filename = f"{g.user['user_id']}_{os.urandom(4).hex()}_{filename}"
+                unique_filename = (
+                    f"{g.user['user_id']}_{os.urandom(4).hex()}_{filename}"
+                )
                 save_path = os.path.join(app.config["UPLOAD_FOLDER"], unique_filename)
-                
+
                 # Ensure the upload directory exists
                 os.makedirs(app.config["UPLOAD_FOLDER"], exist_ok=True)
-                
+
                 file.save(save_path)
                 image_path = os.path.join("static/posts", unique_filename)
             except Exception as e:
@@ -243,7 +245,7 @@ def add_post():
 def profile():
     if not g.user:
         return redirect(url_for("login"))
-    
+
     # Load current user's profile
     posts = Post.get_for_user(g.user["user_id"])
     return render_template("profile.html", posts=posts, profile_user=g.user)
@@ -251,58 +253,25 @@ def profile():
 
 class PasswordReset:
     @staticmethod
-    def generate_user_seed(username):
-        """Generate a predictable seed based on username"""
-        return int(hashlib.md5(username.encode()).hexdigest()[:8], 16)
-    
-    @staticmethod
-    def get_user_rng_state(user_id):
-        """Get or initialize user's RNG state"""
-        db = get_db()
-        cur = db.execute("SELECT rng_state FROM users WHERE user_id = ?", [user_id])
-        row = cur.fetchone()
-        if row and row["rng_state"] is not None:
-            return int(row["rng_state"])
-        return 0  # Initial state
-    
-    @staticmethod
-    def update_user_rng_state(user_id, new_state):
-        """Update user's RNG state"""
-        db = get_db()
-        db.execute("UPDATE users SET rng_state = ? WHERE user_id = ?", [new_state, user_id])
-        db.commit()
-    
-    @staticmethod
-    def generate_code_for_user(username, user_id):
-        """Generate predictable code based on username seed and current state"""
-        seed = PasswordReset.generate_user_seed(username)
-        state = PasswordReset.get_user_rng_state(user_id)
+    def generate_time_based_code():
+        """Generate code based on current minute - predictable vulnerability"""
+        import time
         
-        # Create predictable RNG with username seed
+        # Use current minute as seed for predictable RNG
+        current_minute = int(time.time() // 60)
         rng = random.Random()
-        rng.seed(seed)
-        
-        # Advance RNG to current state
-        for _ in range(state):
-            rng.random()
+        rng.seed(current_minute)
         
         # Generate 4-digit code
         code = str(rng.randint(1000, 9999)).zfill(4)
         return code
-    
-    @staticmethod
-    def advance_user_rng(user_id):
-        """Advance user's RNG state (called on login)"""
-        current_state = PasswordReset.get_user_rng_state(user_id)
-        PasswordReset.update_user_rng_state(user_id, current_state + 1)
-    
+
     @staticmethod
     def create(user_id):
         db = get_db()
-        user = User.find_by_id(user_id)
-        code = PasswordReset.generate_code_for_user(user["username"], user_id)
+        code = PasswordReset.generate_time_based_code()
         expires = datetime.utcnow() + timedelta(minutes=30)
-        
+
         # Clear old reset codes and insert new one
         db.execute("DELETE FROM password_resets WHERE user_id = ?", [user_id])
         db.execute(
@@ -340,10 +309,6 @@ def forgot_password():
         user = User.find_by_username(request.form["username"])
         if user:
             code = PasswordReset.create(user["user_id"])
-            # In a real app, this code would be emailed. Here, we show it for simplicity of the challenge.
-            flash(
-                f"A password reset code has been generated for {user['username']}. For the purpose of this demo, the code is {code}."
-            )
             return redirect(url_for("reset_password", username=user["username"]))
         else:
             error = "User not found"
@@ -376,6 +341,17 @@ def reset_password(username):
             return redirect(url_for("login"))
 
     return render_template("reset_password.html", username=username, error=error)
+
+
+@app.route("/get_code")
+def get_code():
+    """Get current time-based reset code"""
+    if not g.user:
+        return redirect(url_for("login"))
+
+    # Generate current time-based code (same as reset system uses)
+    code = PasswordReset.generate_time_based_code()
+    return {"username": g.user["username"], "current_code": code}
 
 
 @app.route("/interests")
