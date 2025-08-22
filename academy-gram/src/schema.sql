@@ -24,6 +24,3 @@ CREATE TABLE password_resets (
   reset_code TEXT NOT NULL,
   expires_at TIMESTAMP NOT NULL
 );
-
--- Default admin user
-INSERT INTO users (username, password, interests) VALUES ('admin', 'CHANGEME_password123', 'CTFs,ReverseEngineering,Pwn');

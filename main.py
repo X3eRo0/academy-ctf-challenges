@@ -53,22 +53,18 @@ class Colors:
 
 
 def log_info(message: str) -> None:
-    """Print info message."""
     print(f"{Colors.BLUE}[+]{Colors.NC} {message}")
 
 
 def log_success(message: str) -> None:
-    """Print success message."""
     print(f"{Colors.GREEN}[*]{Colors.NC} {message}")
 
 
 def log_warning(message: str) -> None:
-    """Print warning message."""
     print(f"{Colors.YELLOW}[!]{Colors.NC} {message}")
 
 
 def log_error(message: str) -> None:
-    """Print error message."""
     print(f"{Colors.RED}[X]{Colors.NC} {message}")
 
 
@@ -194,7 +190,7 @@ def copy_file_ssh(local_path: str, remote_path: str) -> bool:
             capture_output=True,
         )
         return True
-    except subprocess.CalledProcessError:
+    except subprocess.CalledProcessError as e:
         return False
 
 
