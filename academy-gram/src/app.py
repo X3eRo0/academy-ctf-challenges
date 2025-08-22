@@ -2,6 +2,7 @@ import os
 import sqlite3
 import random
 import string
+import hashlib
 from datetime import datetime, timedelta
 from flask import (
     Flask,
@@ -248,13 +249,62 @@ def profile():
     return render_template("profile.html", posts=posts, profile_user=g.user)
 
 
-# --- Bug 1: Password Reset Bruteforce ---
 class PasswordReset:
+    @staticmethod
+    def generate_user_seed(username):
+        """Generate a predictable seed based on username"""
+        return int(hashlib.md5(username.encode()).hexdigest()[:8], 16)
+    
+    @staticmethod
+    def get_user_rng_state(user_id):
+        """Get or initialize user's RNG state"""
+        db = get_db()
+        cur = db.execute("SELECT rng_state FROM users WHERE user_id = ?", [user_id])
+        row = cur.fetchone()
+        if row and row["rng_state"] is not None:
+            return int(row["rng_state"])
+        return 0  # Initial state
+    
+    @staticmethod
+    def update_user_rng_state(user_id, new_state):
+        """Update user's RNG state"""
+        db = get_db()
+        db.execute("UPDATE users SET rng_state = ? WHERE user_id = ?", [new_state, user_id])
+        db.commit()
+    
+    @staticmethod
+    def generate_code_for_user(username, user_id):
+        """Generate predictable code based on username seed and current state"""
+        seed = PasswordReset.generate_user_seed(username)
+        state = PasswordReset.get_user_rng_state(user_id)
+        
+        # Create predictable RNG with username seed
+        rng = random.Random()
+        rng.seed(seed)
+        
+        # Advance RNG to current state
+        for _ in range(state):
+            rng.random()
+        
+        # Generate 4-digit code
+        code = str(rng.randint(1000, 9999)).zfill(4)
+        return code
+    
+    @staticmethod
+    def advance_user_rng(user_id):
+        """Advance user's RNG state (called on login)"""
+        current_state = PasswordReset.get_user_rng_state(user_id)
+        PasswordReset.update_user_rng_state(user_id, current_state + 1)
+    
     @staticmethod
     def create(user_id):
         db = get_db()
-        code = str(random.randint(1000, 9999)).zfill(4)
+        user = User.find_by_id(user_id)
+        code = PasswordReset.generate_code_for_user(user["username"], user_id)
         expires = datetime.utcnow() + timedelta(minutes=30)
+        
+        # Clear old reset codes and insert new one
+        db.execute("DELETE FROM password_resets WHERE user_id = ?", [user_id])
         db.execute(
             "INSERT INTO password_resets (user_id, reset_code, expires_at) VALUES (?, ?, ?)",
             [user_id, code, expires],
@@ -291,7 +341,6 @@ def forgot_password():
         if user:
             code = PasswordReset.create(user["user_id"])
             # In a real app, this code would be emailed. Here, we show it for simplicity of the challenge.
-            # The vulnerability is that it's guessable anyway.
             flash(
                 f"A password reset code has been generated for {user['username']}. For the purpose of this demo, the code is {code}."
             )
@@ -329,7 +378,6 @@ def reset_password(username):
     return render_template("reset_password.html", username=username, error=error)
 
 
-# --- Bug 2: IDOR ---
 @app.route("/interests")
 def interests():
     if not g.user:
@@ -365,25 +413,24 @@ def update_user_interests():
     return redirect(url_for("interests"))
 
 
-# --- Bug 3: LFI ---
 @app.route("/uploads/<path:filename>")
 def view_upload(filename):
-    # This is still here for flavor, but the real bug is below
+    # This endpoint redirects to view_file
     return redirect(url_for("view_file", filename=filename))
 
 
 @app.route("/view_file")
 def view_file():
-    # Vulnerable: filename is taken from query param and not sanitized
+    # filename is taken from query param
     filename = request.args.get("filename", "default.png")
 
-    # Explicitly vulnerable code
+    # File reading implementation
     try:
         # Construct the path relative to the 'uploads' directory
         base_path = os.path.dirname(__file__)
         file_path = os.path.join(base_path, "uploads", filename)
 
-        # A weak check that can be bypassed
+        # Check for uploads directory
         if "uploads" not in request.args:
             return "File not found in uploads directory.", 400
 

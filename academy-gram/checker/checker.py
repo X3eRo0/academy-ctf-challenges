@@ -10,8 +10,6 @@ from utils import (
     random_string,
     get_bot_usernames,
     create_temp_image,
-    load_credentials,
-    save_credentials,
     generate_coherent_post,
 )
 
@@ -26,21 +24,43 @@ class AcademyGramChecker(checkerlib.BaseChecker):
     def get_base_url(self):
         return f"http://{self.ip}:{self.port}"
 
-    def _get_or_create_user(self, session, base_url):
-        creds = load_credentials()
+    def get_credentials(self):
+        """Generate unique credentials using bot username + random suffix"""
         bot_usernames = get_bot_usernames()
-
-        if not creds:
-            print("Initializing credentials for all bot usernames...")
-            for username in bot_usernames:
-                password = random_string(12)
-                creds[username] = password
-            save_credentials(creds)
-            print(f"Initialized {len(creds)} bot accounts in creds.txt")
-
-        username = random.choice(list(creds.keys()))
-        password = creds[username]
+        base_username = random.choice(bot_usernames)
+        username = f"{base_username}_{random_string(6)}"
+        password = random_string(12)
         return username, password
+
+    def _get_or_create_user(self, session, base_url):
+        username, password = self.get_credentials()
+        
+        # Try to register the account
+        register_data = {"username": username, "password": password}
+        try:
+            r_reg = session.post(
+                f"{base_url}/register",
+                data=register_data,
+                allow_redirects=False,
+                timeout=self.timeout,
+            )
+
+            if r_reg.status_code == 302 and r_reg.headers.get("Location", "").endswith("/login"):
+                # Registration successful
+                return username, password
+        except Exception as e:
+            print(f"Registration attempt failed for {username}: {e}")
+
+        # Registration failed, try to login (account might already exist)
+        try:
+            self._login(session, username, password)
+            self._logout(session)
+            return username, password
+        except Exception as e:
+            print(f"Login attempt failed for {username}: {e}")
+
+        # Both registration and login failed, raise error
+        raise Exception(f"Failed to register or login as {username}")
 
     def _login(self, session, username, password):
         base_url = self.get_base_url()
@@ -52,7 +72,7 @@ class AcademyGramChecker(checkerlib.BaseChecker):
             allow_redirects=False,
         )
         r.raise_for_status()
-        if r.status_code != 302 or "/login" in r.headers.get("Location", ""):
+        if r.status_code != 302 or not r.headers.get("Location", "").endswith("/"):
             raise ConnectionError(f"Login failed for {username}")
         return True
 
@@ -83,7 +103,9 @@ class AcademyGramChecker(checkerlib.BaseChecker):
                     )
                 os.unlink(flag_image_path)
 
-                if r_post.status_code != 302:
+                if r_post.status_code != 302 or not r_post.headers.get(
+                    "Location", ""
+                ).endswith("/"):
                     self._logout(session)
                     return checkerlib.CheckResult.FAULTY
             else:
@@ -94,7 +116,9 @@ class AcademyGramChecker(checkerlib.BaseChecker):
                     timeout=self.timeout,
                     allow_redirects=False,
                 )
-                if r_post.status_code != 302:
+                if r_post.status_code != 302 or not r_post.headers.get(
+                    "Location", ""
+                ).endswith("/"):
                     self._logout(session)
                     return checkerlib.CheckResult.FAULTY
 
@@ -105,7 +129,9 @@ class AcademyGramChecker(checkerlib.BaseChecker):
                 timeout=self.timeout,
                 allow_redirects=False,
             )
-            if r_interests.status_code != 302:
+            if r_interests.status_code != 302 or not r_interests.headers.get(
+                "Location", ""
+            ).endswith("/interests"):
                 self._logout(session)
                 return checkerlib.CheckResult.FAULTY
 
@@ -136,19 +162,7 @@ class AcademyGramChecker(checkerlib.BaseChecker):
             if r_login.status_code != 200 or "login" not in r_login.text.lower():
                 return checkerlib.CheckResult.FAULTY
 
-            # username = random_string()
-            # password = random_string()
             username, password = self._get_or_create_user(session, base_url)
-
-            register_data = {"username": username, "password": password}
-            r_reg = session.post(
-                f"{base_url}/register",
-                data=register_data,
-                allow_redirects=False,
-                timeout=self.timeout,
-            )
-            if r_reg.status_code != 302:
-                return checkerlib.CheckResult.FAULTY
 
             self._login(session, username, password)
 
@@ -161,7 +175,9 @@ class AcademyGramChecker(checkerlib.BaseChecker):
                 allow_redirects=False,
             )
 
-            if r_post.status_code != 302:
+            if r_post.status_code != 302 or not r_post.headers.get(
+                "Location", ""
+            ).endswith("/"):
                 self._logout(session)
                 return checkerlib.CheckResult.FAULTY
 
@@ -181,7 +197,9 @@ class AcademyGramChecker(checkerlib.BaseChecker):
                         )
                     os.unlink(image_path)  # Clean up temp file
 
-                    if r_image_post.status_code != 302:
+                    if r_image_post.status_code != 302 or not r_image_post.headers.get(
+                        "Location", ""
+                    ).endswith("/"):
                         self._logout(session)
                         return checkerlib.CheckResult.FAULTY
                 except Exception:
@@ -198,7 +216,8 @@ class AcademyGramChecker(checkerlib.BaseChecker):
                 self._logout(session)
                 return checkerlib.CheckResult.FAULTY
 
-            test_interests = f"Service Testing,{random_string(6)},Security Research"
+            unique_interest = random_string(8)
+            test_interests = f"Service Testing,{unique_interest},Security Research"
             interests_data = {"interests": test_interests}
             r_update_interests = session.post(
                 f"{base_url}/update_interests",
@@ -206,7 +225,23 @@ class AcademyGramChecker(checkerlib.BaseChecker):
                 timeout=self.timeout,
                 allow_redirects=False,
             )
-            if r_update_interests.status_code != 302:
+            if (
+                r_update_interests.status_code != 302
+                or not r_update_interests.headers.get("Location", "").endswith(
+                    "/interests"
+                )
+            ):
+                self._logout(session)
+                return checkerlib.CheckResult.FAULTY
+
+            r_interests_check = session.get(
+                f"{base_url}/interests", timeout=self.timeout
+            )
+            if r_interests_check.status_code != 200:
+                self._logout(session)
+                return checkerlib.CheckResult.FAULTY
+
+            if unique_interest not in r_interests_check.text:
                 self._logout(session)
                 return checkerlib.CheckResult.FAULTY
 
