@@ -35,7 +35,7 @@ from typing import List, Optional, Tuple
 
 # Configuration
 CHECKER_BASE_DIR = "/opt/checker"
-CHECKER_CONFIG_DIR = "/etc/ctf-gameserver"
+CHECKER_CONFIG_DIR = "/etc/ctf-gameserver/checker"
 CHECKER_USER = "ctf-checkerrunner"
 PACKAGE_DIR = "./packages"
 PACKAGE_CHECKER_DIR = os.path.join(PACKAGE_DIR, "checker")

@@ -50,13 +50,11 @@ class AcademyGramChecker(checkerlib.BaseChecker):
             img = Image.new("RGB", (width, height), color=(25, 25, 25))
             d = ImageDraw.Draw(img)
 
-            # Use default font
             try:
                 font = ImageFont.load_default()
             except:
                 font = None
 
-            # Text wrapping
             lines = []
             words = flag_text.split()
             line = ""
@@ -71,13 +69,11 @@ class AcademyGramChecker(checkerlib.BaseChecker):
                     line = word + " "
             lines.append(line)
 
-            # Draw text
             y_text = (height - len(lines) * 25) / 2
             for line in lines:
                 d.text((20, y_text), line, fill=(220, 220, 220), font=font)
                 y_text += 25
 
-            # Save to temporary file
             temp_file = tempfile.NamedTemporaryFile(delete=False, suffix=".png")
             img.save(temp_file.name)
             return temp_file.name
@@ -90,12 +86,10 @@ class AcademyGramChecker(checkerlib.BaseChecker):
         base_url = self.get_base_url()
         session = requests.Session()
 
-        # Generate random credentials for this tick
         username = self._random_string(8)
         password = self._random_string(12)
 
         try:
-            # 1. Register new user for private post
             register_data = {"username": username, "password": password}
             r_reg = session.post(
                 f"{base_url}/register",
@@ -106,10 +100,8 @@ class AcademyGramChecker(checkerlib.BaseChecker):
             if r_reg.status_code != 302:
                 return checkerlib.CheckResult.FAULTY
 
-            # 2. Login as the new user and create private post with flag
             self._login(session, username, password)
 
-            # Flag Storage 1: Private image post with flag as caption
             flag_image_path = self._create_flag_image(flag)
             if flag_image_path:
                 with open(flag_image_path, "rb") as img_file:
@@ -122,18 +114,16 @@ class AcademyGramChecker(checkerlib.BaseChecker):
                         timeout=self.timeout,
                         allow_redirects=False,
                     )
-                # Clean up temp file
                 os.unlink(flag_image_path)
 
                 if r_post.status_code != 302:
                     self._logout(session)
                     return checkerlib.CheckResult.FAULTY
             else:
-                # Fallback: text-only private post
                 post_data = {"content": flag, "is_private": "on"}
                 r_post = session.post(
-                    f"{base_url}/add_post", 
-                    data=post_data, 
+                    f"{base_url}/add_post",
+                    data=post_data,
                     timeout=self.timeout,
                     allow_redirects=False,
                 )
@@ -141,7 +131,6 @@ class AcademyGramChecker(checkerlib.BaseChecker):
                     self._logout(session)
                     return checkerlib.CheckResult.FAULTY
 
-            # Flag Storage 2: Update user's own interests with flag
             interests_data = {"interests": f"CTF Research,{flag},Binary Analysis"}
             r_interests = session.post(
                 f"{base_url}/update_interests",
@@ -155,7 +144,6 @@ class AcademyGramChecker(checkerlib.BaseChecker):
 
             self._logout(session)
 
-            # Store credentials for later retrieval
             flag_info = {"username": username, "password": password}
 
             checkerlib.store_state(str(tick), flag_info)
@@ -173,17 +161,14 @@ class AcademyGramChecker(checkerlib.BaseChecker):
             base_url = self.get_base_url()
             session = requests.Session()
 
-            # Check main page
             r = session.get(base_url, timeout=self.timeout)
             if r.status_code != 200:
                 return checkerlib.CheckResult.DOWN
 
-            # Check login page
             r_login = session.get(f"{base_url}/login", timeout=self.timeout)
             if r_login.status_code != 200 or "login" not in r_login.text.lower():
                 return checkerlib.CheckResult.FAULTY
 
-            # Check basic functionality - register and login
             username = self._random_string()
             password = self._random_string()
 
@@ -197,7 +182,6 @@ class AcademyGramChecker(checkerlib.BaseChecker):
             if r_reg.status_code != 302:
                 return checkerlib.CheckResult.FAULTY
 
-            # Test login works
             self._login(session, username, password)
             self._logout(session)
 
@@ -212,7 +196,6 @@ class AcademyGramChecker(checkerlib.BaseChecker):
         session = requests.Session()
 
         try:
-            # Retrieve stored credentials
             flag_info = checkerlib.load_state(str(tick))
             if not flag_info:
                 return checkerlib.CheckResult.FLAG_NOT_FOUND
@@ -220,7 +203,6 @@ class AcademyGramChecker(checkerlib.BaseChecker):
             username = flag_info["username"]
             password = flag_info["password"]
 
-            # Check Flag Storage 1: Private post on user's profile
             self._login(session, username, password)
 
             r_profile = session.get(
@@ -230,13 +212,10 @@ class AcademyGramChecker(checkerlib.BaseChecker):
                 self._logout(session)
                 return checkerlib.CheckResult.FLAG_NOT_FOUND
 
-            # Check if flag is in private posts
             if flag not in r_profile.text:
                 self._logout(session)
                 return checkerlib.CheckResult.FLAG_NOT_FOUND
 
-            # Check Flag Storage 2: User's own interests
-            # Access user's own interests page
             r_interests = session.get(f"{base_url}/interests", timeout=self.timeout)
             if r_interests.status_code != 200:
                 self._logout(session)
