@@ -43,8 +43,5 @@
             ".vscode/",
             ".idea/"
         ]
-    },
-    "post_install": [
-        "cd /opt/checker/xvm-computing/src && cmake -B build && cd build && make -j$(nproc)"
-    ]
+    }
 }
