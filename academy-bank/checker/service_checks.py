@@ -8,7 +8,11 @@ import time
 import re
 from typing import Optional, Tuple, List
 
-from pwn import remote
+from pwn import remote, context
+import logging
+
+context.log_level = "critical"
+logging.getLogger("pwnlib").setLevel(logging.CRITICAL)
 
 __all__ = [
     "ServiceClient",
@@ -42,7 +46,7 @@ class ServiceClient:
 
     def connect(self) -> None:
         self.conn = remote(self.host, self.port, typ="tcp")
-        self.conn.recvuntil(b"> ")
+        self.conn.recvuntil(b"\n> ")
 
     def close(self) -> None:
         with contextlib.suppress(Exception):
@@ -247,7 +251,7 @@ class ServiceClient:
 
 def end_to_end_place(client: ServiceClient, flag: str) -> Tuple[str, str]:
     # Returns (username, secret_flag) and leaves listing in place priced high.
-    username = f"u_{_rand_str(10)}"
+    username = _rand_str(10)
     password = _rand_str(16)
     client.register(username, password)
     client.login(username, password)
@@ -257,12 +261,12 @@ def end_to_end_place(client: ServiceClient, flag: str) -> Tuple[str, str]:
         raise RuntimeError("invalid balance")
     # deposit flag and list at high price
     fid = client.deposit_flag(flag)
-    lid = client.list_flag(fid, 300000, note="exclusive")
+    lid = client.list_flag(fid, 300000, note=_rand_str(10))
     # Verify listing shows up and links to our flag id
     listing = client.view_listing(lid)
     if listing is None or listing.fid != fid or listing.price != 300000:
         raise RuntimeError("listing verification failed")
-    return username, password
+    return str(lid), username, password 
 
 
 def retrieve_flag(client: ServiceClient, username: str, password: str) -> str:
@@ -290,7 +294,8 @@ def basic_havoc(client: ServiceClient) -> None:
 
 
 def _scenario_login_logout(client: ServiceClient) -> None:
-    username = f"h_{_rand_str(6)}"
+    
+    username = _rand_str(6)
     password = _rand_str(12)
     client.register_and_login(username, password)
     name, uid, bal = client.parse_whoami()
@@ -302,13 +307,15 @@ def _scenario_login_logout(client: ServiceClient) -> None:
     client.logout()
     # login again
     client.login(username, password)
+    client.logout()
 
 
 def _scenario_buy_flow(client: ServiceClient) -> None:
+    
     # Seller creates affordable listing; buyer purchases it
-    seller = f"s_{_rand_str(6)}"
+    seller = _rand_str(10)
     spw = _rand_str(12)
-    buyer = f"b_{_rand_str(6)}"
+    buyer = _rand_str(10)
     bpw = _rand_str(12)
 
     # Create seller and list a flag
@@ -316,7 +323,7 @@ def _scenario_buy_flow(client: ServiceClient) -> None:
     secret = _rand_str(20)
     fid = client.deposit_flag(secret)
     price = random.randint(1, 80)  # affordable under initial 100 balance
-    lid = client.list_flag(fid, price, note="promo")
+    lid = client.list_flag(fid, price, note=_rand_str(10))
     listing = client.view_listing(lid)
     if listing is None or listing.fid != fid:
         raise RuntimeError("listing not visible")
@@ -338,11 +345,13 @@ def _scenario_buy_flow(client: ServiceClient) -> None:
     listing2 = client.view_listing(lid)
     if listing2 is None or listing2.sales < 1:
         raise RuntimeError("sale_count not incremented")
+    client.logout()
 
 
 def _scenario_delete_flow(client: ServiceClient) -> None:
+    
     # Create flag and listing, verify deletion constraints, then cleanup
-    username = f"d_{_rand_str(6)}"
+    username = _rand_str(6)
     password = _rand_str(12)
     client.register_and_login(username, password)
     secret = _rand_str(18)
@@ -364,9 +373,10 @@ def _scenario_delete_flow(client: ServiceClient) -> None:
 
 
 def _scenario_view_nonexistent(client: ServiceClient) -> None:
+    
     # Should gracefully handle unknown listing id
     bogus_id = random.randint(10_000, 50_000)
     listing = client.view_listing(bogus_id)
     if listing is not None:
         raise RuntimeError("unexpected listing exists")
-
+    client.logout()

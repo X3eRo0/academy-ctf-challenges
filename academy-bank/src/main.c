@@ -48,8 +48,6 @@ static void require_login(AppContext *app) {
   }
 }
 
-// --- Command helpers and handlers ---
-
 static int print_flag_cb(const Flag *flag, void *ctx) {
   (void)ctx;
   printf("  id=%llu secret=%s\n", (unsigned long long)flag->id, flag->secret);
@@ -205,11 +203,12 @@ static void cmd_list_flag(AppContext *app, const char *args) {
   if (!listing || !flag)
     oom();
 
-  if (sscanf(args, "%llu %llu %255[^\n]", (unsigned long long *)&listing->fid,
-             (unsigned long long *)&listing->price, listing->note) < 3) {
+  if (sscanf(args, "%llu %llu %47[^\n]", (unsigned long long *)&listing->fid,
+             (unsigned long long *)&listing->price, listing->note) < 2) {
     printf("usage: list-flag <fid> <price> <note>\n");
     goto cleanup;
   }
+  listing->sale_count = 0;
 
   if (storage_flag_get_by_id(app->storage, listing->fid, flag) != STORAGE_OK ||
       flag->uid != app->current_user->uid) {
@@ -260,7 +259,8 @@ static void cmd_view_listing(AppContext *app, const char *args) {
 }
 
 static void cmd_buy(AppContext *app, const char *args) {
-  char out[0x80];
+  char out[0x40];
+  uint64_t platform_fee;
 
   if (!app->logged_in) {
     require_login(app);
@@ -298,14 +298,15 @@ static void cmd_buy(AppContext *app, const char *args) {
     goto cleanup;
   }
 
-  seller->balance -= listing->price * 0.05;
   if (app->current_user->balance < listing->price) {
     printf("[!] Insufficient funds\n");
     goto cleanup;
   }
 
+  platform_fee = listing->price * 0.05;
+  platform_fee = platform_fee ? platform_fee : 10;
   app->current_user->balance -= listing->price;
-  seller->balance += listing->price;
+  seller->balance += listing->price - platform_fee;
 
   if (storage_user_update(app->storage, app->current_user) != STORAGE_OK) {
     printf("[!] Failed to update balance\n");
@@ -345,7 +346,6 @@ static void cmd_delete_user(AppContext *app) {
     return;
   }
 
-  // Check no flags and no listings
   bool has_flags = false;
   int cb_flag(const Flag *f, void *ctx) {
     (void)ctx;
@@ -397,7 +397,7 @@ static void cmd_delete_flag(AppContext *app, const char *args) {
     printf("[!] Flag not owned by you\n");
     goto cleanup;
   }
-  // Ensure no listing uses this flag
+
   bool used = false;
   int cb(const Listing *l, void *ctx) {
     (void)ctx;
@@ -433,7 +433,6 @@ static void cmd_delete_listing(AppContext *app, const char *args) {
   }
   uint64_t id = 0;
   sscanf(args, "%llu", (unsigned long long *)&id);
-  // Ensure listing belongs to current user (via the flag's owner)
   Listing l;
   if (storage_listing_get_by_id(app->storage, id, &l) != STORAGE_OK) {
     printf("[!] Listing not found\n");
@@ -487,7 +486,6 @@ int main(int argc, char **argv) {
     fflush(stdout);
     if (!fgets(line, sizeof(line), stdin))
       break;
-    // trim newline
     size_t len = strlen(line);
     if (len > 0 && (line[len - 1] == '\n' || line[len - 1] == '\r'))
       line[len - 1] = '\0';
