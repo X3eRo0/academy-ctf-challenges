@@ -1,0 +1,2 @@
+FLAG_REGEX = r"FLAG_[A-Z0-9]{32}"
+

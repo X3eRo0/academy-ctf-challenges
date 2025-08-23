@@ -1,0 +1,32 @@
+services:
+  academy_bank:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: academy-bank
+    container_name: academy-bank-challenge
+    ports:
+      - "6969:6969"
+    restart: unless-stopped
+
+    # Security settings for CTF
+    security_opt:
+      - no-new-privileges:true
+    read_only: false
+    
+    # Resource limits to prevent abuse
+    deploy:
+      resources:
+        limits:
+          memory: 256M
+          cpus: '0.5'
+        reservations:
+          memory: 64M
+          cpus: '0.1'
+    
+    # Logging configuration
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"

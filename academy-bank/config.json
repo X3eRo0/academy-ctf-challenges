@@ -1,0 +1,47 @@
+{
+    "service_name": "academy-bank",
+    "vulnbox_directory": "{service_name}",
+    "vulnbox": {
+        "files": [
+            "Dockerfile",
+            "docker-compose.yml",
+            "./src/main.c",
+            "./src/storage_sqlite.c",
+            "./include/storage.h",
+            "./build/academy-bank",
+            "Makefile",
+            "ynetd"
+        ],
+        "exclude": [
+            "*.pyc",
+            "__pycache__/",
+            ".git/",
+            "*.log",
+            ".DS_Store",
+            "*.swp",
+            "*.tmp",
+            ".vscode/",
+            ".idea/"
+        ]
+    },
+    "checker": {
+        "files": [
+            "./checker/checker.py",
+            "./checker/flag_templates.py",
+            "./checker/service_checks.py",
+            "checker.sh",
+            "src/"
+        ],
+        "exclude": [
+            "*.pyc",
+            "__pycache__/",
+            ".git/",
+            "*.log",
+            ".DS_Store",
+            "*.swp",
+            "*.tmp",
+            ".vscode/",
+            ".idea/"
+        ]
+    }
+}
