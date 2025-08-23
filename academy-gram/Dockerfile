@@ -13,7 +13,4 @@ RUN useradd -m -u 1001 academy && \
 USER academy
 
 EXPOSE 2750
-
-
-# CMD ["tail", "/dev/null", "-f"]
 CMD ["./start.sh"]
