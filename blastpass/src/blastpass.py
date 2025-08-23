@@ -168,8 +168,8 @@ def api_create_vault():
     if not vault_name:
         return jsonify({"error": "Vault name cannot be empty"}), 400
 
-    if not db.verify_user(user["username"], master_password):
-        return jsonify({"error": "Invalid master password"}), 401
+    if not master_password:
+        return jsonify({"error": "Master password is required"}), 400
 
     try:
         vault_id = vault_manager.create_vault(
