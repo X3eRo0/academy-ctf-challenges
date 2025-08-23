@@ -7,6 +7,7 @@
             "docker-compose.yml",
             "src/",
             "deploy.sh",
+            "run.sh",
             "README.md"
         ],
         "exclude": [
@@ -23,10 +24,8 @@
     },
     "checker": {
         "files": [
-            "checker.py",
-            "checker.sh",
-            "blastpass.env",
-            ""
+            "checker/",
+            "checker.sh"
         ],
         "exclude": [
             "*.pyc",
