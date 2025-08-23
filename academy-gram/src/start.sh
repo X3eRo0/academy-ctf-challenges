@@ -1,7 +1,6 @@
 #!/bin/bash
 set -e
 
-# --- Configuration ---
 export FLASK_APP=app.py
 
 echo "--- Initializing Database ---"
