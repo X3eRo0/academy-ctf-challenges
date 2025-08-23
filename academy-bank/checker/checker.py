@@ -26,23 +26,22 @@ class TeamState:
 
 class AcademyBankChecker(checkerlib.BaseChecker):
     def _connect(self) -> ServiceClient:
-        port = self.port or DEFAULT_PORT
+        port = DEFAULT_PORT
         client = ServiceClient(self.ip, port)
         client.connect()
         return client
 
-    def place_flag(self, tick: int) -> Tuple[checkerlib.CheckResult, str]:
+    def place_flag(self, tick: int) -> checkerlib.CheckResult:
         flag = checkerlib.get_flag(tick)
         client = self._connect()
         try:
-            username, password = end_to_end_place(client, flag)
+            listing_id, username, password = end_to_end_place(client, flag)
             # Persist credentials for get_flag
-            state = TeamState(username=username, password=password)
-            checkerlib.set_flagid(username, str(tick))
-            checkerlib.store_state("state", state.__dict__)
-            return checkerlib.CheckResult.OK, username
+            checkerlib.set_flagid(listing_id)
+            checkerlib.store_state(str(tick), (username, password))
+            return checkerlib.CheckResult.OK
         except Exception as e:
-            return checkerlib.CheckResult.FAULTY, f"place failed: {e}"
+            return checkerlib.CheckResult.FAULTY
         finally:
             client.close()
 
@@ -56,11 +55,9 @@ class AcademyBankChecker(checkerlib.BaseChecker):
         finally:
             client.close()
 
-    def get_flag(self, tick: int) -> checkerlib.CheckResult:
+    def check_flag(self, tick: int) -> checkerlib.CheckResult:
         # Load credentials from state
-        state_dict = checkerlib.load_state("state") or {}
-        username = state_dict.get("username")
-        password = state_dict.get("password")
+        username, password = checkerlib.load_state(str(tick))
         if not username or not password:
             return checkerlib.CheckResult.FLAG_NOT_FOUND
         client = self._connect()
@@ -78,4 +75,3 @@ class AcademyBankChecker(checkerlib.BaseChecker):
 
 if __name__ == "__main__":
     checkerlib.run_check(AcademyBankChecker)
-
