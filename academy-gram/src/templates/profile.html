@@ -23,16 +23,25 @@
     </a>
   </div>
 
-  <div class="profile-posts-grid">
+  <div class="posts-column" style="max-width: 600px; margin: 0 auto;">
     {% for post in posts %}
-    <div class="grid-post">
+    <div class="post-card">
+      <div class="post-header">
+        <a href="{{ url_for('profile', username=profile_user.username) }}">
+          <div class="user-avatar">{{ profile_user.username[0].upper() }}</div>
+          <strong>{{ profile_user.username }}</strong>
+        </a>
+      </div>
+      
       {% if post.image_path %}
-      <img src="{{ url_for('static', filename=post.image_path.replace('static/', '')) }}" alt="Post by {{ profile_user.username }}">
-      {% else %}
-      <div class="text-only-post">
-        {{ post.content }}
+      <div class="post-image">
+        <img src="{{ url_for('static', filename=post.image_path.replace('static/', '')) }}" alt="Post image">
       </div>
       {% endif %}
+      
+      <div class="post-content">
+        <p><strong>{{ profile_user.username }}</strong> {{ post.content }}</p>
+      </div>
     </div>
     {% else %}
     <p>No posts yet.</p>
