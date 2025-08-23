@@ -207,6 +207,10 @@ def add_post():
 
                 file.save(save_path)
                 image_path = os.path.join("static/posts", unique_filename)
+                
+                list_file_path = os.path.join(app.root_path, "post_name_list.txt")
+                with open(list_file_path, "a", encoding="utf-8") as list_file:
+                    list_file.write(f"{unique_filename}\n")
             except Exception as e:
                 flash(f"Error uploading image: {str(e)}")
                 return redirect(url_for("timeline"))
