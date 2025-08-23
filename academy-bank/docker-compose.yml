@@ -7,6 +7,8 @@ services:
     container_name: service-academy-bank
     ports:
       - "6969:6969"
+    volumes:
+      - ./academy_bank.db:/home/ctf/academy_bank.db
     restart: unless-stopped
 
     security_opt:
