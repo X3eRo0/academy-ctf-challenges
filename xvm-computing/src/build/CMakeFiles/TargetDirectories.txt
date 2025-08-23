@@ -1,0 +1,8 @@
+/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/build/CMakeFiles/xvm.dir
+/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/build/CMakeFiles/xdbg.dir
+/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/build/CMakeFiles/xasm.dir
+/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/build/CMakeFiles/xinfo.dir
+/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/build/CMakeFiles/xdis.dir
+/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/build/CMakeFiles/ropgadget.dir
+/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/build/CMakeFiles/edit_cache.dir
+/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/build/CMakeFiles/rebuild_cache.dir

@@ -10,23 +10,17 @@ SERVICE_NAME="blastpass"
 
 case "$1" in
 "start")
-    echo "Starting password manager service..."
     docker compose up -d
-    echo "Password manager started on http://localhost:3333"
-    echo "Crypto frontend started on http://localhost:3334"
+    echo "started on http://localhost:3333"
     echo "Use './run.sh logs' to view logs"
     ;;
 
 "stop")
-    echo "Stopping password manager service..."
     docker compose down
-    echo "Service stopped"
     ;;
 
 "restart")
-    echo "Restarting password manager service..."
     docker compose restart
-    echo "Service restarted"
     ;;
 
 "logs")
@@ -37,7 +31,6 @@ case "$1" in
 "test")
     echo "Running basic health check..."
 
-    # Ensure service is running
     if ! docker compose ps | grep -q "Up"; then
         echo "Starting service for testing..."
         docker compose up -d

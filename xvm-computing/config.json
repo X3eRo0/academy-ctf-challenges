@@ -5,12 +5,12 @@
         "files": [
             "Dockerfile",
             "docker-compose.yml",
-            "server.py",
-            "./build/xvm",
-            "./build/xinfo",
-            "./build/xasm",
-            "./build/xdis",
-            "deploy.sh"
+            "./src/server.py",
+            "./src/build/xvm",
+            "./src/build/xinfo",
+            "./src/build/xasm",
+            "./src/build/xdis",
+            "run.sh"
         ],
         "exclude": [
             "*.pyc",
@@ -26,18 +26,11 @@
     },
     "checker": {
         "files": [
-            "checker.py",
-            "flag_templates.py",
-            "service_checks.py",
+            "./checker/checker.py",
+            "./checker/flag_templates.py",
+            "./checker/service_checks.py",
             "checker.sh",
-            "xasm/",
-            "xvm/",
-            "xdbg/",
-            "xlib/",
-            "common/",
-            "ropgadget/",
-            "exploits/",
-            "CMakeLists.txt"
+            "src/"
         ],
         "exclude": [
             "*.pyc",
@@ -52,6 +45,6 @@
         ]
     },
     "post_install": [
-        "cd /opt/checker/xvm-computing && mkdir -p build && cd build && cmake .. && make -j$(nproc)"
+        "cd /opt/checker/xvm-computing/src && cmake -B build && cd build && make -j$(nproc)"
     ]
 }
