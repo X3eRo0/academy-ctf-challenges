@@ -4,6 +4,7 @@ import random
 import string
 import hashlib
 from datetime import datetime, timedelta
+from werkzeug.utils import secure_filename
 from flask import (
     Flask,
     request,
@@ -19,7 +20,6 @@ from flask import (
     Response,
 )
 
-# --- App Conf ---
 app = Flask(__name__)
 app.config.update(
     dict(
@@ -28,8 +28,6 @@ app.config.update(
     )
 )
 
-
-# --- Database ---
 def get_db():
     if not hasattr(g, "sqlite_db"):
         g.sqlite_db = sqlite3.connect(app.config["DATABASE"])
@@ -56,8 +54,6 @@ def initdb_command():
     init_db()
     print("Initialized the database.")
 
-
-# --- Models ---
 class User:
     @staticmethod
     def find_by_username(username):
@@ -107,8 +103,6 @@ class Post:
         )
         db.commit()
 
-
-# --- Routes ---
 @app.before_request
 def before_request():
     g.user = None
@@ -167,12 +161,6 @@ def logout():
     session.pop("user_id", None)
     return redirect(url_for("login"))
 
-
-from werkzeug.utils import secure_filename
-
-# ... (rest of the imports)
-
-# --- App Conf ---
 app.config.update(
     dict(
         DATABASE=os.path.join(app.root_path, "academygram.db"),
@@ -182,16 +170,12 @@ app.config.update(
     )
 )
 
-# ... (rest of the app)
-
-
 def allowed_file(filename):
     return (
         "." in filename
         and filename.rsplit(".", 1)[1].lower() in app.config["ALLOWED_EXTENSIONS"]
     )
 
-    # ... (inside Post class)
     @staticmethod
     def create(user_id, content, image_path=None, is_private=False):
         db = get_db()
@@ -200,10 +184,6 @@ def allowed_file(filename):
             [user_id, content, image_path, is_private],
         )
         db.commit()
-
-
-# ... (rest of the app)
-
 
 @app.route("/add_post", methods=["POST"])
 def add_post():
@@ -219,13 +199,10 @@ def add_post():
         if file and file.filename != "" and allowed_file(file.filename):
             try:
                 filename = secure_filename(file.filename)
-                # To avoid overwrites, prepend with user_id and a random string
                 unique_filename = (
                     f"{g.user['user_id']}_{os.urandom(4).hex()}_{filename}"
                 )
                 save_path = os.path.join(app.config["UPLOAD_FOLDER"], unique_filename)
-
-                # Ensure the upload directory exists
                 os.makedirs(app.config["UPLOAD_FOLDER"], exist_ok=True)
 
                 file.save(save_path)
@@ -246,7 +223,6 @@ def profile():
     if not g.user:
         return redirect(url_for("login"))
 
-    # Load current user's profile
     posts = Post.get_for_user(g.user["user_id"])
     return render_template("profile.html", posts=posts, profile_user=g.user)
 
