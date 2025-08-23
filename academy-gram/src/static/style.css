@@ -1,13 +1,13 @@
 
 :root {
-  --primary-bg: #000000;
-  --secondary-bg: #121212;
-  --card-bg: #1e1e1e;
-  --border-color: #333333;
+  --primary-bg: transparent;
+  --secondary-bg: transparent;
+  --card-bg: transparent;
+  --border-color: rgba(255, 255, 255, 0.2);
   --text-primary: #ffffff;
   --text-secondary: #a8a8a8;
-  --accent-color: #0095f6;
-  --accent-hover: #1877f2;
+  --accent-color: #FF3D94;
+  --accent-hover: #B5307E;
   --danger-color: #ed4956;
   --success-color: #42d392;
   --gradient-bg: linear-gradient(45deg, #833ab4, #fd1d1d, #fcb045);
