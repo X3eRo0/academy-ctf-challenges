@@ -17,23 +17,18 @@ class APITestSuite:
         self.credentials = None
 
     def generate_random_string(self, length=10):
-        """Generate a random string for usernames and passwords"""
         return "".join(random.choices(string.ascii_letters + string.digits, k=length))
 
     def generate_random_password(self, length=12):
-        """Generate a random password with special characters"""
         return "".join(
             random.choices(string.ascii_letters + string.digits + "!@#$%^&*", k=length)
         )
 
     def generate_vault_name(self):
-        """Generate a random vault name"""
         return f"vault_{random.randint(1000, 9999)}"
 
     def setup_credentials(self):
-        """Setup fresh credentials for testing"""
-        # Always create new credentials for service checks
-        username = f"test_{self.generate_random_string(8)}"
+        username = f"user_{self.generate_random_string(random.randint(7, 10))}"
         password = self.generate_random_password()
         master_password = self.generate_random_password()
 
@@ -42,20 +37,17 @@ class APITestSuite:
             "password": password,
             "master_password": master_password,
         }
+        return True
 
     def run_all_api_tests(self):
-        """Run all API endpoint tests"""
         results = {}
 
-        # Setup credentials
         if not self.setup_credentials():
             return {"error": "Failed to setup credentials"}
 
-        # Login
         if not self.login_with_credentials():
             return {"error": "Failed to login"}
 
-        # Run all tests
         tests = [
             ("health", self.test_health_endpoint),
             ("current_user", self.test_current_user_endpoint),
@@ -68,6 +60,15 @@ class APITestSuite:
             ("download_vault", self.test_download_vault_endpoint),
             ("delete_vault", self.test_delete_vault_endpoint),
             ("logout", self.test_logout_endpoint),
+            ("login_wrong_password", self.test_login_with_wrong_password),
+            (
+                "vault_access_wrong_master",
+                self.test_vault_access_with_wrong_master_password,
+            ),
+            (
+                "add_entries_wrong_master",
+                self.test_add_entries_with_wrong_master_password,
+            ),
         ]
 
         for test_name, test_func in tests:
@@ -83,24 +84,20 @@ class APITestSuite:
         return True
 
     def login_with_credentials(self):
-        """Login using stored credentials"""
         if not self.credentials:
             return False
 
         self.session = requests.Session()
 
-        # First register if we haven't already
         register_data = {
             "username": self.credentials["username"],
             "password": self.credentials["password"],
         }
 
-        # Try registration (might fail if user exists, which is fine)
         response = self.session.post(
             f"{self.base_url}/api/register", json=register_data, timeout=self.timeout
         )
 
-        # Now login
         login_data = {
             "username": self.credentials["username"],
             "password": self.credentials["password"],
@@ -112,7 +109,6 @@ class APITestSuite:
         return response.status_code == 200
 
     def test_health_endpoint(self):
-        """Test /api/health endpoint"""
         try:
             response = requests.get(f"{self.base_url}/api/health", timeout=self.timeout)
             if response.status_code != 200:
@@ -125,7 +121,6 @@ class APITestSuite:
             return False
 
     def test_current_user_endpoint(self):
-        """Test /api/me endpoint"""
         try:
             response = self.session.get(f"{self.base_url}/api/me", timeout=self.timeout)
             if response.status_code != 200:
@@ -148,8 +143,93 @@ class APITestSuite:
             logging.error(f"Logout endpoint test failed: {e}")
             return False
 
+    def test_login_with_wrong_password(self):
+        try:
+            temp_session = requests.Session()
+
+            login_data = {
+                "username": self.credentials["username"],
+                "password": "wrong_password_123",
+            }
+
+            response = temp_session.post(
+                f"{self.base_url}/api/login", json=login_data, timeout=self.timeout
+            )
+
+            success = response.status_code == 401
+            if not success:
+                logging.error(
+                    f"Login with wrong password should fail but got: {response.status_code}"
+                )
+
+            temp_session.close()
+            return success
+        except Exception as e:
+            logging.error(f"Wrong password login test failed: {e}")
+            return False
+
+    def test_vault_access_with_wrong_master_password(self):
+        try:
+            vault_id = self.credentials.get("test_vault_id")
+            if not vault_id:
+                if not self.test_create_vault_endpoint():
+                    return False
+                vault_id = self.credentials.get("test_vault_id")
+
+            response = self.session.get(
+                f"{self.base_url}/api/vaults/{vault_id}/entries",
+                params={"master_password": "wrong_master_password_123"},
+                timeout=self.timeout,
+            )
+
+            success = response.status_code in [400, 401]
+            if not success:
+                logging.error(
+                    f"Vault access with wrong master password should fail but got: {response.status_code}"
+                )
+
+            return success
+        except Exception as e:
+            logging.error(f"Wrong master password test failed: {e}")
+            return False
+
+    def test_add_entries_with_wrong_master_password(self):
+        try:
+            vault_id = self.credentials.get("test_vault_id")
+            if not vault_id:
+                if not self.test_create_vault_endpoint():
+                    return False
+                vault_id = self.credentials.get("test_vault_id")
+
+            entry_data = {
+                "master_password": "wrong_master_password_123",
+                "entries": [
+                    {
+                        "url": "https://test.com",
+                        "username": "newuser",
+                        "password": "newpass456",
+                    }
+                ],
+            }
+
+            response = self.session.post(
+                f"{self.base_url}/api/vaults/{vault_id}/entries",
+                json=entry_data,
+                timeout=self.timeout,
+            )
+
+            success = response.status_code in [400, 401]
+            if not success:
+                logging.error(
+                    f"Add entries with wrong master password should fail but got: {response.status_code}"
+                )
+
+            return success
+        except Exception as e:
+            logging.error(f"Wrong master password add entries test failed: {e}")
+            return False
+
     def test_list_vaults_endpoint(self):
-        """Test GET /api/vaults endpoint"""
         try:
             response = self.session.get(
                 f"{self.base_url}/api/vaults", timeout=self.timeout
@@ -164,7 +244,6 @@ class APITestSuite:
             return False
 
     def test_create_vault_endpoint(self):
-        """Test POST /api/vaults endpoint"""
         try:
             vault_name = self.generate_vault_name()
             vault_data = {
@@ -188,7 +267,6 @@ class APITestSuite:
             data = response.json()
             vault_id = data.get("vault_id")
             if vault_id:
-                # Store vault_id for other tests
                 self.credentials["test_vault_id"] = vault_id
                 self.credentials["test_vault_name"] = vault_name
 
@@ -198,11 +276,9 @@ class APITestSuite:
             return False
 
     def test_get_vault_entries_endpoint(self):
-        """Test GET /api/vaults/<id>/entries endpoint"""
         try:
             vault_id = self.credentials.get("test_vault_id")
             if not vault_id:
-                # Create a vault first
                 if not self.test_create_vault_endpoint():
                     return False
                 vault_id = self.credentials.get("test_vault_id")
@@ -223,7 +299,6 @@ class APITestSuite:
             return False
 
     def test_add_vault_entries_endpoint(self):
-        """Test POST /api/vaults/<id>/entries endpoint"""
         try:
             vault_id = self.credentials.get("test_vault_id")
             if not vault_id:
@@ -259,7 +334,6 @@ class APITestSuite:
             return False
 
     def test_validate_entry_endpoint(self):
-        """Test /api/validate-entry endpoint"""
         try:
             entry_data = {
                 "url": "https://example.com",
@@ -282,19 +356,15 @@ class APITestSuite:
             return False
 
     def test_csv_import_endpoint(self):
-        """Test POST /api/vaults/<id>/import endpoint"""
         try:
             vault_id = self.credentials.get("test_vault_id")
             if not vault_id:
-                # Create a vault first
                 if not self.test_create_vault_endpoint():
                     return False
                 vault_id = self.credentials.get("test_vault_id")
 
-            # Create test CSV data
             csv_content = "https://csv.example.com,csvuser,csvpass123"
 
-            # Prepare form data
             files = {"file": ("test.csv", csv_content, "text/csv")}
             data = {"master_password": self.credentials["master_password"]}
 
@@ -315,7 +385,6 @@ class APITestSuite:
             return False
 
     def test_download_vault_endpoint(self):
-        """Test POST /api/vaults/<id>/download endpoint"""
         try:
             vault_id = self.credentials.get("test_vault_id")
             if not vault_id:
@@ -332,17 +401,14 @@ class APITestSuite:
                 timeout=self.timeout,
             )
 
-            # Should return binary data
             return response.status_code == 200 and len(response.content) > 0
         except Exception as e:
             logging.error(f"Download vault endpoint test failed: {e}")
             return False
 
     def test_delete_vault_endpoint(self):
-        """Test DELETE /api/vaults/<id> endpoint"""
         try:
-            # Create a vault specifically for deletion
-            vault_name = f"delete_test_{self.generate_vault_name()}"
+            vault_name = self.generate_vault_name()
             vault_data = {
                 "name": vault_name,
                 "master_password": self.credentials["master_password"],
@@ -359,7 +425,6 @@ class APITestSuite:
             if not vault_id:
                 return False
 
-            # Now delete it
             response = self.session.delete(
                 f"{self.base_url}/api/vaults/{vault_id}", timeout=self.timeout
             )
@@ -372,15 +437,12 @@ class APITestSuite:
         """Run all API endpoint tests"""
         results = {}
 
-        # Setup credentials
         if not self.setup_credentials():
             return {"error": "Failed to setup credentials"}
 
-        # Login
         if not self.login_with_credentials():
             return {"error": "Failed to login"}
 
-        # Run all tests
         tests = [
             ("health", self.test_health_endpoint),
             ("current_user", self.test_current_user_endpoint),
@@ -393,18 +455,28 @@ class APITestSuite:
             ("download_vault", self.test_download_vault_endpoint),
             ("delete_vault", self.test_delete_vault_endpoint),
             ("logout", self.test_logout_endpoint),
+            # Security tests - these should fail with wrong credentials
+            ("login_wrong_password", self.test_login_with_wrong_password),
+            (
+                "vault_access_wrong_master",
+                self.test_vault_access_with_wrong_master_password,
+            ),
+            (
+                "add_entries_wrong_master",
+                self.test_add_entries_with_wrong_master_password,
+            ),
         ]
 
         for test_name, test_func in tests:
             try:
                 results[test_name] = test_func()
-                logging.info(
-                    f"API test {test_name}: {'PASS' if results[test_name] else 'FAIL'}"
-                )
             except Exception as e:
                 results[test_name] = False
                 logging.error(f"API test {test_name} exception: {e}")
 
+        passed = sum(1 for result in results.values() if result)
+        total = len(results)
+        logging.info(f"API test suite completed: {passed}/{total} tests passed")
         return results
 
     def cleanup(self):

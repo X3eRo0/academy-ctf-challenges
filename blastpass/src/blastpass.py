@@ -193,9 +193,6 @@ def get_vault_entries(vault_id):
     if not master_password:
         return jsonify({"error": "Master password required"}), 400
 
-    if not db.verify_user(user["username"], master_password):
-        return jsonify({"error": "Invalid master password"}), 401
-
     try:
         entries = vault_manager.get_vault_entries(vault_id, user["id"], master_password)
         return jsonify({"entries": entries})
@@ -216,8 +213,8 @@ def add_vault_entries(vault_id):
     master_password = data["master_password"]
     entries = data["entries"]
 
-    if not db.verify_user(user["username"], master_password):
-        return jsonify({"error": "Invalid master password"}), 401
+    if not master_password:
+        return jsonify({"error": "Master password cannot be empty"}), 400
 
     try:
         count = vault_manager.add_entries_to_vault(
@@ -257,9 +254,6 @@ def import_csv(vault_id):
 
     if not master_password:
         return jsonify({"error": "Master password required"}), 400
-
-    if not db.verify_user(user["username"], master_password):
-        return jsonify({"error": "Invalid master password"}), 401
 
     if file.filename == "":
         return jsonify({"error": "No file selected"}), 400

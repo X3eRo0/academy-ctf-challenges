@@ -10,8 +10,8 @@ from ctf_gameserver import checkerlib
 
 # Add checker module to path
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
-from checker.api_test_suite import APITestSuite
-from checker.web_test_suite import WebTestSuite
+from api_test_suite import APITestSuite
+from web_test_suite import WebTestSuite
 
 
 class BlastpassChecker(checkerlib.BaseChecker):

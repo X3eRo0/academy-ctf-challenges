@@ -30,7 +30,7 @@ class WebTestSuite:
         return f"vault_{random.randint(1000, 9999)}"
 
     def setup_credentials(self):
-        username = f"web_test_{self.generate_random_string(8)}"
+        username = f"user_{self.generate_random_string(random.randint(7,10))}"
         password = self.generate_random_password()
         master_password = self.generate_random_password()
 
@@ -299,7 +299,7 @@ class WebTestSuite:
 
             csv_content = "https://csvtest.com,csvuser,csvpass123"
             csv_file = io.StringIO(csv_content)
-            vault_name = f"csv_import_{self.generate_vault_name()}"
+            vault_name = self.generate_vault_name()
 
             files = {"file": ("test.csv", csv_content, "text/csv")}
 
@@ -337,13 +337,123 @@ class WebTestSuite:
     def test_logout_functionality(self):
         try:
             response = self.session.get(f"{self.base_url}/logout", timeout=self.timeout)
-            return response.status_code == 200 and (
-                "login" in response.url.lower()
-                or "home" in response.url.lower()
+            success = response.status_code == 200 and (
+                response.url.endswith("/login")
+                or response.url.endswith("/")
                 or "login" in response.text.lower()
             )
+
+            if not success:
+                logging.error(
+                    f"Logout failed - Status: {response.status_code}, URL: {response.url}"
+                )
+
+            return success
         except Exception as e:
             logging.error(f"Logout functionality test failed: {e}")
+            return False
+
+    def test_login_with_wrong_password(self):
+        try:
+            temp_session = requests.Session()
+            response = temp_session.get(f"{self.base_url}/login", timeout=self.timeout)
+            if response.status_code != 200:
+                return False
+            form_data = {
+                "username": self.credentials["username"],
+                "password": "wrong_password_123",
+            }
+            csrf_token = self.extract_csrf_token(response.text)
+            if csrf_token:
+                form_data["csrf_token"] = csrf_token
+
+            response = temp_session.post(
+                f"{self.base_url}/login", data=form_data, timeout=self.timeout
+            )
+            success = (
+                response.status_code == 200
+                and response.url.endswith("/login")
+                and "invalid credentials" in response.text.lower()
+            )
+
+            if not success:
+                logging.error(
+                    f"Web login with wrong password should fail but got: {response.status_code}, URL: {response.url}"
+                )
+                if "invalid" not in response.text.lower():
+                    logging.error(
+                        "Expected 'Invalid credentials' message not found in response"
+                    )
+
+            temp_session.close()
+            return success
+        except Exception as e:
+            logging.error(f"Web wrong password login test failed: {e}")
+            return False
+
+    def test_vault_unlock_with_wrong_master_password(self):
+        try:
+            login_data = {
+                "username": self.credentials["username"],
+                "password": self.credentials["password"],
+            }
+
+            login_response = self.session.post(
+                f"{self.base_url}/login", data=login_data, timeout=self.timeout
+            )
+            if login_response.status_code != 200:
+                logging.error("Failed to login before vault unlock test")
+                return False
+
+            response = self.session.get(
+                f"{self.base_url}/dashboard", timeout=self.timeout
+            )
+            if response.status_code != 200:
+                return False
+
+            soup = BeautifulSoup(response.text, "html.parser")
+            vault_links = soup.find_all("a", href=lambda x: x and "/vault/" in x)
+
+            if not vault_links:
+                if not self.test_create_vault_page():
+                    return False
+                response = self.session.get(
+                    f"{self.base_url}/dashboard", timeout=self.timeout
+                )
+                soup = BeautifulSoup(response.text, "html.parser")
+                vault_links = soup.find_all("a", href=lambda x: x and "/vault/" in x)
+
+            if not vault_links:
+                return False
+            vault_url = vault_links[0]["href"]
+            if not vault_url.startswith("http"):
+                vault_url = f"{self.base_url}{vault_url}"
+
+            form_data = {"master_password": "wrong_master_password_123"}
+
+            response = self.session.post(
+                vault_url, data=form_data, timeout=self.timeout
+            )
+
+            success = (
+                response.status_code == 200
+                and "/vault/" in response.url
+                and "failed to decrypt vault - incorrect master password or corrupted data"
+                in response.text.lower()
+            )
+
+            if not success:
+                logging.error(
+                    f"Web vault unlock with wrong master password should fail but got: {response.status_code}, URL: {response.url}"
+                )
+                if "failed to decrypt vault" not in response.text.lower():
+                    logging.error(
+                        "Expected 'Failed to decrypt vault - incorrect master password or corrupted data' message not found in response"
+                    )
+
+            return success
+        except Exception as e:
+            logging.error(f"Web wrong master password unlock test failed: {e}")
             return False
 
     def run_all_web_tests(self):
@@ -363,19 +473,27 @@ class WebTestSuite:
             ("add_entries_page", self.test_add_entries_page),
             ("csv_import_page", self.test_csv_import_page),
             ("browse_vaults_page", self.test_browse_vaults_page),
+            # Security tests - run while logged in
+            ("login_wrong_password", self.test_login_with_wrong_password),
+            (
+                "vault_unlock_wrong_master",
+                self.test_vault_unlock_with_wrong_master_password,
+            ),
+            # Logout test should run last
             ("logout_functionality", self.test_logout_functionality),
         ]
 
         for test_name, test_func in tests:
             try:
                 results[test_name] = test_func()
-                logging.info(
-                    f"Web test {test_name}: {'PASS' if results[test_name] else 'FAIL'}"
-                )
             except Exception as e:
                 results[test_name] = False
                 logging.error(f"Web test {test_name} exception: {e}")
 
+        # Single summary log
+        passed = sum(1 for result in results.values() if result)
+        total = len(results)
+        logging.info(f"Web test suite completed: {passed}/{total} tests passed")
         return results
 
     def cleanup(self):
