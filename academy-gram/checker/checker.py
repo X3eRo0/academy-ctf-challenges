@@ -145,6 +145,29 @@ class AcademyGramChecker(checkerlib.BaseChecker):
             return checkerlib.CheckResult.DOWN
         except Exception:
             return checkerlib.CheckResult.FAULTY
+    
+    def pull_image():
+        API_KEY = "51875202-47194d033d9270a5a93b607a6"
+        query = random.choice(["sun", "great", "flower","machine", "hills"])
+        save_path = "random_flower.jpg"
+
+        # Pick a random page within Pixabay's 500 max results
+        page = random.randint(1, 25)  # 20 per page × 25 pages = 500
+
+        url = f"https://pixabay.com/api/?key={API_KEY}&q={query}&image_type=photo&per_page=20&page={page}"
+        resp = requests.get(url)
+        resp.raise_for_status()
+        data = resp.json()
+
+        if data.get("hits"):
+            choice = random.choice(data["hits"])
+            img_url = choice.get("largeImageURL") or choice.get("webformatURL")
+            print("Downloading:", img_url)
+
+            img_data = requests.get(img_url).content
+            with open(save_path, "wb") as f:
+                f.write(img_data)
+        return save_path
 
     def check_service(self):
         try:
@@ -179,7 +202,7 @@ class AcademyGramChecker(checkerlib.BaseChecker):
                 return checkerlib.CheckResult.FAULTY
 
             test_image_content = generate_coherent_post()
-            image_path = create_temp_image(test_image_content)
+            image_path = pull_image()
             if image_path:
                 try:
                     with open(image_path, "rb") as img_file:

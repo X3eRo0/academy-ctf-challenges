@@ -1,356 +1,56 @@
+
 {% extends "layout.html" %}
 {% block body %}
-<style>
-  .feed-container {
-    display: flex;
-    gap: 40px;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-
-  .main-feed {
-    flex: 1;
-    max-width: 600px;
-  }
-
-  .sidebar {
-    width: 320px;
-    position: sticky;
-    top: 90px;
-    height: fit-content;
-  }
-
-
-  /* Post Creation */
-  .create-post {
-    background: var(--card-bg);
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
-    margin-bottom: 24px;
-    overflow: hidden;
-  }
-
-  .create-post-header {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 16px;
-    border-bottom: 1px solid var(--border-color);
-  }
-
-  .user-avatar-small {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    background: var(--gradient-bg);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 600;
-    font-size: 14px;
-  }
-
-  .create-post-input {
-    width: 100%;
-    padding: 12px 16px;
-    background: transparent;
-    border: none;
-    color: var(--text-primary);
-    font-size: 14px;
-    outline: none;
-    resize: none;
-  }
-
-  .create-post-input::placeholder {
-    color: var(--text-secondary);
-  }
-
-  .create-post-actions {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 12px 16px;
-    border-top: 1px solid var(--border-color);
-  }
-
-  .post-options {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-  }
-
-  .file-input-wrapper {
-    position: relative;
-  }
-
-  .file-input {
-    display: none;
-  }
-
-  .file-label {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    color: var(--accent-color);
-    cursor: pointer;
-    font-size: 14px;
-    font-weight: 500;
-  }
-
-  .privacy-toggle {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 14px;
-    color: var(--text-secondary);
-  }
-
-  .share-btn {
-    background: var(--accent-color);
-    color: white;
-    border: none;
-    padding: 8px 16px;
-    border-radius: 8px;
-    font-weight: 600;
-    font-size: 14px;
-    cursor: pointer;
-    transition: background-color 0.2s;
-  }
-
-  .share-btn:hover {
-    background: var(--accent-hover);
-  }
-
-  /* Post Cards */
-  .post {
-    background: var(--card-bg);
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
-    margin-bottom: 24px;
-    overflow: hidden;
-  }
-
-  .post-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 14px 16px;
-  }
-
-  .post-user {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-
-  .post-avatar {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    background: var(--gradient-bg);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 600;
-    font-size: 14px;
-  }
-
-  .post-username {
-    font-weight: 600;
-    color: var(--text-primary);
-    text-decoration: none;
-  }
-
-  .post-menu {
-    color: var(--text-secondary);
-    font-size: 16px;
-    cursor: pointer;
-  }
-
-  .post-image {
-    width: 100%;
-    max-height: 585px;
-    overflow: hidden;
-  }
-
-  .post-image img {
-    width: 100%;
-    height: auto;
-    display: block;
-  }
-
-  .post-actions {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 6px 16px;
-  }
-
-  .post-content {
-    padding: 0 16px 16px;
-  }
-
-  .post-caption {
-    font-size: 14px;
-    line-height: 1.4;
-  }
-
-  .post-caption .username {
-    font-weight: 600;
-    color: var(--text-primary);
-    margin-right: 8px;
-  }
-
-
-  /* Sidebar */
-  .user-info {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 24px;
-  }
-
-  .user-info-avatar {
-    width: 56px;
-    height: 56px;
-    border-radius: 50%;
-    background: var(--gradient-bg);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 600;
-    font-size: 20px;
-  }
-
-  .user-info-text h3 {
-    font-weight: 600;
-    font-size: 14px;
-    margin-bottom: 2px;
-  }
-
-  .user-info-text p {
-    color: var(--text-secondary);
-    font-size: 14px;
-  }
-
-
-  .empty-state {
-    text-align: center;
-    padding: 60px 20px;
-    color: var(--text-secondary);
-  }
-
-  .empty-state i {
-    font-size: 48px;
-    margin-bottom: 16px;
-    opacity: 0.5;
-  }
-
-  /* Responsive Design */
-  @media (max-width: 1024px) {
-    .feed-container {
-      gap: 30px;
-    }
-    
-    .sidebar {
-      width: 280px;
-    }
-  }
-
-  @media (max-width: 768px) {
-    .feed-container {
-      flex-direction: column;
-      gap: 0;
-      padding: 0 16px;
-    }
-    
-    .sidebar {
-      display: none;
-    }
-    
-    .main-feed {
-      max-width: 100%;
-    }
-    
-    
-    .create-post {
-      margin-bottom: 16px;
-    }
-    
-    .post {
-      margin-bottom: 16px;
-    }
-  }
-</style>
-
-<div class="feed-container">
-  <div class="main-feed">
-
-    <!-- Create Post -->
-    <div class="create-post">
+<div class="timeline-container">
+  <div class="posts-column">
+    <!-- Add Post Card -->
+    <div class="post-card add-post-card">
+      <h3>Create Post</h3>
       <form action="{{ url_for('add_post') }}" method="post" enctype="multipart/form-data">
-        <div class="create-post-header">
-          <div class="user-avatar-small">{{ g.user.username[0].upper() }}</div>
-          <textarea name="content" class="create-post-input" rows="1" placeholder="What's happening, {{ g.user.username }}?"></textarea>
-        </div>
-        <div class="create-post-actions">
-          <div class="post-options">
-            <div class="file-input-wrapper">
-              <input type="file" name="image" id="image" class="file-input" accept="image/*">
-              <label for="image" class="file-label">
-                <i class="far fa-image"></i> Photo
-              </label>
-            </div>
-            <label class="privacy-toggle">
-              <input type="checkbox" name="is_private" id="is_private">
-              <i class="fas fa-lock"></i> Private
-            </label>
-          </div>
-          <button type="submit" class="share-btn">Share</button>
+        <textarea name="content" class="form-input" placeholder="What's on your mind, {{ g.user.username }}?" required></textarea>
+        <div class="post-options">
+          <label for="image"><i class="fas fa-camera"></i> Add Image</label>
+          <input type="file" name="image" id="image" style="display: none;">
+          <label><input type="checkbox" name="is_private"> Private</label>
+          <input type="submit" value="Post" class="form-submit">
         </div>
       </form>
     </div>
 
-    <!-- Posts Feed -->
+    <!-- Posts -->
     {% for post in posts %}
-    <article class="post">
-      <header class="post-header">
-        <div class="post-user">
-          <div class="post-avatar">{{ post.username[0].upper() }}</div>
-          <a href="#" class="post-username">{{ post.username }}</a>
-        </div>
-        <i class="fas fa-ellipsis-h post-menu"></i>
-      </header>
+    <div class="post-card">
+      <div class="post-header">
+        <a href="{{ url_for('profile', username=post.username) }}">
+          <div class="user-avatar">{{ post.username[0].upper() }}</div>
+          <strong>{{ post.username }}</strong>
+        </a>
+      </div>
       
-      {% if post.image_path and post.image_path != None %}
+      {% if post.image_path %}
       <div class="post-image">
-        <img src="{{ url_for('static', filename=post.image_path.replace('static/', '')) }}" alt="Post by {{ post.username }}">
+        <img src="{{ url_for('static', filename=post.image_path.replace('static/', '')) }}" alt="Post image">
       </div>
       {% endif %}
       
-      
       <div class="post-content">
-        <div class="post-caption">
-          <span class="username">{{ post.username }}</span>{{ post.content }}
-        </div>
+        <p><strong>{{ post.username }}</strong> {{ post.content }}</p>
       </div>
-    </article>
-    {% else %}
-    <div class="empty-state">
-      <i class="far fa-images"></i>
-      <h3>No posts yet</h3>
-      <p>Follow some users to see their posts in your feed!</p>
     </div>
+    {% else %}
+      <p>No posts to show. Follow some users to see their posts here.</p>
     {% endfor %}
   </div>
 
-  <!-- Sidebar -->
-  <div class="sidebar">
-    <div class="user-info">
-      <div class="user-info-avatar">{{ g.user.username[0].upper() }}</div>
-      <div class="user-info-text">
-        <h3>{{ g.user.username }}</h3>
-      </div>
+  <div class="sidebar-column">
+    <!-- User Info -->
+    <div class="post-card">
+        <div class="post-header">
+            <a href="{{ url_for('profile') }}">
+                <div class="user-avatar">{{ g.user.username[0].upper() }}</div>
+                <strong>{{ g.user.username }}</strong>
+            </a>
+        </div>
     </div>
   </div>
 </div>
