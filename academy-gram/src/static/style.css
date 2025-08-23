@@ -43,7 +43,6 @@ a:hover {
   flex-direction: column;
 }
 
-/* Header/Navigation */
 .navbar {
   background: var(--secondary-bg);
   border-bottom: 1px solid var(--border-color);
@@ -125,7 +124,6 @@ a:hover {
   font-size: 12px;
 }
 
-/* Main Content */
 .content-wrapper {
   max-width: 975px;
   margin: 0 auto;
@@ -140,7 +138,6 @@ a:hover {
   flex: 1;
 }
 
-/* Flash Messages */
 .flash-messages {
   margin-bottom: 24px;
 }
@@ -165,7 +162,6 @@ a:hover {
     background: var(--success-color);
 }
 
-/* Auth Pages (Login, Register) */
 .auth-container {
   display: flex;
   min-height: 100vh;
@@ -256,7 +252,6 @@ a:hover {
   font-weight: 600;
 }
 
-/* Timeline */
 .timeline-container {
   display: grid;
   grid-template-columns: 1fr 320px;
@@ -271,7 +266,7 @@ a:hover {
 
 .sidebar-column {
   position: sticky;
-  top: 114px; /* navbar height + content padding */
+  top: 114px;
   height: fit-content;
 }
 
@@ -342,7 +337,6 @@ a:hover {
   font-size: 18px;
 }
 
-/* Profile */
 .profile-container {
   max-width: 975px;
   margin: 0 auto;
@@ -399,14 +393,12 @@ a:hover {
   object-fit: cover;
 }
 
-/* Interests */
 .interests-columns {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 30px;
 }
 
-/* Mobile Responsive */
 @media (max-width: 768px) {
   .nav-search {
     display: none;
@@ -442,7 +434,6 @@ a:hover {
   }
 }
 
-/* Added from templates */
 .profile-tabs {
     display: flex;
     justify-content: center;
