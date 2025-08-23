@@ -33,7 +33,10 @@ class AcademyBankChecker(checkerlib.BaseChecker):
 
     def place_flag(self, tick: int) -> checkerlib.CheckResult:
         flag = checkerlib.get_flag(tick)
-        client = self._connect()
+        try:
+            client = self._connect()
+        except:
+            return checkerlib.CheckResult.DOWN
         try:
             listing_id, username, password = end_to_end_place(client, flag)
             # Persist credentials for get_flag
