@@ -14,7 +14,6 @@ COPY src/requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 COPY src/ ./src/
-COPY exploits/ ./exploits/
 COPY deploy.sh ./
 
 RUN mkdir -p /app/vaults

@@ -7,11 +7,11 @@ dir=$(cd "$(dirname "$0")" && pwd)
 export PWNLIB_NOTERM=1
 
 # Build xvm if build directory doesn't exist
-if [ ! -d "$dir/build" ]; then
+if [ ! -d "$dir/src/build" ]; then
     echo "[checker.sh] build directory not found; building xvm..."
     if command -v cmake >/dev/null 2>&1; then
-        mkdir -p "$dir/build"
-        (cd "$dir/build" && cmake .. && make -j"$(nproc)") || {
+        cmake -B build
+        (cd "$dir/src/build" && make -j"$(nproc)") || {
             echo "[checker.sh] build failed" >&2
             exit 1
         }
@@ -21,4 +21,4 @@ if [ ! -d "$dir/build" ]; then
     fi
 fi
 
-"$dir/checker.py" "$@"
+"$dir/checker/checker.py" "$@"
