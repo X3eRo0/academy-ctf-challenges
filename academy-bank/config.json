@@ -9,6 +9,7 @@
             "./src/storage_sqlite.c",
             "./include/storage.h",
             "./build/academy-bank",
+            "./run.sh",
             "Makefile",
             "ynetd"
         ],

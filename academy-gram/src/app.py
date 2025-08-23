@@ -254,15 +254,11 @@ def profile():
 class PasswordReset:
     @staticmethod
     def generate_time_based_code():
-        """Generate code based on current minute - predictable vulnerability"""
         import time
-        
-        # Use current minute as seed for predictable RNG
+
         current_minute = int(time.time() // 60)
         rng = random.Random()
         rng.seed(current_minute)
-        
-        # Generate 4-digit code
         code = str(rng.randint(1000, 9999)).zfill(4)
         return code
 
@@ -272,7 +268,6 @@ class PasswordReset:
         code = PasswordReset.generate_time_based_code()
         expires = datetime.utcnow() + timedelta(minutes=30)
 
-        # Clear old reset codes and insert new one
         db.execute("DELETE FROM password_resets WHERE user_id = ?", [user_id])
         db.execute(
             "INSERT INTO password_resets (user_id, reset_code, expires_at) VALUES (?, ?, ?)",
@@ -297,7 +292,6 @@ class PasswordReset:
             "UPDATE users SET password = ? WHERE user_id = ?", [password, user_id]
         )
         db.commit()
-        # Invalidate reset codes
         db.execute("DELETE FROM password_resets WHERE user_id = ?", [user_id])
         db.commit()
 
@@ -349,7 +343,6 @@ def get_code():
     if not g.user:
         return redirect(url_for("login"))
 
-    # Generate current time-based code (same as reset system uses)
     code = PasswordReset.generate_time_based_code()
     return {"username": g.user["username"], "current_code": code}
 
@@ -377,7 +370,6 @@ def update_user_interests():
 
     interests = request.form.get("interests", "")
 
-    # Secure: Only allow users to update their own interests
     db = get_db()
     db.execute(
         "UPDATE users SET interests = ? WHERE user_id = ?",
@@ -391,22 +383,17 @@ def update_user_interests():
 
 @app.route("/uploads/<path:filename>")
 def view_upload(filename):
-    # This endpoint redirects to view_file
     return redirect(url_for("view_file", filename=filename))
 
 
 @app.route("/view_file")
 def view_file():
-    # filename is taken from query param
     filename = request.args.get("filename", "default.png")
 
-    # File reading implementation
     try:
-        # Construct the path relative to the 'uploads' directory
         base_path = os.path.dirname(__file__)
         file_path = os.path.join(base_path, "uploads", filename)
 
-        # Check for uploads directory
         if "uploads" not in request.args:
             return "File not found in uploads directory.", 400
 

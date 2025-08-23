@@ -1,15 +1,14 @@
 services:
-  academy_bank:
+  academy-bank:
     build:
       context: .
       dockerfile: Dockerfile
     image: academy-bank
-    container_name: academy-bank-challenge
+    container_name: service-academy-bank
     ports:
       - "6969:6969"
     restart: unless-stopped
 
-    # Security settings for CTF
     security_opt:
       - no-new-privileges:true
     read_only: false
