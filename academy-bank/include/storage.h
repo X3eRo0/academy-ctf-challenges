@@ -7,15 +7,15 @@
 #include <stdint.h>
 
 #ifndef NAME_SZ
-#define NAME_SZ 64
+#define NAME_SZ 0x40
 #endif
 
 #ifndef FLAG_SZ
-#define FLAG_SZ 256
+#define FLAG_SZ 0x40
 #endif
 
 #ifndef NOTE_SZ
-#define NOTE_SZ 256
+#define NOTE_SZ 0x30
 #endif
 
 typedef struct {

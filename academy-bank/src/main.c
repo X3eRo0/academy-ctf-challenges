@@ -259,7 +259,6 @@ static void cmd_view_listing(AppContext *app, const char *args) {
 }
 
 static void cmd_buy(AppContext *app, const char *args) {
-  char out[0x40];
   uint64_t platform_fee;
 
   if (!app->logged_in) {
@@ -330,9 +329,8 @@ static void cmd_buy(AppContext *app, const char *args) {
     goto cleanup;
   }
 
-  sprintf(out, "Purchased listing. New flag id=%lu secret=%s\n", flag->id,
-          flag->secret);
-  printf(out);
+  printf("Purchased listing. New flag id=%lu secret=%s\n", flag->id,
+         flag->secret);
 
 cleanup:
   free(listing);
