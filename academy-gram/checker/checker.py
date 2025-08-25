@@ -14,7 +14,7 @@ from utils import (
 )
 
 def pull_image():
-    API_KEY = "51875202-47194d033d9270a5a93b607a6"
+    API_KEY = "REDACTED"
     query = random.choice(["sun", "great", "flower","machine", "hills"])
     save_path = "/tmp/random_flower.jpg"
 
