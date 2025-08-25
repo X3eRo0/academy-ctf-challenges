@@ -1,337 +1,337 @@
 [
 {
   "directory": "/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/build",
-  "command": "/usr/bin/cc  -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xvm -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common  -fno-stack-protector -no-pie -O0 -ggdb -std=gnu11 -o CMakeFiles/xvm.dir/xvm/xvm.c.o -c /home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xvm/xvm.c",
+  "command": "/usr/bin/cc  -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xvm -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common  -fno-stack-protector -no-pie -O0 -ggdb -march=x86-64 -mtune=generic -std=gnu11 -o CMakeFiles/xvm.dir/xvm/xvm.c.o -c /home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xvm/xvm.c",
   "file": "/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xvm/xvm.c",
   "output": "CMakeFiles/xvm.dir/xvm/xvm.c.o"
 },
 {
   "directory": "/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/build",
-  "command": "/usr/bin/cc  -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xvm -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common  -fno-stack-protector -no-pie -O0 -ggdb -std=gnu11 -o CMakeFiles/xvm.dir/xvm/cpu.c.o -c /home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xvm/cpu.c",
+  "command": "/usr/bin/cc  -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xvm -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common  -fno-stack-protector -no-pie -O0 -ggdb -march=x86-64 -mtune=generic -std=gnu11 -o CMakeFiles/xvm.dir/xvm/cpu.c.o -c /home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xvm/cpu.c",
   "file": "/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xvm/cpu.c",
   "output": "CMakeFiles/xvm.dir/xvm/cpu.c.o"
 },
 {
   "directory": "/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/build",
-  "command": "/usr/bin/cc  -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xvm -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common  -fno-stack-protector -no-pie -O0 -ggdb -std=gnu11 -o CMakeFiles/xvm.dir/xvm/execute.c.o -c /home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xvm/execute.c",
+  "command": "/usr/bin/cc  -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xvm -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common  -fno-stack-protector -no-pie -O0 -ggdb -march=x86-64 -mtune=generic -std=gnu11 -o CMakeFiles/xvm.dir/xvm/execute.c.o -c /home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xvm/execute.c",
   "file": "/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xvm/execute.c",
   "output": "CMakeFiles/xvm.dir/xvm/execute.c.o"
 },
 {
   "directory": "/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/build",
-  "command": "/usr/bin/cc  -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xvm -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common  -fno-stack-protector -no-pie -O0 -ggdb -std=gnu11 -o CMakeFiles/xvm.dir/xvm/syscall.c.o -c /home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xvm/syscall.c",
+  "command": "/usr/bin/cc  -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xvm -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common  -fno-stack-protector -no-pie -O0 -ggdb -march=x86-64 -mtune=generic -std=gnu11 -o CMakeFiles/xvm.dir/xvm/syscall.c.o -c /home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xvm/syscall.c",
   "file": "/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xvm/syscall.c",
   "output": "CMakeFiles/xvm.dir/xvm/syscall.c.o"
 },
 {
   "directory": "/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/build",
-  "command": "/usr/bin/cc  -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xvm -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common  -fno-stack-protector -no-pie -O0 -ggdb -std=gnu11 -o CMakeFiles/xvm.dir/common/signals.c.o -c /home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common/signals.c",
+  "command": "/usr/bin/cc  -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xvm -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common  -fno-stack-protector -no-pie -O0 -ggdb -march=x86-64 -mtune=generic -std=gnu11 -o CMakeFiles/xvm.dir/common/signals.c.o -c /home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common/signals.c",
   "file": "/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common/signals.c",
   "output": "CMakeFiles/xvm.dir/common/signals.c.o"
 },
 {
   "directory": "/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/build",
-  "command": "/usr/bin/cc  -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xvm -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common  -fno-stack-protector -no-pie -O0 -ggdb -std=gnu11 -o CMakeFiles/xvm.dir/common/symbols.c.o -c /home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common/symbols.c",
+  "command": "/usr/bin/cc  -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xvm -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common  -fno-stack-protector -no-pie -O0 -ggdb -march=x86-64 -mtune=generic -std=gnu11 -o CMakeFiles/xvm.dir/common/symbols.c.o -c /home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common/symbols.c",
   "file": "/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common/symbols.c",
   "output": "CMakeFiles/xvm.dir/common/symbols.c.o"
 },
 {
   "directory": "/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/build",
-  "command": "/usr/bin/cc  -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xvm -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common  -fno-stack-protector -no-pie -O0 -ggdb -std=gnu11 -o CMakeFiles/xvm.dir/common/loader.c.o -c /home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common/loader.c",
+  "command": "/usr/bin/cc  -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xvm -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common  -fno-stack-protector -no-pie -O0 -ggdb -march=x86-64 -mtune=generic -std=gnu11 -o CMakeFiles/xvm.dir/common/loader.c.o -c /home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common/loader.c",
   "file": "/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common/loader.c",
   "output": "CMakeFiles/xvm.dir/common/loader.c.o"
 },
 {
   "directory": "/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/build",
-  "command": "/usr/bin/cc  -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xvm -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common  -fno-stack-protector -no-pie -O0 -ggdb -std=gnu11 -o CMakeFiles/xvm.dir/common/sections.c.o -c /home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common/sections.c",
+  "command": "/usr/bin/cc  -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xvm -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common  -fno-stack-protector -no-pie -O0 -ggdb -march=x86-64 -mtune=generic -std=gnu11 -o CMakeFiles/xvm.dir/common/sections.c.o -c /home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common/sections.c",
   "file": "/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common/sections.c",
   "output": "CMakeFiles/xvm.dir/common/sections.c.o"
 },
 {
   "directory": "/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/build",
-  "command": "/usr/bin/cc  -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xdbg -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xvm -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm  -fno-stack-protector -no-pie -O0 -ggdb -std=gnu11 -o CMakeFiles/xdbg.dir/xdbg/xdbg.c.o -c /home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xdbg/xdbg.c",
+  "command": "/usr/bin/cc  -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xdbg -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xvm -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm  -fno-stack-protector -no-pie -O0 -ggdb -march=x86-64 -mtune=generic -std=gnu11 -o CMakeFiles/xdbg.dir/xdbg/xdbg.c.o -c /home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xdbg/xdbg.c",
   "file": "/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xdbg/xdbg.c",
   "output": "CMakeFiles/xdbg.dir/xdbg/xdbg.c.o"
 },
 {
   "directory": "/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/build",
-  "command": "/usr/bin/cc  -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xdbg -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xvm -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm  -fno-stack-protector -no-pie -O0 -ggdb -std=gnu11 -o CMakeFiles/xdbg.dir/xdbg/debug.c.o -c /home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xdbg/debug.c",
+  "command": "/usr/bin/cc  -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xdbg -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xvm -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm  -fno-stack-protector -no-pie -O0 -ggdb -march=x86-64 -mtune=generic -std=gnu11 -o CMakeFiles/xdbg.dir/xdbg/debug.c.o -c /home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xdbg/debug.c",
   "file": "/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xdbg/debug.c",
   "output": "CMakeFiles/xdbg.dir/xdbg/debug.c.o"
 },
 {
   "directory": "/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/build",
-  "command": "/usr/bin/cc  -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xdbg -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xvm -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm  -fno-stack-protector -no-pie -O0 -ggdb -std=gnu11 -o CMakeFiles/xdbg.dir/xdbg/iface.c.o -c /home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xdbg/iface.c",
+  "command": "/usr/bin/cc  -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xdbg -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xvm -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm  -fno-stack-protector -no-pie -O0 -ggdb -march=x86-64 -mtune=generic -std=gnu11 -o CMakeFiles/xdbg.dir/xdbg/iface.c.o -c /home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xdbg/iface.c",
   "file": "/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xdbg/iface.c",
   "output": "CMakeFiles/xdbg.dir/xdbg/iface.c.o"
 },
 {
   "directory": "/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/build",
-  "command": "/usr/bin/cc  -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xdbg -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xvm -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm  -fno-stack-protector -no-pie -O0 -ggdb -std=gnu11 -o CMakeFiles/xdbg.dir/xdbg/commands.c.o -c /home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xdbg/commands.c",
+  "command": "/usr/bin/cc  -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xdbg -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xvm -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm  -fno-stack-protector -no-pie -O0 -ggdb -march=x86-64 -mtune=generic -std=gnu11 -o CMakeFiles/xdbg.dir/xdbg/commands.c.o -c /home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xdbg/commands.c",
   "file": "/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xdbg/commands.c",
   "output": "CMakeFiles/xdbg.dir/xdbg/commands.c.o"
 },
 {
   "directory": "/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/build",
-  "command": "/usr/bin/cc  -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xdbg -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xvm -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm  -fno-stack-protector -no-pie -O0 -ggdb -std=gnu11 -o CMakeFiles/xdbg.dir/xdbg/helperfuncs.c.o -c /home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xdbg/helperfuncs.c",
+  "command": "/usr/bin/cc  -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xdbg -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xvm -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm  -fno-stack-protector -no-pie -O0 -ggdb -march=x86-64 -mtune=generic -std=gnu11 -o CMakeFiles/xdbg.dir/xdbg/helperfuncs.c.o -c /home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xdbg/helperfuncs.c",
   "file": "/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xdbg/helperfuncs.c",
   "output": "CMakeFiles/xdbg.dir/xdbg/helperfuncs.c.o"
 },
 {
   "directory": "/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/build",
-  "command": "/usr/bin/cc  -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xdbg -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xvm -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm  -fno-stack-protector -no-pie -O0 -ggdb -std=gnu11 -o CMakeFiles/xdbg.dir/xdbg/breakpoints.c.o -c /home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xdbg/breakpoints.c",
+  "command": "/usr/bin/cc  -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xdbg -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xvm -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm  -fno-stack-protector -no-pie -O0 -ggdb -march=x86-64 -mtune=generic -std=gnu11 -o CMakeFiles/xdbg.dir/xdbg/breakpoints.c.o -c /home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xdbg/breakpoints.c",
   "file": "/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xdbg/breakpoints.c",
   "output": "CMakeFiles/xdbg.dir/xdbg/breakpoints.c.o"
 },
 {
   "directory": "/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/build",
-  "command": "/usr/bin/cc  -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xdbg -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xvm -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm  -fno-stack-protector -no-pie -O0 -ggdb -std=gnu11 -o CMakeFiles/xdbg.dir/xdbg/repl.c.o -c /home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xdbg/repl.c",
+  "command": "/usr/bin/cc  -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xdbg -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xvm -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm  -fno-stack-protector -no-pie -O0 -ggdb -march=x86-64 -mtune=generic -std=gnu11 -o CMakeFiles/xdbg.dir/xdbg/repl.c.o -c /home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xdbg/repl.c",
   "file": "/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xdbg/repl.c",
   "output": "CMakeFiles/xdbg.dir/xdbg/repl.c.o"
 },
 {
   "directory": "/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/build",
-  "command": "/usr/bin/cc  -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xdbg -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xvm -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm  -fno-stack-protector -no-pie -O0 -ggdb -std=gnu11 -o CMakeFiles/xdbg.dir/xvm/cpu.c.o -c /home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xvm/cpu.c",
+  "command": "/usr/bin/cc  -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xdbg -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xvm -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm  -fno-stack-protector -no-pie -O0 -ggdb -march=x86-64 -mtune=generic -std=gnu11 -o CMakeFiles/xdbg.dir/xvm/cpu.c.o -c /home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xvm/cpu.c",
   "file": "/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xvm/cpu.c",
   "output": "CMakeFiles/xdbg.dir/xvm/cpu.c.o"
 },
 {
   "directory": "/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/build",
-  "command": "/usr/bin/cc  -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xdbg -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xvm -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm  -fno-stack-protector -no-pie -O0 -ggdb -std=gnu11 -o CMakeFiles/xdbg.dir/xvm/execute.c.o -c /home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xvm/execute.c",
+  "command": "/usr/bin/cc  -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xdbg -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xvm -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm  -fno-stack-protector -no-pie -O0 -ggdb -march=x86-64 -mtune=generic -std=gnu11 -o CMakeFiles/xdbg.dir/xvm/execute.c.o -c /home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xvm/execute.c",
   "file": "/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xvm/execute.c",
   "output": "CMakeFiles/xdbg.dir/xvm/execute.c.o"
 },
 {
   "directory": "/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/build",
-  "command": "/usr/bin/cc  -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xdbg -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xvm -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm  -fno-stack-protector -no-pie -O0 -ggdb -std=gnu11 -o CMakeFiles/xdbg.dir/xvm/syscall.c.o -c /home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xvm/syscall.c",
+  "command": "/usr/bin/cc  -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xdbg -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xvm -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm  -fno-stack-protector -no-pie -O0 -ggdb -march=x86-64 -mtune=generic -std=gnu11 -o CMakeFiles/xdbg.dir/xvm/syscall.c.o -c /home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xvm/syscall.c",
   "file": "/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xvm/syscall.c",
   "output": "CMakeFiles/xdbg.dir/xvm/syscall.c.o"
 },
 {
   "directory": "/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/build",
-  "command": "/usr/bin/cc  -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xdbg -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xvm -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm  -fno-stack-protector -no-pie -O0 -ggdb -std=gnu11 -o CMakeFiles/xdbg.dir/xasm/disasm.c.o -c /home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm/disasm.c",
+  "command": "/usr/bin/cc  -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xdbg -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xvm -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm  -fno-stack-protector -no-pie -O0 -ggdb -march=x86-64 -mtune=generic -std=gnu11 -o CMakeFiles/xdbg.dir/xasm/disasm.c.o -c /home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm/disasm.c",
   "file": "/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm/disasm.c",
   "output": "CMakeFiles/xdbg.dir/xasm/disasm.c.o"
 },
 {
   "directory": "/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/build",
-  "command": "/usr/bin/cc  -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xdbg -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xvm -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm  -fno-stack-protector -no-pie -O0 -ggdb -std=gnu11 -o CMakeFiles/xdbg.dir/xasm/mnemonics.c.o -c /home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm/mnemonics.c",
+  "command": "/usr/bin/cc  -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xdbg -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xvm -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm  -fno-stack-protector -no-pie -O0 -ggdb -march=x86-64 -mtune=generic -std=gnu11 -o CMakeFiles/xdbg.dir/xasm/mnemonics.c.o -c /home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm/mnemonics.c",
   "file": "/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm/mnemonics.c",
   "output": "CMakeFiles/xdbg.dir/xasm/mnemonics.c.o"
 },
 {
   "directory": "/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/build",
-  "command": "/usr/bin/cc  -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xdbg -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xvm -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm  -fno-stack-protector -no-pie -O0 -ggdb -std=gnu11 -o CMakeFiles/xdbg.dir/xasm/xasm_functions.c.o -c /home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm/xasm_functions.c",
+  "command": "/usr/bin/cc  -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xdbg -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xvm -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm  -fno-stack-protector -no-pie -O0 -ggdb -march=x86-64 -mtune=generic -std=gnu11 -o CMakeFiles/xdbg.dir/xasm/xasm_functions.c.o -c /home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm/xasm_functions.c",
   "file": "/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm/xasm_functions.c",
   "output": "CMakeFiles/xdbg.dir/xasm/xasm_functions.c.o"
 },
 {
   "directory": "/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/build",
-  "command": "/usr/bin/cc  -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xdbg -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xvm -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm  -fno-stack-protector -no-pie -O0 -ggdb -std=gnu11 -o CMakeFiles/xdbg.dir/common/cstring.c.o -c /home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common/cstring.c",
+  "command": "/usr/bin/cc  -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xdbg -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xvm -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm  -fno-stack-protector -no-pie -O0 -ggdb -march=x86-64 -mtune=generic -std=gnu11 -o CMakeFiles/xdbg.dir/common/cstring.c.o -c /home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common/cstring.c",
   "file": "/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common/cstring.c",
   "output": "CMakeFiles/xdbg.dir/common/cstring.c.o"
 },
 {
   "directory": "/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/build",
-  "command": "/usr/bin/cc  -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xdbg -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xvm -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm  -fno-stack-protector -no-pie -O0 -ggdb -std=gnu11 -o CMakeFiles/xdbg.dir/common/signals.c.o -c /home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common/signals.c",
+  "command": "/usr/bin/cc  -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xdbg -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xvm -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm  -fno-stack-protector -no-pie -O0 -ggdb -march=x86-64 -mtune=generic -std=gnu11 -o CMakeFiles/xdbg.dir/common/signals.c.o -c /home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common/signals.c",
   "file": "/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common/signals.c",
   "output": "CMakeFiles/xdbg.dir/common/signals.c.o"
 },
 {
   "directory": "/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/build",
-  "command": "/usr/bin/cc  -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xdbg -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xvm -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm  -fno-stack-protector -no-pie -O0 -ggdb -std=gnu11 -o CMakeFiles/xdbg.dir/common/symbols.c.o -c /home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common/symbols.c",
+  "command": "/usr/bin/cc  -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xdbg -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xvm -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm  -fno-stack-protector -no-pie -O0 -ggdb -march=x86-64 -mtune=generic -std=gnu11 -o CMakeFiles/xdbg.dir/common/symbols.c.o -c /home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common/symbols.c",
   "file": "/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common/symbols.c",
   "output": "CMakeFiles/xdbg.dir/common/symbols.c.o"
 },
 {
   "directory": "/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/build",
-  "command": "/usr/bin/cc  -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xdbg -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xvm -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm  -fno-stack-protector -no-pie -O0 -ggdb -std=gnu11 -o CMakeFiles/xdbg.dir/common/loader.c.o -c /home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common/loader.c",
+  "command": "/usr/bin/cc  -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xdbg -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xvm -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm  -fno-stack-protector -no-pie -O0 -ggdb -march=x86-64 -mtune=generic -std=gnu11 -o CMakeFiles/xdbg.dir/common/loader.c.o -c /home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common/loader.c",
   "file": "/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common/loader.c",
   "output": "CMakeFiles/xdbg.dir/common/loader.c.o"
 },
 {
   "directory": "/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/build",
-  "command": "/usr/bin/cc  -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xdbg -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xvm -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm  -fno-stack-protector -no-pie -O0 -ggdb -std=gnu11 -o CMakeFiles/xdbg.dir/common/sections.c.o -c /home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common/sections.c",
+  "command": "/usr/bin/cc  -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xdbg -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xvm -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm  -fno-stack-protector -no-pie -O0 -ggdb -march=x86-64 -mtune=generic -std=gnu11 -o CMakeFiles/xdbg.dir/common/sections.c.o -c /home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common/sections.c",
   "file": "/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common/sections.c",
   "output": "CMakeFiles/xdbg.dir/common/sections.c.o"
 },
 {
   "directory": "/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/build",
-  "command": "/usr/bin/cc  -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common  -fno-stack-protector -no-pie -O0 -ggdb -std=gnu11 -o CMakeFiles/xasm.dir/xasm/xasm.c.o -c /home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm/xasm.c",
+  "command": "/usr/bin/cc  -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common  -fno-stack-protector -no-pie -O0 -ggdb -march=x86-64 -mtune=generic -std=gnu11 -o CMakeFiles/xasm.dir/xasm/xasm.c.o -c /home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm/xasm.c",
   "file": "/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm/xasm.c",
   "output": "CMakeFiles/xasm.dir/xasm/xasm.c.o"
 },
 {
   "directory": "/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/build",
-  "command": "/usr/bin/cc  -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common  -fno-stack-protector -no-pie -O0 -ggdb -std=gnu11 -o CMakeFiles/xasm.dir/xasm/xasm_functions.c.o -c /home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm/xasm_functions.c",
+  "command": "/usr/bin/cc  -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common  -fno-stack-protector -no-pie -O0 -ggdb -march=x86-64 -mtune=generic -std=gnu11 -o CMakeFiles/xasm.dir/xasm/xasm_functions.c.o -c /home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm/xasm_functions.c",
   "file": "/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm/xasm_functions.c",
   "output": "CMakeFiles/xasm.dir/xasm/xasm_functions.c.o"
 },
 {
   "directory": "/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/build",
-  "command": "/usr/bin/cc  -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common  -fno-stack-protector -no-pie -O0 -ggdb -std=gnu11 -o CMakeFiles/xasm.dir/xasm/parse.c.o -c /home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm/parse.c",
+  "command": "/usr/bin/cc  -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common  -fno-stack-protector -no-pie -O0 -ggdb -march=x86-64 -mtune=generic -std=gnu11 -o CMakeFiles/xasm.dir/xasm/parse.c.o -c /home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm/parse.c",
   "file": "/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm/parse.c",
   "output": "CMakeFiles/xasm.dir/xasm/parse.c.o"
 },
 {
   "directory": "/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/build",
-  "command": "/usr/bin/cc  -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common  -fno-stack-protector -no-pie -O0 -ggdb -std=gnu11 -o CMakeFiles/xasm.dir/xasm/mnemonics.c.o -c /home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm/mnemonics.c",
+  "command": "/usr/bin/cc  -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common  -fno-stack-protector -no-pie -O0 -ggdb -march=x86-64 -mtune=generic -std=gnu11 -o CMakeFiles/xasm.dir/xasm/mnemonics.c.o -c /home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm/mnemonics.c",
   "file": "/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm/mnemonics.c",
   "output": "CMakeFiles/xasm.dir/xasm/mnemonics.c.o"
 },
 {
   "directory": "/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/build",
-  "command": "/usr/bin/cc  -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common  -fno-stack-protector -no-pie -O0 -ggdb -std=gnu11 -o CMakeFiles/xasm.dir/common/signals.c.o -c /home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common/signals.c",
+  "command": "/usr/bin/cc  -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common  -fno-stack-protector -no-pie -O0 -ggdb -march=x86-64 -mtune=generic -std=gnu11 -o CMakeFiles/xasm.dir/common/signals.c.o -c /home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common/signals.c",
   "file": "/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common/signals.c",
   "output": "CMakeFiles/xasm.dir/common/signals.c.o"
 },
 {
   "directory": "/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/build",
-  "command": "/usr/bin/cc  -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common  -fno-stack-protector -no-pie -O0 -ggdb -std=gnu11 -o CMakeFiles/xasm.dir/common/symbols.c.o -c /home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common/symbols.c",
+  "command": "/usr/bin/cc  -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common  -fno-stack-protector -no-pie -O0 -ggdb -march=x86-64 -mtune=generic -std=gnu11 -o CMakeFiles/xasm.dir/common/symbols.c.o -c /home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common/symbols.c",
   "file": "/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common/symbols.c",
   "output": "CMakeFiles/xasm.dir/common/symbols.c.o"
 },
 {
   "directory": "/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/build",
-  "command": "/usr/bin/cc  -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common  -fno-stack-protector -no-pie -O0 -ggdb -std=gnu11 -o CMakeFiles/xasm.dir/common/sections.c.o -c /home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common/sections.c",
+  "command": "/usr/bin/cc  -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common  -fno-stack-protector -no-pie -O0 -ggdb -march=x86-64 -mtune=generic -std=gnu11 -o CMakeFiles/xasm.dir/common/sections.c.o -c /home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common/sections.c",
   "file": "/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common/sections.c",
   "output": "CMakeFiles/xasm.dir/common/sections.c.o"
 },
 {
   "directory": "/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/build",
-  "command": "/usr/bin/cc  -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common  -fno-stack-protector -no-pie -O0 -ggdb -std=gnu11 -o CMakeFiles/xasm.dir/common/loader.c.o -c /home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common/loader.c",
+  "command": "/usr/bin/cc  -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common  -fno-stack-protector -no-pie -O0 -ggdb -march=x86-64 -mtune=generic -std=gnu11 -o CMakeFiles/xasm.dir/common/loader.c.o -c /home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common/loader.c",
   "file": "/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common/loader.c",
   "output": "CMakeFiles/xasm.dir/common/loader.c.o"
 },
 {
   "directory": "/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/build",
-  "command": "/usr/bin/cc  -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common  -fno-stack-protector -no-pie -O0 -ggdb -std=gnu11 -o CMakeFiles/xinfo.dir/xasm/xinfo.c.o -c /home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm/xinfo.c",
+  "command": "/usr/bin/cc  -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common  -fno-stack-protector -no-pie -O0 -ggdb -march=x86-64 -mtune=generic -std=gnu11 -o CMakeFiles/xinfo.dir/xasm/xinfo.c.o -c /home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm/xinfo.c",
   "file": "/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm/xinfo.c",
   "output": "CMakeFiles/xinfo.dir/xasm/xinfo.c.o"
 },
 {
   "directory": "/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/build",
-  "command": "/usr/bin/cc  -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common  -fno-stack-protector -no-pie -O0 -ggdb -std=gnu11 -o CMakeFiles/xinfo.dir/common/loader.c.o -c /home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common/loader.c",
+  "command": "/usr/bin/cc  -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common  -fno-stack-protector -no-pie -O0 -ggdb -march=x86-64 -mtune=generic -std=gnu11 -o CMakeFiles/xinfo.dir/common/loader.c.o -c /home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common/loader.c",
   "file": "/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common/loader.c",
   "output": "CMakeFiles/xinfo.dir/common/loader.c.o"
 },
 {
   "directory": "/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/build",
-  "command": "/usr/bin/cc  -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common  -fno-stack-protector -no-pie -O0 -ggdb -std=gnu11 -o CMakeFiles/xinfo.dir/common/symbols.c.o -c /home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common/symbols.c",
+  "command": "/usr/bin/cc  -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common  -fno-stack-protector -no-pie -O0 -ggdb -march=x86-64 -mtune=generic -std=gnu11 -o CMakeFiles/xinfo.dir/common/symbols.c.o -c /home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common/symbols.c",
   "file": "/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common/symbols.c",
   "output": "CMakeFiles/xinfo.dir/common/symbols.c.o"
 },
 {
   "directory": "/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/build",
-  "command": "/usr/bin/cc  -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common  -fno-stack-protector -no-pie -O0 -ggdb -std=gnu11 -o CMakeFiles/xinfo.dir/common/signals.c.o -c /home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common/signals.c",
+  "command": "/usr/bin/cc  -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common  -fno-stack-protector -no-pie -O0 -ggdb -march=x86-64 -mtune=generic -std=gnu11 -o CMakeFiles/xinfo.dir/common/signals.c.o -c /home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common/signals.c",
   "file": "/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common/signals.c",
   "output": "CMakeFiles/xinfo.dir/common/signals.c.o"
 },
 {
   "directory": "/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/build",
-  "command": "/usr/bin/cc  -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common  -fno-stack-protector -no-pie -O0 -ggdb -std=gnu11 -o CMakeFiles/xinfo.dir/common/sections.c.o -c /home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common/sections.c",
+  "command": "/usr/bin/cc  -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common  -fno-stack-protector -no-pie -O0 -ggdb -march=x86-64 -mtune=generic -std=gnu11 -o CMakeFiles/xinfo.dir/common/sections.c.o -c /home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common/sections.c",
   "file": "/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common/sections.c",
   "output": "CMakeFiles/xinfo.dir/common/sections.c.o"
 },
 {
   "directory": "/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/build",
-  "command": "/usr/bin/cc  -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common  -fno-stack-protector -no-pie -O0 -ggdb -std=gnu11 -o CMakeFiles/xdis.dir/xasm/xdis.c.o -c /home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm/xdis.c",
+  "command": "/usr/bin/cc  -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common  -fno-stack-protector -no-pie -O0 -ggdb -march=x86-64 -mtune=generic -std=gnu11 -o CMakeFiles/xdis.dir/xasm/xdis.c.o -c /home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm/xdis.c",
   "file": "/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm/xdis.c",
   "output": "CMakeFiles/xdis.dir/xasm/xdis.c.o"
 },
 {
   "directory": "/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/build",
-  "command": "/usr/bin/cc  -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common  -fno-stack-protector -no-pie -O0 -ggdb -std=gnu11 -o CMakeFiles/xdis.dir/xasm/disasm.c.o -c /home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm/disasm.c",
+  "command": "/usr/bin/cc  -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common  -fno-stack-protector -no-pie -O0 -ggdb -march=x86-64 -mtune=generic -std=gnu11 -o CMakeFiles/xdis.dir/xasm/disasm.c.o -c /home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm/disasm.c",
   "file": "/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm/disasm.c",
   "output": "CMakeFiles/xdis.dir/xasm/disasm.c.o"
 },
 {
   "directory": "/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/build",
-  "command": "/usr/bin/cc  -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common  -fno-stack-protector -no-pie -O0 -ggdb -std=gnu11 -o CMakeFiles/xdis.dir/xasm/xasm_functions.c.o -c /home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm/xasm_functions.c",
+  "command": "/usr/bin/cc  -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common  -fno-stack-protector -no-pie -O0 -ggdb -march=x86-64 -mtune=generic -std=gnu11 -o CMakeFiles/xdis.dir/xasm/xasm_functions.c.o -c /home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm/xasm_functions.c",
   "file": "/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm/xasm_functions.c",
   "output": "CMakeFiles/xdis.dir/xasm/xasm_functions.c.o"
 },
 {
   "directory": "/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/build",
-  "command": "/usr/bin/cc  -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common  -fno-stack-protector -no-pie -O0 -ggdb -std=gnu11 -o CMakeFiles/xdis.dir/xasm/mnemonics.c.o -c /home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm/mnemonics.c",
+  "command": "/usr/bin/cc  -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common  -fno-stack-protector -no-pie -O0 -ggdb -march=x86-64 -mtune=generic -std=gnu11 -o CMakeFiles/xdis.dir/xasm/mnemonics.c.o -c /home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm/mnemonics.c",
   "file": "/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm/mnemonics.c",
   "output": "CMakeFiles/xdis.dir/xasm/mnemonics.c.o"
 },
 {
   "directory": "/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/build",
-  "command": "/usr/bin/cc  -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common  -fno-stack-protector -no-pie -O0 -ggdb -std=gnu11 -o CMakeFiles/xdis.dir/common/loader.c.o -c /home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common/loader.c",
+  "command": "/usr/bin/cc  -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common  -fno-stack-protector -no-pie -O0 -ggdb -march=x86-64 -mtune=generic -std=gnu11 -o CMakeFiles/xdis.dir/common/loader.c.o -c /home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common/loader.c",
   "file": "/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common/loader.c",
   "output": "CMakeFiles/xdis.dir/common/loader.c.o"
 },
 {
   "directory": "/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/build",
-  "command": "/usr/bin/cc  -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common  -fno-stack-protector -no-pie -O0 -ggdb -std=gnu11 -o CMakeFiles/xdis.dir/common/symbols.c.o -c /home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common/symbols.c",
+  "command": "/usr/bin/cc  -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common  -fno-stack-protector -no-pie -O0 -ggdb -march=x86-64 -mtune=generic -std=gnu11 -o CMakeFiles/xdis.dir/common/symbols.c.o -c /home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common/symbols.c",
   "file": "/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common/symbols.c",
   "output": "CMakeFiles/xdis.dir/common/symbols.c.o"
 },
 {
   "directory": "/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/build",
-  "command": "/usr/bin/cc  -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common  -fno-stack-protector -no-pie -O0 -ggdb -std=gnu11 -o CMakeFiles/xdis.dir/common/signals.c.o -c /home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common/signals.c",
+  "command": "/usr/bin/cc  -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common  -fno-stack-protector -no-pie -O0 -ggdb -march=x86-64 -mtune=generic -std=gnu11 -o CMakeFiles/xdis.dir/common/signals.c.o -c /home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common/signals.c",
   "file": "/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common/signals.c",
   "output": "CMakeFiles/xdis.dir/common/signals.c.o"
 },
 {
   "directory": "/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/build",
-  "command": "/usr/bin/cc  -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common  -fno-stack-protector -no-pie -O0 -ggdb -std=gnu11 -o CMakeFiles/xdis.dir/common/sections.c.o -c /home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common/sections.c",
+  "command": "/usr/bin/cc  -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common  -fno-stack-protector -no-pie -O0 -ggdb -march=x86-64 -mtune=generic -std=gnu11 -o CMakeFiles/xdis.dir/common/sections.c.o -c /home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common/sections.c",
   "file": "/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common/sections.c",
   "output": "CMakeFiles/xdis.dir/common/sections.c.o"
 },
 {
   "directory": "/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/build",
-  "command": "/usr/bin/cc  -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/ropgadget -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common  -fno-stack-protector -no-pie -O0 -ggdb -std=gnu11 -o CMakeFiles/ropgadget.dir/ropgadget/ropgadget.c.o -c /home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/ropgadget/ropgadget.c",
+  "command": "/usr/bin/cc  -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/ropgadget -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common  -fno-stack-protector -no-pie -O0 -ggdb -march=x86-64 -mtune=generic -std=gnu11 -o CMakeFiles/ropgadget.dir/ropgadget/ropgadget.c.o -c /home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/ropgadget/ropgadget.c",
   "file": "/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/ropgadget/ropgadget.c",
   "output": "CMakeFiles/ropgadget.dir/ropgadget/ropgadget.c.o"
 },
 {
   "directory": "/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/build",
-  "command": "/usr/bin/cc  -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/ropgadget -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common  -fno-stack-protector -no-pie -O0 -ggdb -std=gnu11 -o CMakeFiles/ropgadget.dir/ropgadget/findgadgets.c.o -c /home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/ropgadget/findgadgets.c",
+  "command": "/usr/bin/cc  -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/ropgadget -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common  -fno-stack-protector -no-pie -O0 -ggdb -march=x86-64 -mtune=generic -std=gnu11 -o CMakeFiles/ropgadget.dir/ropgadget/findgadgets.c.o -c /home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/ropgadget/findgadgets.c",
   "file": "/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/ropgadget/findgadgets.c",
   "output": "CMakeFiles/ropgadget.dir/ropgadget/findgadgets.c.o"
 },
 {
   "directory": "/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/build",
-  "command": "/usr/bin/cc  -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/ropgadget -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common  -fno-stack-protector -no-pie -O0 -ggdb -std=gnu11 -o CMakeFiles/ropgadget.dir/xasm/xasm_functions.c.o -c /home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm/xasm_functions.c",
+  "command": "/usr/bin/cc  -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/ropgadget -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common  -fno-stack-protector -no-pie -O0 -ggdb -march=x86-64 -mtune=generic -std=gnu11 -o CMakeFiles/ropgadget.dir/xasm/xasm_functions.c.o -c /home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm/xasm_functions.c",
   "file": "/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm/xasm_functions.c",
   "output": "CMakeFiles/ropgadget.dir/xasm/xasm_functions.c.o"
 },
 {
   "directory": "/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/build",
-  "command": "/usr/bin/cc  -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/ropgadget -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common  -fno-stack-protector -no-pie -O0 -ggdb -std=gnu11 -o CMakeFiles/ropgadget.dir/xasm/disasm.c.o -c /home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm/disasm.c",
+  "command": "/usr/bin/cc  -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/ropgadget -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common  -fno-stack-protector -no-pie -O0 -ggdb -march=x86-64 -mtune=generic -std=gnu11 -o CMakeFiles/ropgadget.dir/xasm/disasm.c.o -c /home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm/disasm.c",
   "file": "/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm/disasm.c",
   "output": "CMakeFiles/ropgadget.dir/xasm/disasm.c.o"
 },
 {
   "directory": "/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/build",
-  "command": "/usr/bin/cc  -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/ropgadget -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common  -fno-stack-protector -no-pie -O0 -ggdb -std=gnu11 -o CMakeFiles/ropgadget.dir/xasm/mnemonics.c.o -c /home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm/mnemonics.c",
+  "command": "/usr/bin/cc  -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/ropgadget -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common  -fno-stack-protector -no-pie -O0 -ggdb -march=x86-64 -mtune=generic -std=gnu11 -o CMakeFiles/ropgadget.dir/xasm/mnemonics.c.o -c /home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm/mnemonics.c",
   "file": "/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm/mnemonics.c",
   "output": "CMakeFiles/ropgadget.dir/xasm/mnemonics.c.o"
 },
 {
   "directory": "/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/build",
-  "command": "/usr/bin/cc  -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/ropgadget -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common  -fno-stack-protector -no-pie -O0 -ggdb -std=gnu11 -o CMakeFiles/ropgadget.dir/common/loader.c.o -c /home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common/loader.c",
+  "command": "/usr/bin/cc  -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/ropgadget -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common  -fno-stack-protector -no-pie -O0 -ggdb -march=x86-64 -mtune=generic -std=gnu11 -o CMakeFiles/ropgadget.dir/common/loader.c.o -c /home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common/loader.c",
   "file": "/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common/loader.c",
   "output": "CMakeFiles/ropgadget.dir/common/loader.c.o"
 },
 {
   "directory": "/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/build",
-  "command": "/usr/bin/cc  -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/ropgadget -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common  -fno-stack-protector -no-pie -O0 -ggdb -std=gnu11 -o CMakeFiles/ropgadget.dir/common/symbols.c.o -c /home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common/symbols.c",
+  "command": "/usr/bin/cc  -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/ropgadget -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common  -fno-stack-protector -no-pie -O0 -ggdb -march=x86-64 -mtune=generic -std=gnu11 -o CMakeFiles/ropgadget.dir/common/symbols.c.o -c /home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common/symbols.c",
   "file": "/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common/symbols.c",
   "output": "CMakeFiles/ropgadget.dir/common/symbols.c.o"
 },
 {
   "directory": "/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/build",
-  "command": "/usr/bin/cc  -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/ropgadget -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common  -fno-stack-protector -no-pie -O0 -ggdb -std=gnu11 -o CMakeFiles/ropgadget.dir/common/signals.c.o -c /home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common/signals.c",
+  "command": "/usr/bin/cc  -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/ropgadget -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common  -fno-stack-protector -no-pie -O0 -ggdb -march=x86-64 -mtune=generic -std=gnu11 -o CMakeFiles/ropgadget.dir/common/signals.c.o -c /home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common/signals.c",
   "file": "/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common/signals.c",
   "output": "CMakeFiles/ropgadget.dir/common/signals.c.o"
 },
 {
   "directory": "/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/build",
-  "command": "/usr/bin/cc  -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/ropgadget -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common  -fno-stack-protector -no-pie -O0 -ggdb -std=gnu11 -o CMakeFiles/ropgadget.dir/common/sections.c.o -c /home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common/sections.c",
+  "command": "/usr/bin/cc  -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/ropgadget -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common  -fno-stack-protector -no-pie -O0 -ggdb -march=x86-64 -mtune=generic -std=gnu11 -o CMakeFiles/ropgadget.dir/common/sections.c.o -c /home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common/sections.c",
   "file": "/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common/sections.c",
   "output": "CMakeFiles/ropgadget.dir/common/sections.c.o"
 }

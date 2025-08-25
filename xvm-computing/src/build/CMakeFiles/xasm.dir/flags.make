@@ -6,5 +6,5 @@ C_DEFINES =
 
 C_INCLUDES = -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/xasm -I/home/x3ero0/Research/ctf-academy/CTFs/attackdefense_1/challenges/xvm-computing/src/common
 
-C_FLAGS =  -fno-stack-protector -no-pie -O0 -ggdb -std=gnu11
+C_FLAGS =  -fno-stack-protector -no-pie -O0 -ggdb -march=x86-64 -mtune=generic -std=gnu11
 

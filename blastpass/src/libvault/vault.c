@@ -40,90 +40,50 @@ int derive_key(const char* password, const unsigned char* salt, unsigned char* k
 int compress_data(const unsigned char* data, size_t data_len,
     unsigned char** compressed, size_t* compressed_len)
 {
-
-    z_stream stream;
-    stream.zalloc = Z_NULL;
-    stream.zfree = Z_NULL;
-    stream.opaque = Z_NULL;
-    stream.avail_in = data_len;
-    stream.next_in = (Bytef*)data;
-
-    if (deflateInit2(&stream, Z_DEFAULT_COMPRESSION, Z_DEFLATED, 31, 8, Z_DEFAULT_STRATEGY) != Z_OK) {
-        return -1;
-    }
-
     *compressed_len = data_len + 64;
     *compressed = malloc(*compressed_len);
     if (!*compressed) {
-        deflateEnd(&stream);
         return -1;
     }
 
-    stream.avail_out = *compressed_len;
-    stream.next_out = *compressed;
-
-    int result = deflate(&stream, Z_FINISH);
-    if (result != Z_STREAM_END) {
+    int res = compress((Bytef*)*compressed, (uLongf*)compressed_len, (Bytef*)data, data_len);
+    if (res != Z_OK) {
         free(*compressed);
         *compressed = NULL;
-        deflateEnd(&stream);
         return -1;
     }
 
-    *compressed_len = stream.total_out;
-    deflateEnd(&stream);
     return 0;
 }
 
 int decompress_data(const unsigned char* compressed, size_t compressed_len,
     unsigned char** data, size_t* data_len)
 {
-
-    z_stream stream;
-    stream.zalloc = Z_NULL;
-    stream.zfree = Z_NULL;
-    stream.opaque = Z_NULL;
-    stream.avail_in = compressed_len;
-    stream.next_in = (Bytef*)compressed;
-
-    if (inflateInit2(&stream, 31) != Z_OK) {
-        return -1;
-    }
-
     size_t buffer_size = compressed_len * 4;
     *data = malloc(buffer_size);
     if (!*data) {
-        inflateEnd(&stream);
         return -1;
     }
 
-    stream.avail_out = buffer_size;
-    stream.next_out = *data;
-
-    int result = inflate(&stream, Z_FINISH);
-
-    while (result == Z_BUF_ERROR) {
-        size_t current_out = stream.total_out;
+    *data_len = buffer_size;
+    int res = uncompress((Bytef*)*data, (uLongf*)data_len, (Bytef*)compressed, compressed_len);
+    
+    while (res == Z_BUF_ERROR) {
         buffer_size *= 2;
         *data = realloc(*data, buffer_size);
         if (!*data) {
-            inflateEnd(&stream);
             return -1;
         }
-        stream.next_out = *data + current_out;
-        stream.avail_out = buffer_size - current_out;
-        result = inflate(&stream, Z_FINISH);
+        *data_len = buffer_size;
+        res = uncompress((Bytef*)*data, (uLongf*)data_len, (Bytef*)compressed, compressed_len);
     }
 
-    if (result != Z_STREAM_END) {
+    if (res != Z_OK) {
         free(*data);
         *data = NULL;
-        inflateEnd(&stream);
         return -1;
     }
 
-    *data_len = stream.total_out;
-    inflateEnd(&stream);
     return 0;
 }
 

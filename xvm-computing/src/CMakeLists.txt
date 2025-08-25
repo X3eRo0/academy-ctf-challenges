@@ -4,7 +4,7 @@ project(xvm C)
 set(CMAKE_C_STANDARD 11)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 # set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fsanitize=address -g -O0")
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fno-stack-protector -no-pie -O0 -ggdb")
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fno-stack-protector -no-pie -O0 -ggdb -march=i686 -mtune=generic")
 
 add_executable(xvm
     xvm/xvm.c

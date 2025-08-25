@@ -22,6 +22,8 @@ WORKDIR /app/src
 
 RUN cd libvault && make
 
+RUN groupadd -g 1000 ctf && useradd -r -u 1000 -g 1000 -s /bin/false ctf
+
 EXPOSE 3333
 
 ENV FLASK_APP=blastpass.py
