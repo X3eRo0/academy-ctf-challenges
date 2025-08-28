@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en-us" itemscope="itemscope" itemtype="http://schema.org/WebPage" prefix="og: http://ogp.me/ns#"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+        <meta charset="utf-8">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+        <link rel="stylesheet" href="Scoreboard%20_%20Academy%20CTF_files/bootstrap.min.css">
+        <link rel="stylesheet" href="Scoreboard%20_%20Academy%20CTF_files/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="Scoreboard%20_%20Academy%20CTF_files/style.css">
+
+        <!-- Load the scripts asynchronously in the right order -->
+        <script src="Scoreboard%20_%20Academy%20CTF_files/jquery.min.js" defer="defer"></script>
+        <script src="Scoreboard%20_%20Academy%20CTF_files/bootstrap.min.js" defer="defer"></script>
+
+        <title itemprop="name">Scoreboard | Academy CTF</title>
+
+        <meta property="og:type" content="website">
+        <meta property="og:site_name" content="Academy CTF">
+    </head>
+
+
+    <body>
+        <nav class="navbar navbar-static-top navbar-inverse">
+            <div class="container">
+                <!-- "Hamburger menu" for small screens -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-menu">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+
+                    <a class="navbar-brand" href="https://x3ero0.dev/">Academy CTF</a>
+                </div>
+
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="nav navbar-nav">
+                        
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">
+                                Information <span class="caret"></span>
+                            </a>
+
+                            <ul class="dropdown-menu">
+                                
+                                <li><a href="https://x3ero0.dev/information/attack-defense-for-beginners/">Attack Defense for Beginners</a></li>
+                                
+                                <li><a href="https://x3ero0.dev/information/submission/">Submission</a></li>
+                                
+                                <li><a href="https://x3ero0.dev/information/vulnbox-setup/">Vulnbox Setup</a></li>
+                                
+                            </ul>
+                        </li>
+                        
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">
+                                Services <span class="caret"></span>
+                            </a>
+
+                            <ul class="dropdown-menu">
+                                
+                                <li><a href="https://x3ero0.dev/services/academy-bank/">academy-bank</a></li>
+                                
+                                <li><a href="https://x3ero0.dev/services/academy-gram/">academy-gram</a></li>
+                                
+                                <li><a href="https://x3ero0.dev/services/xvm-computing/">xvm-computing</a></li>
+                                
+                            </ul>
+                        </li>
+                        
+
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">
+                                Competition <span class="caret"></span>
+                            </a>
+
+                            <ul class="dropdown-menu">
+                                <li><a href="https://x3ero0.dev/competition/teams/">Registered Teams</a></li>
+                                
+                                <li><a href="https://x3ero0.dev/competition/scoreboard/">Scoreboard</a></li>
+                                <li><a href="https://x3ero0.dev/competition/status/">
+                                    Service Status
+                                </a></li>
+                                
+                            </ul>
+                        </li>
+
+                        
+                    </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+                        
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">
+                                admin <span class="caret"></span>
+                            </a>
+
+                            <ul class="dropdown-menu">
+                                
+                                
+                                <li><a href="https://x3ero0.dev/vpn-status/">VPN Status History</a></li>
+                                
+                                <li><a href="https://x3ero0.dev/admin/">Administration</a></li>
+                                <li><a href="https://x3ero0.dev/internal/service-history">Service History</a></li>
+                                <li><a href="https://x3ero0.dev/internal/missing-checks">Missing Checks</a></li>
+                                <li><a href="https://x3ero0.dev/internal/mail-teams/">Email Teams</a></li>
+                                <li class="divider" role="separator"></li>
+                                
+                                <li><a href="https://x3ero0.dev/auth/logout/">Logout</a></li>
+                            </ul>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        
+<div id="page-content" class="container-fluid">
+    
+
+    
+<script src="Scoreboard%20_%20Academy%20CTF_files/service_util.js" defer="defer"></script>
+<script src="Scoreboard%20_%20Academy%20CTF_files/scoreboard.js" defer="defer"></script>
+
+<noscript>
+    <div class="alert alert-danger" role="alert">Please enable JavaScript for this page to work!</div>
+</noscript>
+
+<div class="page-header">
+    <h1>Scoreboard</h1>
+</div>
+
+<div class="clearfix">
+    <div class="pull-left">
+        
+
+
+
+
+<ul class="nav nav-pills">
+    <li class="">
+        <a href="https://x3ero0.dev/competition/teams/">Registered teams</a>
+    </li>
+    <li class="active">
+        <a href="https://x3ero0.dev/competition/scoreboard/">Scoreboard</a>
+    </li>
+    <li class="">
+        <a href="https://x3ero0.dev/competition/status/">Service status</a>
+    </li>
+</ul>
+
+
+    </div>
+
+    <p class="text-muted pull-right">
+        
+        Tick: <span id="tick">305</span>
+        
+    </p>
+</div>
+
+<div class="table-responsive">
+    <table class="table">
+        <thead>
+            <tr>
+                <th><!-- Rank --></th>
+                <th class="image-column"><!-- Image --></th>
+                <th class="border-right">Team</th>
+                
+                <th>xvm-computing</th>
+                
+                <th>academy-gram</th>
+                
+                <th>academy-bank</th>
+                
+                <th class="border-left">
+                    <span class="glyphicon glyphicon-fire"></span> <span class="sr-only">Offense</span>
+                    Total Offense
+                </th>
+                <th>
+                    <span class="glyphicon glyphicon-tower"></span> <span class="sr-only">Defense</span>
+                    Total Defense
+                </th>
+                <th>
+                    <span class="glyphicon glyphicon-dashboard"></span> <span class="sr-only">SLA</span>
+                    Total SLA
+                </th>
+                <th class="border-left">Total</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr id="team-template-row" hidden="hidden">
+                <td><strong><!-- Position --></strong></td>
+
+                <td>
+                    <!-- Image -->
+                    <a href="">
+                        <img class="team-image" src="" alt="">
+                    </a>
+                </td>
+
+                <td class="border-right">
+                    <strong><!-- Name --></strong>
+                </td>
+
+                <!-- Services, copied via JavaScript -->
+                <td class="active">
+                    <span class="glyphicon glyphicon-fire"></span> <span class="sr-only">Offense</span>
+                    <span><!-- Offense --></span> <br>
+                    <span class="glyphicon glyphicon-tower"></span> <span class="sr-only">Defense</span>
+                    <span><!-- Defense --></span> <br>
+                    <span class="glyphicon glyphicon-dashboard"></span> <span class="sr-only">SLA</span>
+                    <span><!-- SLA --></span> <br>
+
+                    <a href="https://x3ero0.dev/competition/status/">
+                    <!-- Status -->
+                    <span class="text-muted">not checked</span>
+                    </a>
+                </td>
+
+                <td class="border-left"><!-- Offense --></td>
+                <td><!-- Defense --></td>
+                <td><!-- SLA --></td>
+                <td class="border-left"><strong><!-- Total --></strong></td>
+            </tr>
+        <tr id="team-4-row">
+                <td><strong>1.</strong></td>
+
+                <td>
+                    <!-- Image -->
+                    <a href="https://x3ero0.dev/uploads/team-images/4.png">
+                        <img class="team-image" src="Scoreboard%20_%20Academy%20CTF_files/4.png" alt="TheBlues">
+                    </a>
+                </td>
+
+                <td class="border-right">
+                    <strong>TheBlues</strong>
+                </td>
+
+                <!-- Services, copied via JavaScript -->
+                <td class="success">
+                    <span class="glyphicon glyphicon-fire"></span> <span class="sr-only">Offense</span>
+                    <span>3.50</span> <br>
+                    <span class="glyphicon glyphicon-tower"></span> <span class="sr-only">Defense</span>
+                    <span>-21.77</span> <br>
+                    <span class="glyphicon glyphicon-dashboard"></span> <span class="sr-only">SLA</span>
+                    <span>571.48</span> <br>
+
+                    <a href="https://x3ero0.dev/competition/status/#team-4-row">
+                    <!-- Status -->
+                    <span class="text-success">up</span>
+                    </a>
+                </td><td class="success">
+                    <span class="glyphicon glyphicon-fire"></span> <span class="sr-only">Offense</span>
+                    <span>1143.73</span> <br>
+                    <span class="glyphicon glyphicon-tower"></span> <span class="sr-only">Defense</span>
+                    <span>-267.77</span> <br>
+                    <span class="glyphicon glyphicon-dashboard"></span> <span class="sr-only">SLA</span>
+                    <span>346.59</span> <br>
+
+                    <a href="https://x3ero0.dev/competition/status/#team-4-row">
+                    <!-- Status -->
+                    <span class="text-success">up</span>
+                    </a>
+                </td><td class="success">
+                    <span class="glyphicon glyphicon-fire"></span> <span class="sr-only">Offense</span>
+                    <span>763.75</span> <br>
+                    <span class="glyphicon glyphicon-tower"></span> <span class="sr-only">Defense</span>
+                    <span>-8.00</span> <br>
+                    <span class="glyphicon glyphicon-dashboard"></span> <span class="sr-only">SLA</span>
+                    <span>502.69</span> <br>
+
+                    <a href="https://x3ero0.dev/competition/status/#team-4-row">
+                    <!-- Status -->
+                    <span class="text-success">up</span>
+                    </a>
+                </td>
+
+                <td class="border-left">1910.98</td>
+                <td>-297.54</td>
+                <td>1420.77</td>
+                <td class="border-left"><strong>3034.21</strong></td>
+            </tr><tr id="team-8-row">
+                <td><strong>2.</strong></td>
+
+                <td>
+                    <!-- Image -->
+                    <a href="https://x3ero0.dev/uploads/team-images/8.png">
+                        <img class="team-image" src="Scoreboard%20_%20Academy%20CTF_files/8.png" alt="x3ero0_supremacy">
+                    </a>
+                </td>
+
+                <td class="border-right">
+                    <strong>x3ero0_supremacy</strong>
+                </td>
+
+                <!-- Services, copied via JavaScript -->
+                <td class="danger">
+                    <span class="glyphicon glyphicon-fire"></span> <span class="sr-only">Offense</span>
+                    <span>30.50</span> <br>
+                    <span class="glyphicon glyphicon-tower"></span> <span class="sr-only">Defense</span>
+                    <span>-31.00</span> <br>
+                    <span class="glyphicon glyphicon-dashboard"></span> <span class="sr-only">SLA</span>
+                    <span>545.02</span> <br>
+
+                    <a href="https://x3ero0.dev/competition/status/#team-8-row">
+                    <!-- Status -->
+                    <span class="text-danger">down</span>
+                    </a>
+                </td><td class="danger">
+                    <span class="glyphicon glyphicon-fire"></span> <span class="sr-only">Offense</span>
+                    <span>1251.47</span> <br>
+                    <span class="glyphicon glyphicon-tower"></span> <span class="sr-only">Defense</span>
+                    <span>-276.77</span> <br>
+                    <span class="glyphicon glyphicon-dashboard"></span> <span class="sr-only">SLA</span>
+                    <span>576.77</span> <br>
+
+                    <a href="https://x3ero0.dev/competition/status/#team-8-row">
+                    <!-- Status -->
+                    <span class="text-danger">faulty</span>
+                    </a>
+                </td><td class="danger">
+                    <span class="glyphicon glyphicon-fire"></span> <span class="sr-only">Offense</span>
+                    <span>178.08</span> <br>
+                    <span class="glyphicon glyphicon-tower"></span> <span class="sr-only">Defense</span>
+                    <span>-88.46</span> <br>
+                    <span class="glyphicon glyphicon-dashboard"></span> <span class="sr-only">SLA</span>
+                    <span>317.49</span> <br>
+
+                    <a href="https://x3ero0.dev/competition/status/#team-8-row">
+                    <!-- Status -->
+                    <span class="text-danger">down</span>
+                    </a>
+                </td>
+
+                <td class="border-left">1460.05</td>
+                <td>-396.23</td>
+                <td>1439.29</td>
+                <td class="border-left"><strong>2503.11</strong></td>
+            </tr><tr id="team-6-row">
+                <td><strong>3.</strong></td>
+
+                <td></td>
+
+                <td class="border-right">
+                    <strong>365-tas</strong>
+                </td>
+
+                <!-- Services, copied via JavaScript -->
+                <td class="success">
+                    <span class="glyphicon glyphicon-fire"></span> <span class="sr-only">Offense</span>
+                    <span>0.00</span> <br>
+                    <span class="glyphicon glyphicon-tower"></span> <span class="sr-only">Defense</span>
+                    <span>-6.00</span> <br>
+                    <span class="glyphicon glyphicon-dashboard"></span> <span class="sr-only">SLA</span>
+                    <span>719.64</span> <br>
+
+                    <a href="https://x3ero0.dev/competition/status/#team-6-row">
+                    <!-- Status -->
+                    <span class="text-success">up</span>
+                    </a>
+                </td><td class="success">
+                    <span class="glyphicon glyphicon-fire"></span> <span class="sr-only">Offense</span>
+                    <span>468.25</span> <br>
+                    <span class="glyphicon glyphicon-tower"></span> <span class="sr-only">Defense</span>
+                    <span>-51.64</span> <br>
+                    <span class="glyphicon glyphicon-dashboard"></span> <span class="sr-only">SLA</span>
+                    <span>633.66</span> <br>
+
+                    <a href="https://x3ero0.dev/competition/status/#team-6-row">
+                    <!-- Status -->
+                    <span class="text-success">up</span>
+                    </a>
+                </td><td class="success">
+                    <span class="glyphicon glyphicon-fire"></span> <span class="sr-only">Offense</span>
+                    <span>0.00</span> <br>
+                    <span class="glyphicon glyphicon-tower"></span> <span class="sr-only">Defense</span>
+                    <span>-239.30</span> <br>
+                    <span class="glyphicon glyphicon-dashboard"></span> <span class="sr-only">SLA</span>
+                    <span>452.42</span> <br>
+
+                    <a href="https://x3ero0.dev/competition/status/#team-6-row">
+                    <!-- Status -->
+                    <span class="text-success">up</span>
+                    </a>
+                </td>
+
+                <td class="border-left">468.25</td>
+                <td>-296.94</td>
+                <td>1805.73</td>
+                <td class="border-left"><strong>1977.04</strong></td>
+            </tr><tr id="team-7-row">
+                <td><strong>4.</strong></td>
+
+                <td></td>
+
+                <td class="border-right">
+                    <strong>SNEZ</strong>
+                </td>
+
+                <!-- Services, copied via JavaScript -->
+                <td class="success">
+                    <span class="glyphicon glyphicon-fire"></span> <span class="sr-only">Offense</span>
+                    <span>51.50</span> <br>
+                    <span class="glyphicon glyphicon-tower"></span> <span class="sr-only">Defense</span>
+                    <span>-7.00</span> <br>
+                    <span class="glyphicon glyphicon-dashboard"></span> <span class="sr-only">SLA</span>
+                    <span>661.44</span> <br>
+
+                    <a href="https://x3ero0.dev/competition/status/#team-7-row">
+                    <!-- Status -->
+                    <span class="text-success">up</span>
+                    </a>
+                </td><td class="danger">
+                    <span class="glyphicon glyphicon-fire"></span> <span class="sr-only">Offense</span>
+                    <span>143.00</span> <br>
+                    <span class="glyphicon glyphicon-tower"></span> <span class="sr-only">Defense</span>
+                    <span>-397.14</span> <br>
+                    <span class="glyphicon glyphicon-dashboard"></span> <span class="sr-only">SLA</span>
+                    <span>326.75</span> <br>
+
+                    <a href="https://x3ero0.dev/competition/status/#team-7-row">
+                    <!-- Status -->
+                    <span class="text-danger">down</span>
+                    </a>
+                </td><td class="success">
+                    <span class="glyphicon glyphicon-fire"></span> <span class="sr-only">Offense</span>
+                    <span>454.25</span> <br>
+                    <span class="glyphicon glyphicon-tower"></span> <span class="sr-only">Defense</span>
+                    <span>-8.00</span> <br>
+                    <span class="glyphicon glyphicon-dashboard"></span> <span class="sr-only">SLA</span>
+                    <span>572.81</span> <br>
+
+                    <a href="https://x3ero0.dev/competition/status/#team-7-row">
+                    <!-- Status -->
+                    <span class="text-success">up</span>
+                    </a>
+                </td>
+
+                <td class="border-left">648.75</td>
+                <td>-412.14</td>
+                <td>1560.99</td>
+                <td class="border-left"><strong>1797.60</strong></td>
+            </tr><tr id="team-9-row">
+                <td><strong>5.</strong></td>
+
+                <td></td>
+
+                <td class="border-right">
+                    <strong>null</strong>
+                </td>
+
+                <!-- Services, copied via JavaScript -->
+                <td class="success">
+                    <span class="glyphicon glyphicon-fire"></span> <span class="sr-only">Offense</span>
+                    <span>70.50</span> <br>
+                    <span class="glyphicon glyphicon-tower"></span> <span class="sr-only">Defense</span>
+                    <span>0.00</span> <br>
+                    <span class="glyphicon glyphicon-dashboard"></span> <span class="sr-only">SLA</span>
+                    <span>776.53</span> <br>
+
+                    <a href="https://x3ero0.dev/competition/status/#team-9-row">
+                    <!-- Status -->
+                    <span class="text-success">up</span>
+                    </a>
+                </td><td class="danger">
+                    <span class="glyphicon glyphicon-fire"></span> <span class="sr-only">Offense</span>
+                    <span>589.85</span> <br>
+                    <span class="glyphicon glyphicon-tower"></span> <span class="sr-only">Defense</span>
+                    <span>-422.48</span> <br>
+                    <span class="glyphicon glyphicon-dashboard"></span> <span class="sr-only">SLA</span>
+                    <span>461.68</span> <br>
+
+                    <a href="https://x3ero0.dev/competition/status/#team-9-row">
+                    <!-- Status -->
+                    <span class="text-danger">down</span>
+                    </a>
+                </td><td class="success">
+                    <span class="glyphicon glyphicon-fire"></span> <span class="sr-only">Offense</span>
+                    <span>0.00</span> <br>
+                    <span class="glyphicon glyphicon-tower"></span> <span class="sr-only">Defense</span>
+                    <span>-242.20</span> <br>
+                    <span class="glyphicon glyphicon-dashboard"></span> <span class="sr-only">SLA</span>
+                    <span>534.44</span> <br>
+
+                    <a href="https://x3ero0.dev/competition/status/#team-9-row">
+                    <!-- Status -->
+                    <span class="text-success">up</span>
+                    </a>
+                </td>
+
+                <td class="border-left">660.35</td>
+                <td>-664.69</td>
+                <td>1772.65</td>
+                <td class="border-left"><strong>1768.32</strong></td>
+            </tr><tr id="team-10-row">
+                <td><strong>6.</strong></td>
+
+                <td>
+                    <!-- Image -->
+                    <a href="https://x3ero0.dev/uploads/team-images/10.png">
+                        <img class="team-image" src="Scoreboard%20_%20Academy%20CTF_files/10.png" alt="1-yr_Exploit">
+                    </a>
+                </td>
+
+                <td class="border-right">
+                    <strong>1-yr_Exploit</strong>
+                </td>
+
+                <!-- Services, copied via JavaScript -->
+                <td class="success">
+                    <span class="glyphicon glyphicon-fire"></span> <span class="sr-only">Offense</span>
+                    <span>0.00</span> <br>
+                    <span class="glyphicon glyphicon-tower"></span> <span class="sr-only">Defense</span>
+                    <span>-2.00</span> <br>
+                    <span class="glyphicon glyphicon-dashboard"></span> <span class="sr-only">SLA</span>
+                    <span>669.38</span> <br>
+
+                    <a href="https://x3ero0.dev/competition/status/#team-10-row">
+                    <!-- Status -->
+                    <span class="text-success">up</span>
+                    </a>
+                </td><td class="success">
+                    <span class="glyphicon glyphicon-fire"></span> <span class="sr-only">Offense</span>
+                    <span>251.13</span> <br>
+                    <span class="glyphicon glyphicon-tower"></span> <span class="sr-only">Defense</span>
+                    <span>-404.43</span> <br>
+                    <span class="glyphicon glyphicon-dashboard"></span> <span class="sr-only">SLA</span>
+                    <span>596.62</span> <br>
+
+                    <a href="https://x3ero0.dev/competition/status/#team-10-row">
+                    <!-- Status -->
+                    <span class="text-success">up</span>
+                    </a>
+                </td><td class="success">
+                    <span class="glyphicon glyphicon-fire"></span> <span class="sr-only">Offense</span>
+                    <span>19.92</span> <br>
+                    <span class="glyphicon glyphicon-tower"></span> <span class="sr-only">Defense</span>
+                    <span>-117.36</span> <br>
+                    <span class="glyphicon glyphicon-dashboard"></span> <span class="sr-only">SLA</span>
+                    <span>493.43</span> <br>
+
+                    <a href="https://x3ero0.dev/competition/status/#team-10-row">
+                    <!-- Status -->
+                    <span class="text-success">up</span>
+                    </a>
+                </td>
+
+                <td class="border-left">271.05</td>
+                <td>-523.79</td>
+                <td>1759.42</td>
+                <td class="border-left"><strong>1506.68</strong></td>
+            </tr><tr id="team-5-row">
+                <td><strong>7.</strong></td>
+
+                <td></td>
+
+                <td class="border-right">
+                    <strong>misc-gang</strong>
+                </td>
+
+                <!-- Services, copied via JavaScript -->
+                <td class="danger">
+                    <span class="glyphicon glyphicon-fire"></span> <span class="sr-only">Offense</span>
+                    <span>0.00</span> <br>
+                    <span class="glyphicon glyphicon-tower"></span> <span class="sr-only">Defense</span>
+                    <span>-11.68</span> <br>
+                    <span class="glyphicon glyphicon-dashboard"></span> <span class="sr-only">SLA</span>
+                    <span>604.55</span> <br>
+
+                    <a href="https://x3ero0.dev/competition/status/#team-5-row">
+                    <!-- Status -->
+                    <span class="text-danger">faulty</span>
+                    </a>
+                </td><td class="danger">
+                    <span class="glyphicon glyphicon-fire"></span> <span class="sr-only">Offense</span>
+                    <span>164.57</span> <br>
+                    <span class="glyphicon glyphicon-tower"></span> <span class="sr-only">Defense</span>
+                    <span>-385.20</span> <br>
+                    <span class="glyphicon glyphicon-dashboard"></span> <span class="sr-only">SLA</span>
+                    <span>452.42</span> <br>
+
+                    <a href="https://x3ero0.dev/competition/status/#team-5-row">
+                    <!-- Status -->
+                    <span class="text-danger">down</span>
+                    </a>
+                </td><td class="info">
+                    <span class="glyphicon glyphicon-fire"></span> <span class="sr-only">Offense</span>
+                    <span>0.00</span> <br>
+                    <span class="glyphicon glyphicon-tower"></span> <span class="sr-only">Defense</span>
+                    <span>-76.01</span> <br>
+                    <span class="glyphicon glyphicon-dashboard"></span> <span class="sr-only">SLA</span>
+                    <span>444.49</span> <br>
+
+                    <a href="https://x3ero0.dev/competition/status/#team-5-row">
+                    <!-- Status -->
+                    <span class="text-info">recovering</span>
+                    </a>
+                </td>
+
+                <td class="border-left">164.57</td>
+                <td>-472.89</td>
+                <td>1501.46</td>
+                <td class="border-left"><strong>1193.14</strong></td>
+            </tr></tbody>
+    </table>
+</div>
+
+</div>
+
+    
+
+</body></html>
